@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "TciOIjA6ABl2Y80EhZAVYySSJn2Axzjmqxk9Jh1lnmjK4i+q6r85JlN9cEyIJrpSamiEVYNtx5mQF3Tx9C9l2w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wilso\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\wilso\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
