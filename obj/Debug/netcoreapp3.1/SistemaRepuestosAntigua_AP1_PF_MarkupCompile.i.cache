@@ -1,5 +1,5 @@
 ﻿SistemaRepuestosAntigua_AP1_PF
-1.0.0.0
+
 
 winexe
 C#
@@ -8,12 +8,12 @@ C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\obj\Debug\netcoreapp3
 SistemaRepuestosAntigua_AP1_PF
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\App.xaml
 11151548125
 
-14627692229
-1921654412462
+32-1233003206
+214731878365
 MainWindow.xaml;
 
 False
