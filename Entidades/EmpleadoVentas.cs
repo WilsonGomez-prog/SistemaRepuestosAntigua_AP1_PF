@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
-    public class EmpleadosVentas
+    public class EmpleadoVentas
     {
         [Key]
         public int EmpleadoVentasId { get; set; }
@@ -14,14 +14,14 @@ namespace Entidades
 
         public int UsuarioId { get; set; }
 
-        public EmpleadosVentas()
+        public EmpleadoVentas()
         {
             EmpleadoVentasId = 0;
             Codigo = "";         
             UsuarioId = 0;
         }
 
-        public EmpleadosVentas(string codigo, int usuarioId)
+        public EmpleadoVentas(string codigo, int usuarioId)
         {
             Codigo = codigo;
             UsuarioId = usuarioId;
