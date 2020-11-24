@@ -5,19 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace BLL
 {
-    public class ClientesBLL
+    class EmpleadosBLL
     {
-        public static bool Existe(int clienteId)
+        public static bool Existe(int empleadoId)
         {
             bool existe = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                existe = contexto.Clientes.Any(e => e.ClienteId == clienteId);
+                existe = contexto.Empleados.Any(e => e.EmpleadoId == empleadoId);
             }
             catch (Exception)
             {
@@ -31,14 +32,14 @@ namespace BLL
             return existe;
         }
 
-        public static bool Existe(int clienteId, string Cedula)
+        public static bool Existe(int empleadoId, string Codigo)
         {
             bool existe = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                existe = contexto.Clientes.Any(e => e.NoCedula == Cedula && e.ClienteId != clienteId);
+                existe = contexto.Empleados.Any(e => e.Codigo == Codigo && e.EmpleadoId != empleadoId);
             }
             catch (Exception)
             {
@@ -52,14 +53,14 @@ namespace BLL
             return existe;
         }
 
-        public static bool Insertar(Clientes cliente)
+        public static bool Insertar(Empleados empleado)
         {
             bool insertado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                if (contexto.Add(cliente) != null)
+                if (contexto.Add(empleado) != null)
                     insertado = contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -74,14 +75,14 @@ namespace BLL
             return insertado;
         }
 
-        public static bool Modificar(Clientes cliente)
+        public static bool Modificar(Empleados empleado)
         {
             bool modificado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                contexto.Entry(cliente).State = EntityState.Modified;
+                contexto.Entry(empleado).State = EntityState.Modified;
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -96,27 +97,27 @@ namespace BLL
             return modificado;
         }
 
-        public static bool Guardar(Clientes cliente)
+        public static bool Guardar(Empleados empleado)
         {
 
-            if (!Existe(cliente.ClienteId))
+            if (!Existe(empleado.EmpleadoId))
             {
-                return Insertar(cliente);
+                return Insertar(empleado);
             }
             else
             {
-                return Modificar(cliente);
+                return Modificar(empleado);
             }
         }
 
-        public static Clientes Buscar(int clienteId)
+        public static Empleados Buscar(int empleadoId)
         {
-            Clientes cliente;
+            Empleados empleado;
             Contexto contexto = new Contexto();
 
             try
             {
-                cliente = contexto.Clientes.Find(clienteId);
+                empleado = contexto.Empleados.Find(empleadoId);
             }
             catch (Exception)
             {
@@ -127,21 +128,21 @@ namespace BLL
                 contexto.Dispose();
             }
 
-            return cliente;
+            return empleado;
         }
 
-        public static bool Eliminar(int clienteId)
+        public static bool Eliminar(int empleadoId)
         {
             bool eliminado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                var cliente = contexto.Clientes.Find(clienteId);
+                var empleado = contexto.Empleados.Find(empleadoId);
 
-                if (cliente != null)
+                if (empleado != null)
                 {
-                    contexto.Clientes.Remove(cliente);
+                    contexto.Empleados.Remove(empleado);
                     eliminado = contexto.SaveChanges() > 0;
                 }
             }
@@ -157,14 +158,14 @@ namespace BLL
             return eliminado;
         }
 
-        public static List<Clientes> GetList(Expression<Func<Clientes, bool>> criterio)
+        public static List<Empleados> GetList(Expression<Func<Empleados, bool>> criterio)
         {
-            List<Clientes> lista = new List<Clientes>();
+            List<Empleados> lista = new List<Empleados>();
             Contexto contexto = new Contexto();
 
             try
             {
-                lista = contexto.Clientes.Where(criterio).AsNoTracking().ToList();
+                lista = contexto.Empleados.Where(criterio).AsNoTracking().ToList();
             }
             catch (Exception)
             {

@@ -15,7 +15,7 @@ namespace Entidades
         public int CreditoId { get; set; }
 
         [Required(ErrorMessage = "Debe de elegir un empleado.")]
-        public int EmpleadoVentasId { get; set; }
+        public int EmpleadoId { get; set; }
 
         [Required(ErrorMessage = "Debe de elegir una fecha válida.")]
         public DateTime Fecha { get; set; }
@@ -30,16 +30,16 @@ namespace Entidades
         {
             CobroId = 0;
             CreditoId = 0;
-            EmpleadoVentasId = 0;
+            EmpleadoId = 0;
             Fecha = DateTime.Now;
             Total = 0;
             DetalleCobro = new List<CobrosDetalle>();
         }
 
-        public Cobros(int creditoId, int empleadoVentasId, DateTime fecha, decimal total)
+        public Cobros(int creditoId, int empleadoId, DateTime fecha, decimal total)
         {
             CreditoId = creditoId;
-            EmpleadoVentasId = empleadoVentasId;
+            EmpleadoId = empleadoId;
             Fecha = fecha;
             Total = total;
             DetalleCobro = new List<CobrosDetalle>();

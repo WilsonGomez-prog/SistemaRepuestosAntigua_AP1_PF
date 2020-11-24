@@ -25,9 +25,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+
+	<Content Include="Imagenes\*.*">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="BLL\BLL.csproj" />
     <ProjectReference Include="DAL\DAL.csproj" />
     <ProjectReference Include="Entidades\Entidades.csproj" />
   </ItemGroup>

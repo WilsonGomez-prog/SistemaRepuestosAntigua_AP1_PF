@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
-    public class EmpleadoVentas
+    public class Empleados
     {
         [Key]
-        public int EmpleadoVentasId { get; set; }
+        public int EmpleadoId { get; set; }
 
         [Required(ErrorMessage = "Debe de ingresar un código de empleado válido.")]
         [MaxLength(8, ErrorMessage ="El codigo del empleado no puede exceder los 8 caracteres.")]
@@ -14,14 +14,14 @@ namespace Entidades
 
         public int UsuarioId { get; set; }
 
-        public EmpleadoVentas()
+        public Empleados()
         {
-            EmpleadoVentasId = 0;
+            EmpleadoId = 0;
             Codigo = "";         
             UsuarioId = 0;
         }
 
-        public EmpleadoVentas(string codigo, int usuarioId)
+        public Empleados(string codigo, int usuarioId)
         {
             Codigo = codigo;
             UsuarioId = usuarioId;

@@ -9,16 +9,16 @@ using System.Text;
 
 namespace BLL
 {
-    class VentasContadoBLL
+    class VentasBLL
     {
-        public static VentasContado Buscar(int ventaContadoId)
+        public static Ventas Buscar(int ventaId)
         {
             Contexto contexto = new Contexto();
-            VentasContado ventaContado = new VentasContado();
+            Ventas venta = new Ventas();
 
             try
             {
-                ventaContado = contexto.VentasContados.Include(x => x.DetalleVentaContado).Where(p => p.VentaContadoId == ventaContadoId).SingleOrDefault();
+                venta = contexto.Ventas.Include(x => x.DetalleVenta).Where(p => p.VentaId == ventaId).SingleOrDefault();
 
             }
             catch (System.Exception)
@@ -30,17 +30,17 @@ namespace BLL
                 contexto.Dispose();
             }
 
-            return ventaContado;
+            return venta;
         }
 
-        public static bool Guardar(VentasContado ventaContado)
+        public static bool Guardar(Ventas venta)
         {
             bool guardado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                if (contexto.VentasContados.Add(ventaContado) != null)
+                if (contexto.Ventas.Add(venta) != null)
                 {
                     guardado = contexto.SaveChanges() > 0;
                 }
@@ -57,19 +57,19 @@ namespace BLL
             return guardado;
         }
 
-        public static bool Modificar(VentasContado ventaContado)
+        public static bool Modificar(Ventas venta)
         {
             bool modificado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                contexto.Database.ExecuteSqlRaw($"Delete from VentasContadoDetalle where VentaContadoId = {ventaContado.VentaContadoId}");
-                foreach (var anterior in ventaContado.DetalleVentaContado)
+                contexto.Database.ExecuteSqlRaw($"Delete from VentasDetalle where VentaId = {venta.VentaId}");
+                foreach (var anterior in venta.DetalleVenta)
                 {
                     contexto.Entry(anterior).State = EntityState.Added;
                 }
-                contexto.Entry(ventaContado).State = EntityState.Modified;
+                contexto.Entry(venta).State = EntityState.Modified;
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (System.Exception)
@@ -84,14 +84,14 @@ namespace BLL
             return modificado;
         }
 
-        public static bool Eliminar(int ventaContadoId)
+        public static bool Eliminar(int ventaId)
         {
             bool eliminado = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                var eliminar = contexto.VentasContados.Find(ventaContadoId);
+                var eliminar = contexto.Ventas.Find(ventaId);
                 contexto.Entry(eliminar).State = EntityState.Deleted;
 
                 eliminado = contexto.SaveChanges() > 0;
@@ -108,14 +108,14 @@ namespace BLL
             return eliminado;
         }
 
-        public static List<VentasContado> GetList(Expression<Func<VentasContado, bool>> ventaContado)
+        public static List<Ventas> GetList(Expression<Func<Ventas, bool>> venta)
         {
-            List<VentasContado> lista = new List<VentasContado>();
+            List<Ventas> lista = new List<Ventas>();
             Contexto contexto = new Contexto();
 
             try
             {
-                lista = contexto.VentasContados.Where(ventaContado).AsNoTracking().ToList();
+                lista = contexto.Ventas.Where(venta).AsNoTracking().ToList();
             }
             catch (Exception)
             {

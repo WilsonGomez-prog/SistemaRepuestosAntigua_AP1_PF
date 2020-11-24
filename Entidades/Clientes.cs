@@ -19,15 +19,19 @@ namespace Entidades
         public string Rnc { get; set; }
 
         [Required(ErrorMessage = "Debe de ingresar un nombre válido.")]
-        [MaxLength(30, ErrorMessage = "El nombre del empleado no puede exceder los 30 caracteres.")]
+        [MaxLength(30, ErrorMessage = "El nombre del cliente no puede exceder los 30 caracteres.")]
         public string Nombres { get; set; }
 
-        [Required(ErrorMessage = "Debe de ingresar un código de empleado válido.")]
-        [MaxLength(30, ErrorMessage = "El apellido del empleado no puede exceder los 30 caracteres.")]
+        [Required(ErrorMessage = "Debe de ingresar un apellido válido.")]
+        [MaxLength(30, ErrorMessage = "El apellido del cliente no puede exceder los 30 caracteres.")]
         public string Apellidos { get; set; }
 
+        [Required(ErrorMessage = "Debe de ingresar una direccion valida.")]
+        [MaxLength(60, ErrorMessage = "La direccion del cliente no puede exceder los 60 caracteres.")]
+        public string Direccion { get; set; }
+
         [Required(ErrorMessage = "Debe de ingresar un número telefónico válido.")]
-        [MaxLength(11, ErrorMessage = "El número telefónico no puede exceder los 11 caracteres.")]
+        [MaxLength(16, ErrorMessage = "El número telefónico no puede exceder los 16 caracteres.")]
         public string Telefono { get; set; }
 
         public Clientes()

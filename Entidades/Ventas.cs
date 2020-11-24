@@ -6,13 +6,17 @@ using System.Text;
 
 namespace Entidades
 {
-    public class VentasCredito
+    public class Ventas
     {
         [Key]
-        public int VentaCreditoId { get; set; }
+        public int VentaId { get; set; }
 
         [Required(ErrorMessage = "Debe de elegir un cliente que solicite la venta.")]
         public int ClienteId { get; set; }
+
+        [Required(ErrorMessage = "Debe de elegir un tipo de venta que solicite la venta.")]
+        [Column(TypeName = "Bit")]
+        public int TipoVenta { get; set; }
 
         [Required(ErrorMessage = "Debe de introducir una fecha de emisión de la factura.")]
         public DateTime Fecha { get; set; }
@@ -29,41 +33,36 @@ namespace Entidades
         public string Ncf { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal SubTotal { get; set; }
-
-        [Column(TypeName = "Money")]
         public decimal Itbis { get; set; }
 
         [Column(TypeName = "Money")]
         public decimal Total { get; set; }
 
         [ForeignKey("VentaCreditoId")]
-        public List<VentasCreditoDetalle> DetalleVentaCredito { get; set; }
+        public List<VentasDetalle> DetalleVenta { get; set; }
 
-        public VentasCredito()
+        public Ventas()
         {
-            VentaCreditoId = 0;
+            VentaId = 0;
             ClienteId = 0;
             Fecha = DateTime.Now;
             FechaVencimiento = DateTime.Now;
             NoAutorizacion = "";
             Ncf = "";
-            SubTotal = 0;
             Itbis = 0;
             Total = 0;
-            DetalleVentaCredito = new List<VentasCreditoDetalle>();
+            DetalleVenta = new List<VentasDetalle>();
         }
 
-        public VentasCredito(DateTime fecha, DateTime fechaVencimiento, string noAutorizacion, string ncf, decimal subTotal, decimal itbis, decimal total)
+        public Ventas(DateTime fecha, DateTime fechaVencimiento, string noAutorizacion, string ncf, decimal itbis, decimal total)
         {
             Fecha = fecha;
             FechaVencimiento = fechaVencimiento;
             NoAutorizacion = noAutorizacion;
             Ncf = ncf;
-            SubTotal = subTotal;
             Itbis = itbis;
             Total = total;
-            DetalleVentaCredito = new List<VentasCreditoDetalle>(); ;
+            DetalleVenta = new List<VentasDetalle>(); ;
         }
     }
 }

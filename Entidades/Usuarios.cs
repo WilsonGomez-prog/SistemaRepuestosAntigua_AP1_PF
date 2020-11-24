@@ -10,8 +10,6 @@ namespace Entidades
         [Key]
         public int UsuarioId { get; set; }
 
-        
-
         [Required(ErrorMessage = "Debe de ingresar un nombre válido.")]
         [MaxLength(30, ErrorMessage = "El nombre del empleado no puede exceder los 30 caracteres.")]
         public string Nombres { get; set; }
@@ -19,6 +17,9 @@ namespace Entidades
         [Required(ErrorMessage = "Debe de ingresar un código de empleado válido.")]
         [MaxLength(30, ErrorMessage = "El apellido del empleado no puede exceder los 30 caracteres.")]
         public string Apellidos { get; set; }
+
+        [Required(ErrorMessage = "Debe de elegir una fecha válida.")]
+        public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "Debe de introducir un nombre de usuario.")]
         [MaxLength(16, ErrorMessage = "El nombre de usuario no puede exceder los 16 caracteres.")]
@@ -32,13 +33,15 @@ namespace Entidades
         {
             UsuarioId = 0;
             NombreUsuario = "";
+            Fecha = DateTime.Now;
             Nombres = "";
             Apellidos = "";
             Clave = "";
         }
 
-        public Usuarios(string nombres, string apellidos, string nombreUsuario, string clave)
+        public Usuarios(DateTime fecha, string nombres, string apellidos, string nombreUsuario, string clave)
         {
+            Fecha = fecha;
             Nombres = nombres;
             Apellidos = apellidos;
             NombreUsuario = nombreUsuario;

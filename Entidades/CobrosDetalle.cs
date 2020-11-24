@@ -13,7 +13,7 @@ namespace Entidades
         public int CobroId { get; set; }
 
         [Required(ErrorMessage = "Debe de elegir una venta a crédito por cobrar.")]
-        public int VentaCreditoId { get; set; }
+        public int VentaId { get; set; }
 
         [Required(ErrorMessage = "Debe de elegir una fecha válida.")]
         public DateTime Fecha { get; set; }
@@ -26,15 +26,15 @@ namespace Entidades
         {
             CobroDetalleId = 0;
             CobroId = 0;
-            VentaCreditoId = 0;
+            VentaId = 0;
             Fecha = DateTime.Now;
             Monto = 0;
         }
 
-        public CobrosDetalle(int cobroId, int ventaCreditoId, DateTime fecha, decimal monto)
+        public CobrosDetalle(int cobroId, int ventaId, DateTime fecha, decimal monto)
         {
             CobroId = cobroId;
-            VentaCreditoId = ventaCreditoId;
+            VentaId = ventaId;
             Fecha = fecha;
             Monto = monto;
         }

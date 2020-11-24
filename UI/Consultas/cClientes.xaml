@@ -1,0 +1,45 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Consultas.cClientes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
+        mc:Ignorable="d"
+        Title="Consulta de Clientes" Height="475" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+            <Label Content="Filtro:" Width="68" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <ComboBox x:Name="FiltroComboBox" Width="136" Margin="-500,-22,0,0">
+                <ComboBoxItem Content="ID de la persona."/>
+                <ComboBoxItem Content="Cedula."/>
+                <ComboBoxItem Content="Nombre."/>
+                <ComboBoxItem Content="Apellido."/>
+                <ComboBoxItem Content="Direccion"/>
+                <ComboBoxItem Content="Telefono."/>
+            </ComboBox>
+
+            <Label Content="Criterio:" Width="68" Margin="10,-25,0,0"/>
+            <TextBox x:Name="CriterioTextBox" TextWrapping="Wrap" Width="120" Margin="200,-22,0,0"/>
+
+            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="475,-25,0,0" Click="ConsultarButton_Click">
+                <DockPanel>
+                    <TextBlock Margin="0, 5, 0, 0"> Buscar</TextBlock>
+                    <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="750" Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Usuario" Binding="{Binding ClienteId}" Width="*"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
+                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="*"/>
+                    <DataGridTextColumn Header="Cédula" Binding="{Binding NoCedula}" Width="*"/>
+                    <DataGridTextColumn Header="RNC" Binding="{Binding RNC}" Width="*"/>
+                    <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+    </Grid>
+</Window>

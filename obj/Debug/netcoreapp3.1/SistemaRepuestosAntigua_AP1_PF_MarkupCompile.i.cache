@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\App.xaml
-11151548125
-
-321035884670
-214731878365
-MainWindow.xaml;
+61181235843
+6746952825
+32951774977
+2151326378244
+MainWindow.xaml;UI\Consultas\cClientes.xaml;UI\Consultas\cUsuarios.xaml;UI\Login.xaml;UI\Registros\rClientes.xaml;UI\Registros\rUsuarios.xaml;
 
 False
 

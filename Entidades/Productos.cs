@@ -30,7 +30,8 @@ namespace Entidades
         public int TipoProductoId { get; set; }
 
         [Required(ErrorMessage = "Debe de especificar el estado de uso del producto.")]
-        public int UsoProductoId { get; set; }
+        [Column(TypeName = "Bit")]
+        public int EstadoProducto { get; set; }
 
         [Required(ErrorMessage = "Debe de especificar la cantidad de existencias que hay del producto.")]
         public float Existencia { get; set; }
@@ -43,18 +44,18 @@ namespace Entidades
             Descuento = 0;
             Codigo = "";
             TipoProductoId = 0;
-            UsoProductoId = 0;
+            EstadoProducto = 0;
             Existencia = 0;
         }
 
-        public Productos(string descripcion, decimal precioUnit, float descuento, string codigo, int tipoProductoId, int usoProductoId, float existencia)
+        public Productos(string descripcion, decimal precioUnit, float descuento, string codigo, int tipoProductoId, int estadoProducto, float existencia)
         {
             Descripcion = descripcion;
             PrecioUnit = precioUnit;
             Descuento = descuento;
             Codigo = codigo;
             TipoProductoId = tipoProductoId;
-            UsoProductoId = usoProductoId;
+            EstadoProducto = estadoProducto;
             Existencia = existencia;
         }
     }

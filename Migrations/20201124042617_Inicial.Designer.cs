@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SistemaRepuestosAntigua_AP1_PF.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201119152001_Inicial")]
+    [Migration("20201124042617_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NoCedula")
                         .IsRequired()
                         .HasMaxLength(13)
@@ -46,7 +51,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
 
                     b.Property<string>("Telefono")
                         .IsRequired()
-                        .HasMaxLength(11)
+                        .HasMaxLength(16)
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClienteId");
@@ -63,7 +68,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<int>("CreditoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EmpleadoVentasId")
+                    b.Property<int>("EmpleadoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Fecha")
@@ -90,9 +95,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Monto")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("Money");
 
-                    b.Property<int>("VentaCreditoId")
+                    b.Property<int>("VentaId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CobroDetalleId");
@@ -122,33 +127,23 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.ToTable("Creditos");
                 });
 
-            modelBuilder.Entity("Entidades.EmpleadosVentas", b =>
+            modelBuilder.Entity("Entidades.Empleados", b =>
                 {
-                    b.Property<int>("EmpleadoVentasId")
+                    b.Property<int>("EmpleadoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Apellidos")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombres")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("UsuarioId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("EmpleadoVentasId");
+                    b.HasKey("EmpleadoId");
 
-                    b.ToTable("EmpleadosVentas");
+                    b.ToTable("Empleados");
                 });
 
             modelBuilder.Entity("Entidades.Productos", b =>
@@ -170,6 +165,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<float>("Descuento")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("EstadoProducto")
+                        .HasColumnType("Bit");
+
                     b.Property<float>("Existencia")
                         .HasColumnType("REAL");
 
@@ -177,9 +175,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasColumnType("Money");
 
                     b.Property<int>("TipoProductoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UsoProductoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ProductoId");
@@ -203,43 +198,23 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.ToTable("TiposProductos");
                 });
 
-            modelBuilder.Entity("Entidades.UsoProducto", b =>
-                {
-                    b.Property<int>("UsoProductoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UsoProductoId");
-
-                    b.ToTable("UsoProducto");
-
-                    b.HasData(
-                        new
-                        {
-                            UsoProductoId = 1,
-                            Descripcion = "Nuevo"
-                        },
-                        new
-                        {
-                            UsoProductoId = 2,
-                            Descripcion = "Usado"
-                        });
-                });
-
             modelBuilder.Entity("Entidades.Usuarios", b =>
                 {
                     b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Apellidos")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Clave")
                         .IsRequired()
-                        .HasMaxLength(16)
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NombreUsuario")
@@ -247,70 +222,19 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nombres")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("Entidades.VentasContado", b =>
+            modelBuilder.Entity("Entidades.Ventas", b =>
                 {
-                    b.Property<int>("VentaContadoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Condicion")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Itbis")
-                        .HasColumnType("Money");
-
-                    b.Property<decimal>("SubTotal")
-                        .HasColumnType("Money");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("Money");
-
-                    b.HasKey("VentaContadoId");
-
-                    b.ToTable("VentasContados");
-                });
-
-            modelBuilder.Entity("Entidades.VentasContadoDetalle", b =>
-                {
-                    b.Property<int>("DetalleVentaContadoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float>("Cantidad")
-                        .HasColumnType("REAL");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("Money");
-
-                    b.Property<int>("VentaContadoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DetalleVentaContadoId");
-
-                    b.HasIndex("VentaContadoId");
-
-                    b.ToTable("VentasContadoDetalle");
-                });
-
-            modelBuilder.Entity("Entidades.VentasCredito", b =>
-                {
-                    b.Property<int>("VentaCreditoId")
+                    b.Property<int>("VentaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -336,20 +260,20 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("SubTotal")
-                        .HasColumnType("Money");
+                    b.Property<int>("TipoVenta")
+                        .HasColumnType("Bit");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("Money");
 
-                    b.HasKey("VentaCreditoId");
+                    b.HasKey("VentaId");
 
-                    b.ToTable("VentasCreditos");
+                    b.ToTable("Ventas");
                 });
 
-            modelBuilder.Entity("Entidades.VentasCreditoDetalle", b =>
+            modelBuilder.Entity("Entidades.VentasDetalle", b =>
                 {
-                    b.Property<int>("DetalleVentaCreditoId")
+                    b.Property<int>("DetalleVentaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -362,14 +286,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("Money");
 
-                    b.Property<int>("VentaCreditoId")
+                    b.Property<int?>("VentaCreditoId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("DetalleVentaCreditoId");
+                    b.Property<int>("VentaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("DetalleVentaId");
 
                     b.HasIndex("VentaCreditoId");
 
-                    b.ToTable("VentasCreditoDetalle");
+                    b.ToTable("VentasDetalle");
                 });
 
             modelBuilder.Entity("Entidades.CobrosDetalle", b =>
@@ -381,22 +308,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entidades.VentasContadoDetalle", b =>
+            modelBuilder.Entity("Entidades.VentasDetalle", b =>
                 {
-                    b.HasOne("Entidades.VentasContado", null)
-                        .WithMany("DetalleVentaContado")
-                        .HasForeignKey("VentaContadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Entidades.VentasCreditoDetalle", b =>
-                {
-                    b.HasOne("Entidades.VentasCredito", null)
-                        .WithMany("DetalleVentaCredito")
-                        .HasForeignKey("VentaCreditoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Entidades.Ventas", null)
+                        .WithMany("DetalleVenta")
+                        .HasForeignKey("VentaCreditoId");
                 });
 
             modelBuilder.Entity("Entidades.Cobros", b =>
@@ -404,14 +320,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Navigation("DetalleCobro");
                 });
 
-            modelBuilder.Entity("Entidades.VentasContado", b =>
+            modelBuilder.Entity("Entidades.Ventas", b =>
                 {
-                    b.Navigation("DetalleVentaContado");
-                });
-
-            modelBuilder.Entity("Entidades.VentasCredito", b =>
-                {
-                    b.Navigation("DetalleVentaCredito");
+                    b.Navigation("DetalleVenta");
                 });
 #pragma warning restore 612, 618
         }

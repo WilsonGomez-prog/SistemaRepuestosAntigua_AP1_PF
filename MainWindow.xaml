@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Menu>
+            <MenuItem Header="Registro">
+                <MenuItem x:Name="rUsuariosMenuItem" Header="Registro de Usuarios" Click="rUsuariosMenuItem_Click"/>
+                <MenuItem x:Name="rClientesMenuItem" Header="Registro de Clientes" Click="rClientesMenuItem_Click"/>
+            </MenuItem>
 
+            <MenuItem Header="Consulta">
+                <MenuItem x:Name="cUsuariosMenuItem" Header="Consulta de Usuarios" Click="cUsuariosMenuItem_Click"/>
+                <MenuItem x:Name="cClientesMenuItem" Header="Consulta de Clientes" Click="cClientesMenuItem_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Ayuda">
+                <MenuItem x:Name="SalirMenuItem" Header="Cerrar sesión" Click="SalirMenuItem_Click" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
