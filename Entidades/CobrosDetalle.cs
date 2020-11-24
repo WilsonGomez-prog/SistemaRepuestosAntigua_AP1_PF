@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Entidades
@@ -18,6 +19,7 @@ namespace Entidades
         public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "Debe de introducir monto válido.")]
+        [Column(TypeName ="Money")]
         public decimal Monto { get; set; }
 
         public CobrosDetalle()
