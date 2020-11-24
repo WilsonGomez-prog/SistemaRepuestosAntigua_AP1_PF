@@ -35,42 +35,50 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         public bool Validar()
         {
-            bool valido = false;
+            bool valido = true;
 
             if (!ValidarCasillaTexto(NombresTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla nombres no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NombresTextBox.Focus();
             }
             else if (!ValidarCasillaTexto(ApellidosTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla apellidos no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ApellidosTextBox.Focus();
             }
             else if (!ValidarDireccion(DireccionTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla direccion no puede tener \n caracteres especiales distintos a '#' y '/'", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla direccion no puede tener \n caracteres especiales distintos a '#', '.', ',' y '/'", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                DireccionTextBox.Focus();
             }
             else if (UsuariosBLL.Existe(Convert.ToInt32(ClienteIdTextBox.Text), NoCedulaTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("El cliente que esta intentando registrar ya esta regisrado\n o esta ingresando una cédula ya registrada en otro cliente.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NoCedulaTextBox.Focus();
             }
             else if (!ValidarCasillaNumerica(RNCTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("El RNC no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                RNCTextBox.Focus();
             }
             else if (!ValidarCasillaNumerica(NoCedulaTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("El número de cédula no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NoCedulaTextBox.Focus();
             }
-            else if (!ValidarTelefono(TelefonoTextBox.Text))
+            else if (!ValidarCasillaNumerica(TelefonoTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("El teléfono ingresado no está en el formato correcto,\n ingreselo con el siguiente formato: +1(###)-###-####", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El teléfono ingresado no puede contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                TelefonoTextBox.Focus();
+                //MessageBox.Show("El teléfono ingresado no está en el formato correcto,\n ingreselo con el siguiente formato: +1(###)-###-####", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return valido;
@@ -164,27 +172,27 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             foreach (char carac in texto.ToCharArray())
             {
                 iterador++;
-                if(iterador == 1 && !carac.Equals('+'))
+                if(iterador == 1 && carac != '+')
                 {
                     return false;
                 }
-                else if (iterador == 2 && !carac.Equals('1'))
+                else if (iterador == 2 && carac != '1')
                 {
                     return false;
                 }
-                else if (iterador == 3 && !carac.Equals('('))
+                else if (iterador == 3 && carac != '(')
                 {
                     return false;
                 }
-                else if (iterador == 7 && !carac.Equals(')'))
+                else if (iterador == 7 && carac != ')')
                 {
                     return false;
                 }
-                else if (iterador == 8 && !carac.Equals('-'))
+                else if (iterador == 8 && carac != '-')
                 {
                     return false;
                 }
-                else if (iterador == 12 && !carac.Equals('-'))
+                else if (iterador == 12 && carac != '-')
                 {
                     return false;
                 }
@@ -202,7 +210,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
             foreach (char carac in texto.ToCharArray())
             {
-                if (!Char.IsLetterOrDigit(carac) && !carac.Equals('/') && !carac.Equals('#'))
+                if (!Char.IsLetterOrDigit(carac) && carac != '/' && carac != '#' && carac != '.' && carac != ',' && carac != ' ')
                 {
                     return false;
                 }

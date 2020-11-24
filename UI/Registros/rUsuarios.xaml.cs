@@ -45,36 +45,45 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             {
                 valido = false;
                 MessageBox.Show("La casilla nombre no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NombreTextBox.Focus();
             }
             else if(!ValidarCasillaTexto(ApellidoTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla apellido no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ApellidoTextBox.Focus();
             }
             else if (!ValidarUserName(NombreUsuarioTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NombreUsuarioTextBox.Focus();
             }
             else if (UsuariosBLL.Existe(Convert.ToInt32(UsuarioIdTextBox.Text), NombreUsuarioTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("El nombre de usuario ingresado en la casilla\n'Nombre de usuario' ya pertenece a otro usuario,\n ingrese uno diferente.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                NombreUsuarioTextBox.Focus();
             }
             else if(string.IsNullOrWhiteSpace(ClaveTextBox.Password) || ClaveTextBox.Password.Length < 6)
             {
                 valido = false;
                 MessageBox.Show("Es necesario ingresar una clave con un minimo de 6 caracteres.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClaveTextBox.Clear();
+                ClaveTextBox.Focus();
             }
             else if (string.IsNullOrWhiteSpace(ClaveVerificacionTextBox.Password))
             {
                 valido = false;
                 MessageBox.Show("Es necesario es necesario verificar la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClaveTextBox.Clear();
+                ClaveTextBox.Focus();
             }
             else if (FechaDatePicker.SelectedDate > DateTime.Now)
             {
                 valido = false;
                 MessageBox.Show("No se puede elegir una fecha mayor a la actual.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                FechaDatePicker.Focus();
             }
 
             return valido;

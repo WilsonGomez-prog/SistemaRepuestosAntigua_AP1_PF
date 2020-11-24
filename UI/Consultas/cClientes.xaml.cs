@@ -59,5 +59,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             DatosDataGrid.ItemsSource = null;
             DatosDataGrid.ItemsSource = listado;
         }
+
     }
 }

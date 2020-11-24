@@ -40,15 +40,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = UsuariosBLL.GetList(e => e.UsuarioId == Convert.ToInt32(CriterioTextBox.Text));
+                        listado = UsuariosBLL.GetList(c => c.Fecha.Date >= DesdeDataPicker.SelectedDate && c.Fecha.Date <= HastaDataPicker.SelectedDate).FindAll(e => e.UsuarioId == Convert.ToInt32(CriterioTextBox.Text));
                         break;
                     case 1:
-                        listado = UsuariosBLL.GetList(e => e.NombreUsuario.Contains(CriterioTextBox.Text));
+                        listado = UsuariosBLL.GetList(c => c.Fecha.Date >= DesdeDataPicker.SelectedDate && c.Fecha.Date <= HastaDataPicker.SelectedDate).FindAll(e => e.NombreUsuario.Contains(CriterioTextBox.Text));
                         break;
                 }
             }
-
-            listado = UsuariosBLL.GetList(c => c.Fecha.Date >= DesdeDataPicker.SelectedDate && c.Fecha.Date <= HastaDataPicker.SelectedDate);
 
             DatosDataGrid.ItemsSource = null;
             DatosDataGrid.ItemsSource = listado;

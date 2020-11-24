@@ -27,6 +27,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
         public Login()
         {
             InitializeComponent();
+            NombreUsuarioTextBox.Focus();
         }
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
