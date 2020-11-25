@@ -9,7 +9,6 @@
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
-
             <Label Content="Desde:" FontSize="15" Margin="15,0,0,0"/>
             <DatePicker x:Name="DesdeDataPicker" Width="150" HorizontalAlignment="Left" Margin="20,0,0,0"/>
 
