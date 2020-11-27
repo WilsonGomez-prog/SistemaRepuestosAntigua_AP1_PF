@@ -10,3 +10,15 @@ C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstan
 C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.csproj.CopyComplete
 C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.dll
 C:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.pdb
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\BLL.deps.json
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\BLL.dll
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\BLL.pdb
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\DAL.dll
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\Entidades.dll
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\DAL.pdb
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\bin\Debug\netstandard2.1\Entidades.pdb
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.csprojAssemblyReference.cache
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.csproj.CopyComplete
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.dll
+C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\BLL\obj\Debug\netstandard2.1\BLL.pdb

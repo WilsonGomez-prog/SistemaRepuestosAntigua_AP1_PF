@@ -13,10 +13,16 @@
     <Compile Update="UI\Consultas\cCreditos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI\Consultas\cTiposProducto.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\Registros\rClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Registros\rCreditos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\Registros\rTiposProducto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -30,10 +36,16 @@
     <Page Update="UI\Consultas\cCreditos.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\Consultas\cTiposProducto.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Registros\rClientes.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Registros\rCreditos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Registros\rTiposProducto.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

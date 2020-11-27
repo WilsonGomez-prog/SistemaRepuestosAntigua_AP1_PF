@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 {
-    /// <summary>
-    /// Interaction logic for rUsuarios.xaml
-    /// </summary>
     public partial class rUsuarios : Window
     {
         Usuarios Usuario;

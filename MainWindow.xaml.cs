@@ -63,5 +63,15 @@ namespace SistemaRepuestosAntigua_AP1_PF
         {
             new cCreditos().Show();
         }
+
+        private void rTiposProductoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rTiposProducto().Show();
+        }
+
+        private void cTiposProductoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cTiposProducto().Show();
+        }
     }
 }

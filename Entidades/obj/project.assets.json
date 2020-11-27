@@ -111,19 +111,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wilso\\.nuget\\packages\\": {}
+    "C:\\Users\\jhord\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+      "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
       "projectName": "Entidades",
-      "projectPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
-      "packagesPath": "C:\\Users\\wilso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
+      "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+      "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\wilso\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -135,7 +135,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "projectReferences": {}
         }
       },
@@ -147,7 +146,6 @@
     },
     "frameworks": {
       "netstandard2.1": {
-        "targetAlias": "netstandard2.1",
         "dependencies": {
           "System.ComponentModel.Annotations": {
             "target": "Package",
@@ -169,7 +167,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

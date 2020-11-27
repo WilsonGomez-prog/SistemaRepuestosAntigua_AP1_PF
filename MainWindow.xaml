@@ -12,12 +12,15 @@
                 <MenuItem x:Name="rUsuariosMenuItem" Header="Registro de Usuarios" Click="rUsuariosMenuItem_Click"/>
                 <MenuItem x:Name="rClientesMenuItem" Header="Registro de Clientes" Click="rClientesMenuItem_Click"/>
                 <MenuItem x:Name="rCreditosMenuItem" Header="Registro de Créditos" Click="rCreditosMenuItem_Click"/>
+                <MenuItem x:Name="rTiposProductoMenuItem" Header="Registro de TiposProducto" Click="rTiposProductoMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="Consulta">
                 <MenuItem x:Name="cUsuariosMenuItem" Header="Consulta de Usuarios" Click="cUsuariosMenuItem_Click"/>
                 <MenuItem x:Name="cClientesMenuItem" Header="Consulta de Clientes" Click="cClientesMenuItem_Click"/>
                 <MenuItem x:Name="cCreditosMenuItem" Header="Consulta de Créditos" Click="cCreditosMenuItem_Click"/>
+                <MenuItem x:Name="cTiposProductoMenuItem" Header="Consulta de TiposProducto" Click="cTiposProductoMenuItem_Click"/>
+
             </MenuItem>
 
             <MenuItem Header="Ayuda">
