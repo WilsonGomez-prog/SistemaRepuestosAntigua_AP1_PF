@@ -83,5 +83,15 @@ namespace SistemaRepuestosAntigua_AP1_PF
         {
             new cCobros().Show();
         }
+
+        private void rEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rEmpleados().Show();
+        }
+
+        private void cEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cEmpleados().Show();
+        }
     }
 }

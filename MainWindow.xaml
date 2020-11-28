@@ -14,7 +14,7 @@
                 <MenuItem x:Name="rCreditosMenuItem" Header="Registro de Créditos" Click="rCreditosMenuItem_Click"/>
                 <MenuItem x:Name="rTiposProductoMenuItem" Header="Registro de TiposProducto" Click="rTiposProductoMenuItem_Click"/>
                 <MenuItem x:Name="rCobrosMenuItem" Header="Registro de Cobros" Click="rCobrosMenuItem_Click"/>
-
+                <MenuItem x:Name="rEmpleadosMenuItem" Header="Registro de Empleados" Click="rEmpleadosMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="Consulta">
@@ -23,7 +23,7 @@
                 <MenuItem x:Name="cCreditosMenuItem" Header="Consulta de Créditos" Click="cCreditosMenuItem_Click"/>
                 <MenuItem x:Name="cTiposProductoMenuItem" Header="Consulta de TiposProducto" Click="cTiposProductoMenuItem_Click"/>
                 <MenuItem x:Name="cCobrosMenuItem" Header="Consulta de Cobros" Click="cCobrosMenuItem_Click"/>
-
+                <MenuItem x:Name="cEmpleadosMenuItem" Header="Consulta de Empleados" Click="cEmpleadosMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="Ayuda">
