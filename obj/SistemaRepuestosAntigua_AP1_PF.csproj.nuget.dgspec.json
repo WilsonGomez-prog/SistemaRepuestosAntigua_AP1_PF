@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj": {}
+    "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
+    "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,11 +27,11 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
               },
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
               }
             }
           }
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
+    "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,8 +86,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
               }
             }
           }
@@ -125,14 +125,14 @@
         }
       }
     },
-    "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
+    "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+        "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
+        "outputPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -183,14 +183,14 @@
         }
       }
     },
-    "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj": {
+    "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
+        "projectUniqueName": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
         "projectName": "SistemaRepuestosAntigua_AP1_PF",
-        "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
+        "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
         "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\obj\\",
+        "outputPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -206,14 +206,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
               },
-              "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
+              "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
               }
             }
           }

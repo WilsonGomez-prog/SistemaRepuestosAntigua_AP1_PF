@@ -20,7 +20,7 @@
             <Label Content="Codigo:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
             <TextBox x:Name="CodigoTextBox" Text="{Binding Codigo}" Height="30" Width="240" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
-            <Label Content="Usuario ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
+            <Label Content="Usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
             <ComboBox x:Name="UsuarioIdComboBox" Text="{Binding UsuarioId}" Height="30" Width="100" HorizontalAlignment="Left" Margin="25,0,0,0"/>
 
 

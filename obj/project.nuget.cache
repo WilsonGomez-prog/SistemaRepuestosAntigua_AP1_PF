@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZC5UXUPw+dG8kM5IQCYE7XXwSDhkzCeaQRsazEqRjIM5acky+B/hTq1NRstPLBypZmP7Yo8tnpFsrSQqqSgbqQ==",
+  "dgSpecHash": "DjXgmUbW7U4fosg9X1+BxD4Q9SVuXpEgwUCDX+B1b0d6CgIYI/tHzYB0Q7EhIbI3LRITDY4XbHewCOee4heZUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
+  "projectFilePath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jhord\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jhord\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2mBZwAcqAU9GsN8ocRvU3lr4EqD3iU4wkEHMBlFjR5zpCM6TDkhK9N/NhCBnGDrNl0uySZC1qcllBg6MlhrPzA==",
+  "dgSpecHash": "VfLPsL5tznxX/CT7tua/Ju330v920TpshAeo9/Yl1TRvW+CNNko8obuP5GW3X+z52cJHoa4PYNfGWCRoU1Tp5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jhord\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\jhord\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.0\\microsoft.data.sqlite.core.5.0.0.nupkg.sha512",

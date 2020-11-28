@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\obj\Debug\netcoreapp3.1\
+C:\Users\jhord\Desktop\SistemaRepuestosAntigua_AP1_PF\obj\Debug\netcoreapp3.1\
 SistemaRepuestosAntigua_AP1_PF
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\App.xaml
+C:\Users\jhord\Desktop\SistemaRepuestosAntigua_AP1_PF\App.xaml
 142067718158
 6746952825
 40467934439
-2151869206186
+21542225138
 MainWindow.xaml;UI\Consultas\cClientes.xaml;UI\Consultas\cCobros.xaml;UI\Consultas\cCreditos.xaml;UI\Consultas\cEmpleados.xaml;UI\Consultas\cTiposProducto.xaml;UI\Consultas\cUsuarios.xaml;UI\Login.xaml;UI\Registros\rClientes.xaml;UI\Registros\rCobros.xaml;UI\Registros\rCreditos.xaml;UI\Registros\rEmpleados.xaml;UI\Registros\rTiposProducto.xaml;UI\Registros\rUsuarios.xaml;
 
 False

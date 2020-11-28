@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kHBSqrrtz4ysLVdu3u0Kc8Mo6CZCRrqFxmcuR5NLI8EVO3NHCm+jS4hkLgBxyEoKm3ncf9nTIAGbxffIlhwsUA==",
+  "dgSpecHash": "EnNlgxRgJnb3xn3l8RQCr5k573nxzHQYDKeNsba47lmeWvQhKWUR1r6TcR9yGFE9Fiy7LPc59arGQQdDdlfIPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+  "projectFilePath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jhord\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],

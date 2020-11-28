@@ -116,11 +116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+      "projectUniqueName": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
       "projectName": "Entidades",
-      "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
+      "projectPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj",
       "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
+      "outputPath": "C:\\Users\\jhord\\Desktop\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
