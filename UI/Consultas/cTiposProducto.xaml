@@ -9,14 +9,14 @@
     <Grid>
         <StackPanel Orientation="Vertical" Margin="15,15,15,10">
 
-            <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="30,5,0,0" />
-            <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="35,-5,0,0">
+            <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="5,5,0,0" />
+            <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="10,-5,0,0">
                 <ComboBoxItem Content="ID del tipo de producto"/>
                 <ComboBoxItem Content="Descripcion"/>
             </ComboBox>
 
-            <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="200,-55,0,0" />
-            <TextBox x:Name="CriterioTextBox" Width="120" Height="25" HorizontalAlignment="Left" Margin="200,-25,0,0"/>
+            <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="155,-55,0,0" Height="51" Width="66" />
+            <TextBox x:Name="CriterioTextBox" Width="120" Height="25" HorizontalAlignment="Left" Margin="160,-25,0,0"/>
 
 
             <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="100,-30,0,0" Click="ConsultarButton_Click">
@@ -26,7 +26,7 @@
                 </DockPanel>
             </Button>
 
-            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="750" Margin="0,10,0,0" IsReadOnly="True">
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="344" Width="750" Margin="0,10,0,0" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tipo ID" Binding="{Binding TipoProductoId}" Width="*"/>
                     <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>

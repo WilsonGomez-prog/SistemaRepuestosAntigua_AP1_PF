@@ -1,0 +1,67 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Consultas.cCobros"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
+        mc:Ignorable="d"
+       Title="Consulta de Cobros" Height="550" Width="950">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+
+            <Label Content="Valor mínimo:" FontSize="15" Margin="15,0,0,0"/>
+            <TextBox x:Name="ValorMinTextbox" Width="150" Height="25"  HorizontalAlignment="Left" Margin="20,0,0,0"/>
+
+            <Label Content="Valor máximo:" FontSize="15" Margin="15,0,0,0"/>
+            <TextBox x:Name="ValorMaxTextbox" HorizontalAlignment="Left" Margin="20,0,0,0" Width="150" Height="25"  />
+
+            <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" Margin="520,-110,0,0" />
+            <ComboBox x:Name="FechaComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="525,-135,0,0">
+                <ComboBoxItem Content="Fecha de emisión"/>
+                <ComboBoxItem Content="Fecha de vencimiento"/>
+            </ComboBox>
+
+            <Label Content="Valor:" FontSize="15" HorizontalAlignment="Left" Margin="190,-110,0,0" />
+            <ComboBox x:Name="ValorComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="195,-135,0,0">
+                <ComboBoxItem Content="Monto"/>
+            </ComboBox>
+
+            <Label Content="Desde:" FontSize="15" HorizontalAlignment="Left" Margin="340,-110,0,0"/>
+            <DatePicker x:Name="DesdeDatePicker" Width="150" Height="25" HorizontalAlignment="Left" Margin="345,-135,0,0"/>
+
+            <Label Content="Hasta:" FontSize="15" HorizontalAlignment="Left" Margin="340,-55,0,0"/>
+            <DatePicker x:Name="HastaDatePicker" HorizontalAlignment="Left"  Margin="345,-25,0,0" Width="150" />
+
+
+            <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="660,-110,0,0" />
+            <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="665,-135,0,0">
+                <ComboBoxItem Content="Cobros ID"/>
+                <ComboBoxItem Content="Ventas ID"/>
+                <ComboBoxItem Content="Empleado ID"/>
+                <ComboBoxItem Content="Credito ID"/>
+                <ComboBoxItem Content="Monto"/>
+            </ComboBox>
+
+            <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="660,-55,0,0" />
+            <TextBox x:Name="CriterioTextBox" Width="120" Height="25" HorizontalAlignment="Left" Margin="665,-25,0,0"/>
+
+
+            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="785,-30,0,0" Click="ConsultarButton_Click">
+                <DockPanel>
+                    <TextBlock Margin="0, 5, 0, 0"> Buscar</TextBlock>
+                    <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="890" Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cobro ID" Binding="{Binding CobroId}" Width="*"/>
+                    <DataGridTextColumn Header="Venta ID" Binding="{Binding VentaId}" Width="*"/>
+                    <DataGridTextColumn Header="Cliente ID" Binding="{Binding ClienteId}" Width="*"/>
+                    <DataGridTextColumn Header="Credito ID" Binding="{Binding CreditoId}" Width="*"/>
+                    <DataGridTextColumn Header="Monto " Binding="{Binding Monto}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

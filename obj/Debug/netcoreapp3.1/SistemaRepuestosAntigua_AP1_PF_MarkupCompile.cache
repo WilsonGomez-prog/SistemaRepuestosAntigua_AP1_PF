@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\jhord\Source\Repos\SistemaRepuestosAntigua_AP1_PF\App.xaml
-101829642037
+12-1055021744
 6746952825
-361507378113
+381972902680
 2151869206186
-MainWindow.xaml;UI\Consultas\cClientes.xaml;UI\Consultas\cCreditos.xaml;UI\Consultas\cTiposProducto.xaml;UI\Consultas\cUsuarios.xaml;UI\Login.xaml;UI\Registros\rClientes.xaml;UI\Registros\rCreditos.xaml;UI\Registros\rTiposProducto.xaml;UI\Registros\rUsuarios.xaml;
+MainWindow.xaml;UI\Consultas\cClientes.xaml;UI\Consultas\cCobros.xaml;UI\Consultas\cCreditos.xaml;UI\Consultas\cTiposProducto.xaml;UI\Consultas\cUsuarios.xaml;UI\Login.xaml;UI\Registros\rClientes.xaml;UI\Registros\rCobros.xaml;UI\Registros\rCreditos.xaml;UI\Registros\rTiposProducto.xaml;UI\Registros\rUsuarios.xaml;
 
 False
 

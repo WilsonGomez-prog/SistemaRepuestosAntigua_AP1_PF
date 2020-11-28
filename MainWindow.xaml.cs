@@ -73,5 +73,15 @@ namespace SistemaRepuestosAntigua_AP1_PF
         {
             new cTiposProducto().Show();
         }
+
+        private void rCobrosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rCobros().Show();
+        }
+
+        private void cCobrosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cCobros().Show();
+        }
     }
 }

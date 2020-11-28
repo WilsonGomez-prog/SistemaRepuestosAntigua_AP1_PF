@@ -10,6 +10,9 @@
     <Compile Update="UI\Consultas\cClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI\Consultas\cCobros.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\Consultas\cCreditos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Registros\rClientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\Registros\rCobros.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Registros\rCreditos.xaml.cs">
@@ -33,6 +39,9 @@
     <Page Update="UI\Consultas\cClientes.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\Consultas\cCobros.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Consultas\cCreditos.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -40,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Registros\rClientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Registros\rCobros.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Registros\rCreditos.xaml">

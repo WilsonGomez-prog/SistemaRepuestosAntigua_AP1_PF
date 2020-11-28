@@ -33,6 +33,11 @@ namespace BLL
             return cobro;
         }
 
+        internal static object GetTiposTareas()
+        {
+            throw new NotImplementedException();
+        }
+
         public static bool Guardar(Cobros cobro)
         {
             bool guardado = false;
