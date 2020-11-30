@@ -155,6 +155,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 if (Validar())
                 {
                     Producto.UsuarioModificador = Modificador.UsuarioId;
+                    Producto.TipoProductoId = Convert.ToInt32(TipoProductoIdCombobox.SelectedValue);
                     bool guardo = ProductosBLL.Guardar(Producto);
 
                     if (guardo)

@@ -21,7 +21,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             UsuarioIdComboBox.ItemsSource = UsuariosBLL.GetList(u => true);
             UsuarioIdComboBox.SelectedValuePath = "UsuarioId";
             UsuarioIdComboBox.DisplayMemberPath = "NombreUsuario";
-           
+
         }
 
         private void Limpiar()
@@ -51,6 +51,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("Debe de asignar el empleado a un usuario que no este asignado a un empleado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 UsuarioIdComboBox.Focus();
+            }
+            else if (EmpleadosBLL.Existe(Convert.ToInt32(EmpleadoIdTextBox.Text), CodigoTextBox.Text))
+            {
+                valido = false;
+                MessageBox.Show("El código no puede el mismo que posea otro empleado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                CodigoTextBox.Focus();
             }
 
             return valido;

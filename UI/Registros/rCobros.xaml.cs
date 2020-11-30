@@ -40,15 +40,15 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                                 }).ToList();
 
             var ventasCred = (from ven in context.Ventas
-                                join cred in context.Creditos
-                                on ven.ClienteId equals cred.ClienteId
-                                where ven.TipoVenta == 1
-                                select new
-                                {
-                                    ven.VentaId,
-                                    Display = ClientesBLL.Buscar(ven.ClienteId).Nombres +" "+ ClientesBLL.Buscar(ven.ClienteId).Apellidos + " - " + ven.Fecha.ToString("dd-MM-yyyy")
-                                }).ToList();
-            
+                              join cred in context.Creditos
+                              on ven.ClienteId equals cred.ClienteId
+                              where ven.TipoVenta == 1
+                              select new
+                              {
+                                  ven.VentaId,
+                                  Display = ClientesBLL.Buscar(ven.ClienteId).Nombres + " " + ClientesBLL.Buscar(ven.ClienteId).Apellidos + " - " + ven.Fecha.ToString("dd-MM-yyyy")
+                              }).ToList();
+
             CreditoIdCombobox.ItemsSource = clientesCred;
             CreditoIdCombobox.SelectedValuePath = "CreditoId";
             CreditoIdCombobox.DisplayMemberPath = "Cliente";
@@ -84,7 +84,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 foreach (CobrosDetalle cobro in cobros.DetalleCobro)
                 {
                     var ven = VentasBLL.Buscar(cobro.VentaId);
-                    var det = new { cobro.CobroDetalleId, ven.VentaId, cobro.Fecha, cobro.Monto, ven.PendientePagar};
+                    var det = new { cobro.CobroDetalleId, ven.VentaId, cobro.Fecha, cobro.Monto, ven.PendientePagar };
                     this.detalle.Add(det);
                 }
             }
@@ -163,6 +163,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("Debe de ingresar un monto menor o igual al monto pendiente de la venta a cobrar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 FechaCobroDatePicker.Focus();
             }
+            else if (CreditosBLL.Buscar(Convert.ToInt32(CreditoIdCombobox.SelectedValue)).ClienteId != VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).ClienteId)
+            {
+                valido = false;
+                MessageBox.Show("La venta que seleccionó no pertenece al cliente del crédito que seleccionó.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                VentaIdCombobox.Focus();
+            }
 
             return valido;
         }
@@ -192,7 +198,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un cobro nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 Limpiar();
-            }            
+            }
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)

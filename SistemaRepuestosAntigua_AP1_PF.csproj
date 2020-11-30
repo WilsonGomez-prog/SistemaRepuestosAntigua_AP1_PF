@@ -18,6 +18,7 @@
 	<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <UseWPF>true</UseWPF>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
