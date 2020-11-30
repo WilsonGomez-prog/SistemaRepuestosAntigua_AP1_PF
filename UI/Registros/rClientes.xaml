@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Clientes" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Registro de Clientes" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <Label Content="Cliente ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
@@ -55,7 +55,6 @@
                     <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
                 </DockPanel>
             </Button>
-
         </StackPanel>
     </Grid>
 </Window>

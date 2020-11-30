@@ -1,0 +1,107 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Registros.rVentas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
+        mc:Ignorable="d"
+        Title="Registro de Ventas" Height="707" Width="626" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+    <Grid>
+        <StackPanel Margin="0,0,0,0">
+            <Label Content="Venta ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
+            <TextBox x:Name="VentaIdTextBox" Text="{Binding ClienteId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
+            <Button x:Name="BuscarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="125,-30,0,0" Click="BuscarButton_Click">
+                <DockPanel>
+                    <TextBlock>Buscar</TextBlock>
+                    <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <Label Content="Tipo:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
+            <ComboBox x:Name="TipoVentaCombobox" Text="{Binding TipoVentaId}" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+
+            <Label Content="Cliente:" FontSize="15" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <ComboBox x:Name="ClienteIdCombobox" IsEditable="False" Text="{Binding ClienteId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="27,0,0,0" />
+
+            <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-120,0,0" Height="30"/>
+            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" SelectedDateFormat="Short" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-90,0,0"/>
+
+            <Label Content="Vencimiento:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-60,0,0" Height="30"/>
+            <DatePicker x:Name="VencimientoDatePicker" Text="{Binding FechaVencimiento}" SelectedDateFormat="Short" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-30,0,0"/>
+
+            <Label Content="NCF:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,-120,0,0" Height="30"/>
+            <TextBox x:Name="NCFTextBox" Text="{Binding Ncf}" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="427,-90,0,0"/>
+
+            <Label Content="No. Autorización:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,-60,0,0" Height="30"/>
+            <TextBox x:Name="NoAutorizaciónTextBox" Text="{Binding NoAutorizacion}" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="427,-30,0,0"/>
+
+            <StackPanel>
+                <GroupBox Header="Detalle de la venta" BorderBrush="Black" Width="570">
+                    <StackPanel>
+                        <Label Content="Producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
+                        <ComboBox x:Name="ProductoCombobox" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+
+                        <Label Content="Cantidad:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-60,0,0" Height="30"/>
+                        <TextBox x:Name="CantidadTextBox" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-30,0,0"/>
+
+                        <Button x:Name="AgregarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="407,-30,0,0" Click="AgregarButton_Click">
+                            <DockPanel>
+                                <TextBlock>Agregar</TextBlock>
+                                <Image Source="/Imagenes/add_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                            </DockPanel>
+                        </Button>
+
+                        <DataGrid x:Name="DetalleDataGrid" Height="250" Width="501" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="27,5,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Detalle ID" Binding="{Binding DetalleVentaId}" Width="70"/>
+                                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="*"/>
+                                <DataGridTextColumn Header="Producto" Binding="{Binding Producto}" Width="150"/>
+                                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="60"/>
+                                <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnit}" Width="70"/>
+                                <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="70"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Button x:Name="RemoverButton" FontSize="12" Width="200" Height="30" HorizontalAlignment="Center" Margin="0,5,0,0" Click="RemoverButton_Click">
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left" Margin="0,2,0,0">Remover producto seleccionado</TextBlock>
+                                <Image Source="/Imagenes/remove_icon.png" Height="20" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                            </DockPanel>
+                        </Button>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            
+            <Label Content="ITBIS:" FontSize="15" HorizontalAlignment="Left" Margin="365,0,0,0"/>
+            <TextBox x:Name="ITBISTextbox" Text="{Binding Itbis}" Margin="400,-25,0,0" Width="100" Height="30" IsReadOnly="True"/>
+
+            <Label Content="SubTotal:" FontSize="15" HorizontalAlignment="Left" Margin="340,0,0,0" Width="69"/>
+            <TextBox x:Name="SubTotalTextbox" Margin="400,-25,0,0" Width="100" Height="30" IsReadOnly="True"/>
+
+            <Label Content="Total:" FontSize="15" HorizontalAlignment="Left" Margin="365,0,0,0"/>
+            <TextBox x:Name="TotalTextbox" Text="{Binding Total}" Margin="400,-25,0,0" Width="100" Height="30" IsReadOnly="True"/>
+
+            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,-30,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click">
+                <DockPanel>
+                    <TextBlock>Nuevo</TextBlock>
+                    <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
+                </DockPanel>
+            </Button>
+
+            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click">
+                <DockPanel>
+                    <TextBlock>Guardar</TextBlock>
+                    <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
+                </DockPanel>
+            </Button>
+
+            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click">
+                <DockPanel>
+                    <TextBlock>Eliminar</TextBlock>
+                    <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
+                </DockPanel>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Window>

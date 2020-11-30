@@ -21,7 +21,10 @@ namespace Entidades
         public DateTime Fecha { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal Total { get; set; }
+        public float Total { get; set; }
+
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
 
         [ForeignKey("CobroId")]
         public List<CobrosDetalle> DetalleCobro { get; set; }
@@ -33,10 +36,11 @@ namespace Entidades
             EmpleadoId = 0;
             Fecha = DateTime.Now;
             Total = 0;
+            UsuarioModificador = 0;
             DetalleCobro = new List<CobrosDetalle>();
         }
 
-        public Cobros(int creditoId, int empleadoId, DateTime fecha, decimal total)
+        public Cobros(int creditoId, int empleadoId, DateTime fecha, float total)
         {
             CreditoId = creditoId;
             EmpleadoId = empleadoId;

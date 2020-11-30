@@ -34,6 +34,9 @@ namespace Entidades
         [MaxLength(16, ErrorMessage = "El número telefónico no puede exceder los 16 caracteres.")]
         public string Telefono { get; set; }
 
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
+
         public Clientes()
         {
             ClienteId = 0;
@@ -42,15 +45,17 @@ namespace Entidades
             Nombres = "";
             Apellidos = "";
             Telefono = "";
+            UsuarioModificador = 0;
         }
 
-        public Clientes(string noCedula, string rnc, string nombres, string apellidos, string telefono)
+        public Clientes(string noCedula, string rnc, string nombres, string apellidos, string telefono, int usuarioModi)
         {
             NoCedula = noCedula;
             Rnc = rnc;
             Nombres = nombres;
             Apellidos = apellidos;
             Telefono = telefono;
+            UsuarioModificador = usuarioModi;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SistemaRepuestosAntigua_AP1_PF.UI;
+﻿using Entidades;
+using SistemaRepuestosAntigua_AP1_PF.UI;
 using SistemaRepuestosAntigua_AP1_PF.UI.Consultas;
 using SistemaRepuestosAntigua_AP1_PF.UI.Registros;
 using System;
@@ -23,14 +24,17 @@ namespace SistemaRepuestosAntigua_AP1_PF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        Usuarios Usuario;
+
+        public MainWindow(Usuarios usuario)
         {
             InitializeComponent();
+            Usuario = usuario;
         }
 
         private void rUsuariosMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            new rUsuarios().Show();
+            new rUsuarios(Usuario).Show();
         }
 
         private void cUsuariosMenuItem_Click(object sender, RoutedEventArgs e)
@@ -40,7 +44,7 @@ namespace SistemaRepuestosAntigua_AP1_PF
 
         private void rClientesMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            new rClientes().Show();
+            new rClientes(Usuario).Show();
         }
 
         private void cClientesMenuItem_Click(object sender, RoutedEventArgs e)
@@ -56,12 +60,62 @@ namespace SistemaRepuestosAntigua_AP1_PF
 
         private void rCreditosMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            new rCreditos().Show();
+            new rCreditos(Usuario).Show();
         }
 
         private void cCreditosMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new cCreditos().Show();
+        }
+
+        private void rVentasMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rVentas(Usuario).Show();
+        }
+
+        private void cVentasMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cVentas().Show();
+        }
+
+        private void rProductosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rProductos(Usuario).Show();
+        }
+
+        private void cProductosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cProductos().Show();
+        }
+
+        private void rEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rEmpleados(Usuario).Show();
+        }
+
+        private void rCobrosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rCobros(Usuario).Show();
+        }
+
+        private void rTiposProductosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new rTiposProducto(Usuario).Show();
+        }
+
+        private void cEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cEmpleados().Show();
+        }
+
+        private void cCobrosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cCobros().Show();
+        }
+
+        private void cTiposProductosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new cTiposProducto().Show();
         }
     }
 }

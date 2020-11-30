@@ -22,7 +22,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
     public partial class rCreditos : Window
     {
         Creditos Credito;
-        public rCreditos()
+        Usuarios Modificador;
+        public rCreditos(Usuarios usuario)
         {
             InitializeComponent();
 
@@ -30,7 +31,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             this.DataContext = Credito;
 
             Contexto context = new Contexto();
-
+            Modificador = usuario;
             var clientes = (from cli in context.Clientes
                             select new
                             {
@@ -51,7 +52,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(CreditoIdTextbox.Text) || Char.IsDigit((char)CreditoIdTextbox.Text[0]))
+            if(!string.IsNullOrWhiteSpace(CreditoIdTextbox.Text) || !Char.IsDigit((char)CreditoIdTextbox.Text[0]))
             {
                 var credito = CreditosBLL.Buscar(Convert.ToInt32(CreditoIdTextbox.Text));
 
@@ -76,49 +77,60 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            Limpiar();
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un producto nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                Limpiar();
+            }
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Validar())
+            if (MessageBox.Show("¿De verdad desea guardar el crédito?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                Credito.ClienteId = Convert.ToInt32(ClienteIdCombobox.SelectedValue);
-                Credito.Balance = Convert.ToDecimal(MontoTextbox.Text);
-
-                bool guardo = CreditosBLL.Guardar(Credito);
-
-                if (guardo)
+                if (Validar())
                 {
-                    Limpiar();
-                    MessageBox.Show("El crédito ha sido guardado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("El crédito no ha podido ser guardado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Credito.ClienteId = Convert.ToInt32(ClienteIdCombobox.SelectedValue);
+                    Credito.Balance = Convert.ToSingle(MontoTextbox.Text);
+                    Credito.UsuarioModificador = Modificador.UsuarioId;
+                    bool guardo = CreditosBLL.Guardar(Credito);
+
+                    if (guardo)
+                    {
+                        Limpiar();
+                        MessageBox.Show("El crédito ha sido guardado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El crédito no ha podido ser guardado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Char.IsDigit((char)CreditoIdTextbox.Text[0]) || string.IsNullOrWhiteSpace(CreditoIdTextbox.Text))
+            if (MessageBox.Show("¿De verdad desea eliminar el el crédito?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                if (CreditosBLL.Eliminar(Convert.ToInt32(CreditoIdTextbox.Text)))
+                if (!Char.IsDigit((char)CreditoIdTextbox.Text[0]) || !string.IsNullOrWhiteSpace(CreditoIdTextbox.Text))
                 {
-                    MessageBox.Show("El crédito ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
+                    if (CreditosBLL.Eliminar(Convert.ToInt32(CreditoIdTextbox.Text)))
+                    {
+                        MessageBox.Show("El crédito ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El crédito no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El crédito no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("El ID que ha ingresado no es válido, no puede contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CreditoIdTextbox.Focus();
                 }
             }
-            else
-            {
-                MessageBox.Show("El ID que ha ingresado no es válido, no puede contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                CreditoIdTextbox.Focus();
-            }
+
+            
         }
 
         private bool Validar()
@@ -137,7 +149,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("Debe de seleccionar un cliente para asignar el crédito.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ClienteIdCombobox.Focus();
             }
-            else if (!ValidarCasillaNumerica(MontoTextbox.Text))
+            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(MontoTextbox.Text))
             {
                 valido = false;
                 MessageBox.Show("El monto no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -145,20 +157,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             }
 
             return valido;
-        }
-
-
-        private bool ValidarCasillaNumerica(string texto)
-        {
-            foreach (char invalido in texto.ToCharArray())
-            {
-                if (!Char.IsDigit(invalido))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

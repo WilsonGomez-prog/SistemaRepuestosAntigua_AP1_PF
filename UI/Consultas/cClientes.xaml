@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-        Title="Consulta de Clientes" Height="465" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Consulta de Clientes" Height="465" Width="1050" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
             <Label Content="Filtro:" Width="68" HorizontalAlignment="Left" Margin="20,0,0,0"/>
@@ -28,15 +28,16 @@
                 </DockPanel>
             </Button>
 
-            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="750" Margin="0,10,0,0">
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="1000" Margin="0,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Usuario" Binding="{Binding ClienteId}" Width="*"/>
+                    <DataGridTextColumn Header="ID Cliente" Binding="{Binding ClienteId}" Width="80"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Nombres}" Width="*"/>
                     <DataGridTextColumn Header="Apellido" Binding="{Binding Apellidos}" Width="*"/>
                     <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="*"/>
                     <DataGridTextColumn Header="Cédula" Binding="{Binding NoCedula}" Width="*"/>
                     <DataGridTextColumn Header="RNC" Binding="{Binding Rnc}" Width="*"/>
                     <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>
+                    <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
 

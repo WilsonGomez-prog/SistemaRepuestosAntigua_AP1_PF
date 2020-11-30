@@ -24,56 +24,72 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
         }
 
+        private List<Creditos> FiltrarValor(List<Creditos> lista, int op)
+        {
+            switch (op)
+            {
+                case 0:
+                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
+                    {
+                        lista = lista.FindAll(c => c.Monto >= Convert.ToSingle(ValorMinTextbox.Text));
+                    }
+                    else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    {
+                        lista = lista.FindAll(c => c.Monto <= Convert.ToSingle(ValorMaxTextbox.Text));
+                    }
+                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    {
+                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ValorMinTextbox.Focus();
+                    }
+                    else
+                    {
+                        lista = lista.FindAll(c => c.Monto >= Convert.ToSingle(ValorMinTextbox.Text) && c.Monto <= Convert.ToSingle(ValorMaxTextbox.Text));
+                    }
+                    break;
+                case 1:
+                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
+                    {
+                        lista = lista.FindAll(c => c.Balance >= Convert.ToSingle(ValorMinTextbox.Text));
+                    }
+                    else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    {
+                        lista = lista.FindAll(c => c.Balance <= Convert.ToSingle(ValorMaxTextbox.Text));
+                    }
+                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    {
+                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ValorMinTextbox.Focus();
+                    }
+                    else
+                    {
+                        lista = lista.FindAll(c => c.Balance >= Convert.ToSingle(ValorMinTextbox.Text) && c.Balance <= Convert.ToSingle(ValorMaxTextbox.Text));
+                    }
+                    break;
+            }
+            return lista;
+        }
+
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Creditos>();
             if (string.IsNullOrWhiteSpace(CriterioTextBox.Text))
             {
-                if (ValorComboBox.SelectedItem == null)
+                if (ValorComboBox.SelectedItem == null && string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                 {
                     listado = CreditosBLL.GetList(e => true);
                 }
                 else
                 {
+                    listado = CreditosBLL.GetList(e => true);
+
                     switch (ValorComboBox.SelectedIndex)
                     {
                         case 0:
-                            if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                            {
-                                listado = CreditosBLL.GetList(c => c.Monto >= Convert.ToDecimal(ValorMinTextbox.Text));
-                            }
-                            else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                            {
-                                listado = CreditosBLL.GetList(c => c.Monto <= Convert.ToDecimal(ValorMaxTextbox.Text));
-                            }
-                            else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                            {
-                                MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                ValorMinTextbox.Focus();
-                            }
-                            else
-                            {
-                                listado = CreditosBLL.GetList(c => (float)c.Monto >= Convert.ToSingle(ValorMinTextbox.Text) && (float)c.Monto <= Convert.ToSingle(ValorMaxTextbox.Text));
-                            }
+                            listado = FiltrarValor(listado, 0);
                             break;
                         case 1:
-                            if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                            {
-                                listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox.Text));
-                            }
-                            else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                            {
-                                listado = CreditosBLL.GetList(c => c.Balance <= Convert.ToDecimal(ValorMaxTextbox.Text));
-                            }
-                            else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                            {
-                                MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                ValorMinTextbox.Focus();
-                            }
-                            else
-                            {
-                                listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox.Text) && c.Balance <= Convert.ToDecimal(ValorMaxTextbox.Text));
-                            }
+                            listado = FiltrarValor(listado, 1);
                             break;
                     }
                 }
@@ -102,42 +118,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 switch (FiltroComboBox.SelectedIndex)
                                 {
                                     case 0:
-                                        if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto >= Convert.ToDecimal(ValorMinTextbox.Text)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                            ValorMinTextbox.Focus();
-                                        }
-                                        else
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto >= Convert.ToDecimal(ValorMinTextbox.Text) && c.Monto <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
+                                        listado = CreditosBLL.GetList(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
+                                        listado = FiltrarValor(listado, 0);
                                         break;
                                     case 1:
-                                        if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto >= Convert.ToDecimal(ValorMinTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                            ValorMinTextbox.Focus();
-                                        }
-                                        else
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Monto >= Convert.ToDecimal(ValorMinTextbox.Text) && c.Monto <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
+                                        listado = CreditosBLL.GetList(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
+                                        listado = FiltrarValor(listado, 0);
                                         break;
                                 }
                                 break;
@@ -145,42 +131,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 switch (FiltroComboBox.SelectedIndex)
                                 {
                                     case 0:
-                                        if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox.Text)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                            ValorMinTextbox.Focus();
-                                        }
-                                        else
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox) && c.Balance <= Convert.ToDecimal(ValorMaxTextbox)).FindAll(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
+                                        listado = CreditosBLL.GetList(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
+                                        listado = FiltrarValor(listado, 1);
                                         break;
                                     case 1:
-                                        if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
-                                        {
-                                            MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                                            ValorMinTextbox.Focus();
-                                        }
-                                        else
-                                        {
-                                            listado = CreditosBLL.GetList(c => c.Balance >= Convert.ToDecimal(ValorMinTextbox.Text) && c.Balance <= Convert.ToDecimal(ValorMaxTextbox.Text)).FindAll(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
-                                        }
+                                        listado = CreditosBLL.GetList(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text));
+                                        listado = FiltrarValor(listado, 1);
                                         break;
                                 }
                                 break;

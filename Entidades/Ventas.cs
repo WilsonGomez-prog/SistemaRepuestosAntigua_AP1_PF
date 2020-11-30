@@ -33,10 +33,16 @@ namespace Entidades
         public string Ncf { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal Itbis { get; set; }
+        public float Itbis { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal Total { get; set; }
+        public float Total { get; set; }
+
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
+
+        [Column(TypeName = "Money")]
+        public float PendientePagar { get; set; }
 
         [ForeignKey("VentaCreditoId")]
         public List<VentasDetalle> DetalleVenta { get; set; }
@@ -51,10 +57,12 @@ namespace Entidades
             Ncf = "";
             Itbis = 0;
             Total = 0;
+            UsuarioModificador = 0;
+            PendientePagar = 0;
             DetalleVenta = new List<VentasDetalle>();
         }
 
-        public Ventas(DateTime fecha, DateTime fechaVencimiento, string noAutorizacion, string ncf, decimal itbis, decimal total)
+        public Ventas(DateTime fecha, DateTime fechaVencimiento, string noAutorizacion, string ncf, float itbis, float total)
         {
             Fecha = fecha;
             FechaVencimiento = fechaVencimiento;
@@ -62,6 +70,7 @@ namespace Entidades
             Ncf = ncf;
             Itbis = itbis;
             Total = total;
+            PendientePagar = Total;
             DetalleVenta = new List<VentasDetalle>(); ;
         }
     }

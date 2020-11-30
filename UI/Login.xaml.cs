@@ -21,9 +21,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
     /// </summary>
     public partial class Login : Window
     {
-        Usuarios Usuario = new Usuarios();
-        MainWindow mainWindow = new MainWindow();
-
         public Login()
         {
             InitializeComponent();
@@ -36,8 +33,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
 
             if(valido)
             {
+                new MainWindow(UsuariosBLL.Buscar(NombreUsuarioTextBox.Text, ClavePasswordBox.Password)).Show();
                 this.Close();
-                mainWindow.Show();
             }
             else
             {

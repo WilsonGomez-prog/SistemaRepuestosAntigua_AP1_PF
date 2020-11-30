@@ -19,7 +19,7 @@ namespace Entidades
         public float Cantidad { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal Total { get; set; }
+        public float Total { get; set; }
 
         public VentasDetalle()
         {
@@ -30,7 +30,7 @@ namespace Entidades
             Total = 0;
         }
 
-        public VentasDetalle(int ventaId, int productoId, float cantidad, decimal total)
+        public VentasDetalle(int ventaId, int productoId, float cantidad, float total)
         {
             VentaId = ventaId;
             ProductoId = productoId;

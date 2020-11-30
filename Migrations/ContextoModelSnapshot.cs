@@ -52,6 +52,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
@@ -72,8 +75,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Total")
+                    b.Property<float>("Total")
                         .HasColumnType("Money");
+
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("CobroId");
 
@@ -89,10 +95,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<int>("CobroId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("EstaPago")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Monto")
+                    b.Property<float>("Monto")
                         .HasColumnType("Money");
 
                     b.Property<int>("VentaId")
@@ -111,14 +120,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Balance")
+                    b.Property<float>("Balance")
                         .HasColumnType("Money");
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Monto")
+                    b.Property<float>("Monto")
                         .HasColumnType("Money");
+
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("CreditoId");
 
@@ -137,6 +149,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UsuarioModificador")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("EmpleadoId");
@@ -169,10 +184,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<float>("Existencia")
                         .HasColumnType("REAL");
 
-                    b.Property<decimal>("PrecioUnit")
+                    b.Property<float>("PrecioUnit")
                         .HasColumnType("Money");
 
                     b.Property<int>("TipoProductoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UsuarioModificador")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ProductoId");
@@ -190,6 +208,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("TipoProductoId");
 
@@ -225,6 +246,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
@@ -245,7 +269,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<DateTime>("FechaVencimiento")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Itbis")
+                    b.Property<float>("Itbis")
                         .HasColumnType("Money");
 
                     b.Property<string>("Ncf")
@@ -258,11 +282,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
+                    b.Property<float>("PendientePagar")
+                        .HasColumnType("Money");
+
                     b.Property<int>("TipoVenta")
                         .HasColumnType("Bit");
 
-                    b.Property<decimal>("Total")
+                    b.Property<float>("Total")
                         .HasColumnType("Money");
+
+                    b.Property<int>("UsuarioModificador")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("VentaId");
 
@@ -281,7 +311,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<int>("ProductoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Total")
+                    b.Property<float>("Total")
                         .HasColumnType("Money");
 
                     b.Property<int?>("VentaCreditoId")

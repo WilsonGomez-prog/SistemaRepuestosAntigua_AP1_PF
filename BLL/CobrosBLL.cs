@@ -42,6 +42,7 @@ namespace BLL
             {
                 if (contexto.Cobros.Add(cobro) != null)
                 {
+                    AjustarCuentas(cobro);
                     guardado = contexto.SaveChanges() > 0;
                 }
             }
@@ -70,6 +71,7 @@ namespace BLL
                     contexto.Entry(anterior).State = EntityState.Added;
                 }
                 contexto.Entry(cobro).State = EntityState.Modified;
+                AjustarCuentas(cobro);
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (System.Exception)
@@ -106,6 +108,30 @@ namespace BLL
             }
 
             return eliminado;
+        }
+
+        public static void AjustarCuentas(Cobros cobro)
+        {
+            try
+            {
+                if (cobro != null)
+                {
+                    var credito = CreditosBLL.Buscar(cobro.CreditoId);
+                    foreach (CobrosDetalle detalle in cobro.DetalleCobro)
+                    {
+                        if (credito != null)
+                        {
+                            credito.Balance += detalle.Monto;
+                            CreditosBLL.Guardar(credito);
+                            VentasBLL.CobrarVentaCredito(cobro);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public static List<Cobros> GetList(Expression<Func<Cobros, bool>> cobro)

@@ -1,18 +1,7 @@
 ﻿using BLL;
 using Entidades;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 {
@@ -22,11 +11,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
     public partial class rUsuarios : Window
     {
         Usuarios Usuario;
-        public rUsuarios()
+        Usuarios Modificador;
+        public rUsuarios(Usuarios usuario)
         {
             InitializeComponent();
             Usuario = new Usuarios();
             this.DataContext = Usuario;
+            Modificador = usuario;
         }
 
         private void Limpiar()
@@ -41,19 +32,19 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if(!ValidarCasillaTexto(NombreTextBox.Text))
+            if(!Utilidades.Utilidades.ValidarCasillaTexto(NombreTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla nombre no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 NombreTextBox.Focus();
             }
-            else if(!ValidarCasillaTexto(ApellidoTextBox.Text))
+            else if(!Utilidades.Utilidades.ValidarCasillaTexto(ApellidoTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla apellido no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ApellidoTextBox.Focus();
             }
-            else if (!ValidarUserName(NombreUsuarioTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarUserName(NombreUsuarioTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -107,81 +98,51 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            Limpiar();
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un usuario nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                Limpiar();
+            }
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Validar())
+            if (MessageBox.Show("¿De verdad desea guardar el usuario?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                Usuario.Clave = ClaveTextBox.Password;
-
-                bool guardo = UsuariosBLL.Guardar(Usuario);
-
-                if (guardo)
+                if (Validar())
                 {
-                    Limpiar();
-                    MessageBox.Show("El usuario ha sido guardado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("El usuario no ha podido ser guardado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Usuario.Clave = ClaveTextBox.Password;
+                    Usuario.UsuarioModificador = Modificador.UsuarioId;
+                    Usuario.Fecha = Convert.ToDateTime(FechaDatePicker.SelectedDate.Value.Date.ToShortDateString());
+
+                    bool guardo = UsuariosBLL.Guardar(Usuario);
+
+                    if (guardo)
+                    {
+                        Limpiar();
+                        MessageBox.Show("El usuario ha sido guardado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El usuario no ha podido ser guardado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
-            
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if(UsuariosBLL.Eliminar(Convert.ToInt32(UsuarioIdTextBox.Text)))
+            if (MessageBox.Show("¿De verdad desea eliminar el usuario? Tambien va a eliminar al \nempleado de la base de datos que este asignado al usuario.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("El usuario ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("El usuario no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool ValidarCasillaNumerica(string texto)
-        {
-            foreach (char invalido in texto.ToCharArray())
-            {
-                if (!Char.IsDigit(invalido))
+                if (UsuariosBLL.Eliminar(Convert.ToInt32(UsuarioIdTextBox.Text)))
                 {
-                    return false;
+                    MessageBox.Show("El usuario ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("El usuario no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
-            return true;
-        }
-
-        private bool ValidarCasillaTexto(string texto)
-        {
-
-            foreach (char carac in texto.ToCharArray())
-            {
-                if (!Char.IsLetter(carac))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private bool ValidarUserName(string texto)
-        {
-            foreach (char invalido in texto.ToCharArray())
-            {
-                if (!Char.IsLetterOrDigit(invalido))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

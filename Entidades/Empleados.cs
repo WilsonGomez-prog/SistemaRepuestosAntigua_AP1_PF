@@ -14,11 +14,15 @@ namespace Entidades
 
         public int UsuarioId { get; set; }
 
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
+
         public Empleados()
         {
             EmpleadoId = 0;
             Codigo = "";         
             UsuarioId = 0;
+            UsuarioModificador = 0;
         }
 
         public Empleados(string codigo, int usuarioId)

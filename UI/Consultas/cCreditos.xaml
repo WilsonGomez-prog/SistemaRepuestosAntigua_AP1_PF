@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-        Title="Consulta de Créditos" Height="480" Width="950" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Consulta de Créditos" Height="480" Width="950" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
@@ -24,7 +24,7 @@
             <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="520,-55,0,0" />
             <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="525,-25,0,0">
                 <ComboBoxItem Content="ID de la cuenta."/>
-                <ComboBoxItem Content="Nombre de usuario."/>
+                <ComboBoxItem Content="ID del cliente."/>
             </ComboBox>
 
             <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="660,-55,0,0" />
@@ -44,9 +44,9 @@
                     <DataGridTextColumn Header="ID Cliente" Binding="{Binding ClienteId}" Width="*"/>
                     <DataGridTextColumn Header="Monto" Binding="{Binding Monto}" Width="*"/>
                     <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="*"/>
+                    <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-
         </StackPanel>
     </Grid>
 </Window>

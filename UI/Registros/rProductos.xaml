@@ -1,0 +1,66 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Registros.rProductos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
+        mc:Ignorable="d"
+        Title="Registro de Productos" Height="400" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+    <Grid>
+        <StackPanel>
+            <Label Content="Producto ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
+            <TextBox x:Name="ProductoIdTextBox" Text="{Binding ProductoId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
+            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-50,-30,0,0" Click="BuscarButton_Click">
+                <DockPanel>
+                    <TextBlock>Buscar</TextBlock>
+                    <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <Label Content="Descripción:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
+            <TextBox x:Name="DescripcionTextBox" Text="{Binding Descripcion}" Height="25" Width="150" HorizontalAlignment="Left" Margin="27,0,0,0"/>
+
+            <Label Content="Codigo:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
+            <TextBox x:Name="CodigoTextBox" Text="{Binding Codigo}" Height="25" Width="150" HorizontalAlignment="Left" Margin="207,-25,0,0"/>
+
+            <Label Content="Precio unitario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
+            <TextBox x:Name="PrecioUnitTextBox" Text="{Binding PrecioUnit}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+
+            <Label Content="% de Impuesto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
+            <TextBox x:Name="ImpuestoTextBox" Text="{Binding Impuesto}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
+
+            <Label Content="% de descuento:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
+            <TextBox x:Name="DescuentoTextBox" Text="{Binding Descuento}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
+
+            <Label Content="Tipo de producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
+            <ComboBox x:Name="TipoProductoIdCombobox" Text="{Binding TipoProductoId}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
+
+            <Label Content="Estado del producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
+            <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
+
+            <Label Content="Cantidad de existencias:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
+            <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
+
+            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click">
+                <DockPanel>
+                    <TextBlock>Nuevo</TextBlock>
+                    <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
+                </DockPanel>
+            </Button>
+
+            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click">
+                <DockPanel>
+                    <TextBlock>Guardar</TextBlock>
+                    <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
+                </DockPanel>
+            </Button>
+
+            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click">
+                <DockPanel>
+                    <TextBlock>Eliminar</TextBlock>
+                    <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
+                </DockPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

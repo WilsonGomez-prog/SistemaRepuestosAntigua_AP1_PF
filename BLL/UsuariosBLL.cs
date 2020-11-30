@@ -136,6 +136,27 @@ namespace BLL
             return usuario;
         }
 
+        public static Usuarios Buscar(string usuarioNom, string pass)
+        {
+            Usuarios usuario = new Usuarios();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                usuario = contexto.Usuarios.Where(e => e.NombreUsuario == usuarioNom && e.Clave == GetAESEncryption(pass)).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return usuario;
+        }
+
         public static bool Eliminar(int usuarioId)
         {
             bool eliminado = false;
@@ -148,6 +169,7 @@ namespace BLL
                 if (usuarios != null)
                 {
                     contexto.Usuarios.Remove(usuarios);
+                    EmpleadosBLL.Eliminar(EmpleadosBLL.GetList(e => e.UsuarioId == usuarioId).FirstOrDefault().EmpleadoId);
                     eliminado = contexto.SaveChanges() > 0;
                 }
             }

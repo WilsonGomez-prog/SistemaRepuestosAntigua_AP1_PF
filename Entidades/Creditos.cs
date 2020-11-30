@@ -16,10 +16,13 @@ namespace Entidades
 
         [Required(ErrorMessage = "Debe de introducir un monto válido.")]
         [Column(TypeName ="Money")]
-        public decimal Monto { get; set; }
+        public float Monto { get; set; }
 
         [Column(TypeName = "Money")]
-        public decimal Balance { get; set; }
+        public float Balance { get; set; }
+
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
 
         public Creditos()
         {
@@ -27,9 +30,10 @@ namespace Entidades
             ClienteId = 0;
             Monto = 0;
             Balance = 0;
+            UsuarioModificador = 0;
         }
 
-        public Creditos(int clienteId, decimal monto, decimal balance)
+        public Creditos(int clienteId, float monto, float balance)
         {
             ClienteId = clienteId;
             Monto = monto;

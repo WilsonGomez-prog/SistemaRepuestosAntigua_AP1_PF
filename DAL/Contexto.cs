@@ -15,6 +15,7 @@ namespace DAL
         public DbSet<TiposProducto> TiposProductos { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Ventas> Ventas { get; set; }
+        public DbSet<VentasDetalle> VentasDetalle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

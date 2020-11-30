@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI"
         mc:Ignorable="d"
-        Title="Iniciar sesión" Height="225" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Iniciar sesión" Height="225" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <Label Content="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>

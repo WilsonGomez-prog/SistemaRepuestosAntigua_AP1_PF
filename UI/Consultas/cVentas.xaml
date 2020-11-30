@@ -1,0 +1,71 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Consultas.cVentas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
+        mc:Ignorable="d"
+        Title="Consulta de Ventas" Height="550" Width="1050" Icon="/Imagenes/Logo_Icon.png">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+
+            <Label Content="Valor mínimo:" FontSize="15" Margin="15,0,0,0"/>
+            <TextBox x:Name="ValorMinTextbox" Width="150" Height="25"  HorizontalAlignment="Left" Margin="20,0,0,0"/>
+
+            <Label Content="Valor máximo:" FontSize="15" Margin="15,0,0,0"/>
+            <TextBox x:Name="ValorMaxTextbox" HorizontalAlignment="Left" Margin="20,0,0,0" Width="150" Height="25"  />
+
+            <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" Margin="520,-110,0,0" />
+            <ComboBox x:Name="FechaComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="525,-135,0,0">
+                <ComboBoxItem Content="Fecha de emisión"/>
+                <ComboBoxItem Content="Fecha de vencimiento"/>
+            </ComboBox>
+
+            <Label Content="Valor:" FontSize="15" HorizontalAlignment="Left" Margin="190,-110,0,0" />
+            <ComboBox x:Name="ValorComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="195,-135,0,0">
+                <ComboBoxItem Content="Monto Total"/>
+                <ComboBoxItem Content="ITBIS"/>
+            </ComboBox>
+
+            <Label Content="Desde:" FontSize="15" HorizontalAlignment="Left" Margin="340,-110,0,0"/>
+            <DatePicker x:Name="DesdeDatePicker" SelectedDateFormat="Short" Width="150" Height="25" HorizontalAlignment="Left" Margin="345,-135,0,0"/>
+
+            <Label Content="Hasta:" FontSize="15" HorizontalAlignment="Left" Margin="340,-55,0,0"/>
+            <DatePicker x:Name="HastaDatePicker" SelectedDateFormat="Short" HorizontalAlignment="Left"  Margin="345,-25,0,0" Width="150" />
+
+
+            <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="660,-110,0,0" />
+            <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="665,-135,0,0">
+                <ComboBoxItem Content="ID de la venta"/>
+                <ComboBoxItem Content="ID del cliente"/>
+                <ComboBoxItem Content="NCF"/>
+                <ComboBoxItem Content="No. Autorización"/>
+            </ComboBox>
+
+            <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="660,-55,0,0" />
+            <TextBox x:Name="CriterioTextBox" Width="120" Height="25" HorizontalAlignment="Left" Margin="665,-25,0,0"/>
+
+
+            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="785,-30,0,0" Click="ConsultarButton_Click">
+                <DockPanel>
+                    <TextBlock Margin="0, 5, 0, 0"> Buscar</TextBlock>
+                    <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="980" HorizontalAlignment="Left" Margin="20,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Venta" Binding="{Binding VentaId}" Width="70"/>
+                    <DataGridTextColumn Header="ID Cliente" Binding="{Binding ClienteId}" Width="70"/>
+                    <DataGridTextColumn Header="No. Autorización" Binding="{Binding NoAutorizacion}" Width="120"/>
+                    <DataGridTextColumn Header="NCF" Binding="{Binding Ncf}" Width="120"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="90"/>
+                    <DataGridTextColumn Header="Fecha de vencimiento" Binding="{Binding FechaVencimiento}" Width="130"/>
+                    <DataGridTextColumn Header="ITBIS" Binding="{Binding Itbis}" Width="90"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="90"/>
+                    <DataGridTextColumn Header="Registrado por usuario" Binding="{Binding UsuarioModificador}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

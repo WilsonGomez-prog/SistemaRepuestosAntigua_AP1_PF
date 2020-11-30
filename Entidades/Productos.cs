@@ -17,7 +17,7 @@ namespace Entidades
 
         [Required(ErrorMessage = "Debe de introducir un precio válido del producto.")]
         [Column(TypeName = "Money")]
-        public decimal PrecioUnit { get; set; }
+        public float PrecioUnit { get; set; }
 
         [Required(ErrorMessage = "Debe de introducir un porciento de descuento válido.")]
         public float Descuento { get; set; }
@@ -36,6 +36,12 @@ namespace Entidades
         [Required(ErrorMessage = "Debe de especificar la cantidad de existencias que hay del producto.")]
         public float Existencia { get; set; }
 
+        [Required(ErrorMessage = "Debe de especificar el porciento de impuesto que se le aplica al producto.")]
+        public float Impuesto { get; set; }
+
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
+
         public Productos()
         {
             ProductoId = 0;
@@ -46,9 +52,10 @@ namespace Entidades
             TipoProductoId = 0;
             EstadoProducto = 0;
             Existencia = 0;
+            UsuarioModificador = 0;
         }
 
-        public Productos(string descripcion, decimal precioUnit, float descuento, string codigo, int tipoProductoId, int estadoProducto, float existencia)
+        public Productos(string descripcion, float precioUnit, float descuento, string codigo, int tipoProductoId, int estadoProducto, float existencia)
         {
             Descripcion = descripcion;
             PrecioUnit = precioUnit;

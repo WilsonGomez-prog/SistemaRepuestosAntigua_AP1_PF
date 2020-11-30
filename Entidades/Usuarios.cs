@@ -29,6 +29,9 @@ namespace Entidades
         [MaxLength(32, ErrorMessage = "La clave de usuario no puede exceder los 32 caracteres.")]
         public string Clave { get; set; }
 
+        [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
+        public int UsuarioModificador { get; set; }
+
         public Usuarios()
         {
             UsuarioId = 0;
@@ -37,6 +40,7 @@ namespace Entidades
             Nombres = "";
             Apellidos = "";
             Clave = "";
+            UsuarioModificador = 0;
         }
 
         public Usuarios(DateTime fecha, string nombres, string apellidos, string nombreUsuario, string clave)

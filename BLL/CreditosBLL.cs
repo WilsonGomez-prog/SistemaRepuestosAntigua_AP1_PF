@@ -131,6 +131,27 @@ namespace BLL
             return credito;
         }
 
+        public static Creditos BuscarPorCliente(int clienteId)
+        {
+            Creditos credito;
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                credito = contexto.Creditos.Where(c => c.ClienteId == clienteId).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return credito;
+        }
+
         public static bool Eliminar(int creditoId)
         {
             bool eliminado = false;

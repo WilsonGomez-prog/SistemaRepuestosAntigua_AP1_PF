@@ -428,10 +428,11 @@
       },
       "BLL/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "DAL": "1.0.0",
-          "Entidades": "1.0.0"
+          "Entidades": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Sqlite": "5.0.0"
         },
         "compile": {
           "bin/placeholder/BLL.dll": {}
@@ -442,7 +443,7 @@
       },
       "DAL/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Entidades": "1.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.0"
@@ -456,9 +457,9 @@
       },
       "Entidades/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "System.ComponentModel.Annotations": "5.0.0"
+          "Microsoft.EntityFrameworkCore.Sqlite": "5.0.0"
         },
         "compile": {
           "bin/placeholder/Entidades.dll": {}
@@ -1234,7 +1235,8 @@
       "BLL >= 1.0.0",
       "DAL >= 1.0.0",
       "Entidades >= 1.0.0",
-      "Microsoft.EntityFrameWorkCore.Tools >= 5.0.0"
+      "Microsoft.EntityFrameWorkCore.Tools >= 5.0.0",
+      "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.0"
     ]
   },
   "packageFolders": {
@@ -1289,6 +1291,10 @@
           "Microsoft.EntityFrameWorkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
+          "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[5.0.0, )"
           }

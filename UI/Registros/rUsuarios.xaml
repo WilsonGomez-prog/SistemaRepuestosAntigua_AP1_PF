@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Usuarios" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Registro de Usuarios" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"  Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <Label Content="Usuario ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
@@ -18,13 +18,13 @@
             </Button>
 
             <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}"  SelectedDateFormat="Short" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Nombre:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreTextBox" Text="{Binding Nombre}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="NombreTextBox" Text="{Binding Nombres}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellido}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellidos}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
             <TextBox x:Name="NombreUsuarioTextBox" Text="{Binding NombreUsuario}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
