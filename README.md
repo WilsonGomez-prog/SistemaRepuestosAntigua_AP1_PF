@@ -12,6 +12,11 @@ de la situación, para accesar a este requiere de un usuario y contraseña, esta
 además de un código de empleado que también se puede registrar en el sistema.
 
 ## Login:
+
 **_Usuario:_** Admin01
+
+**_Contraseña:_** Password123
+
+**_Usuario:_** Admin02
 
 **_Contraseña:_** Password123
