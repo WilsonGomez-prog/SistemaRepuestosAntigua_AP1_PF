@@ -13,10 +13,12 @@ además de un código de empleado que también se puede registrar en el sistema.
 
 ## Login:
 
+**Usuario 1:**
 **_Usuario:_** Admin01
 
 **_Contraseña:_** Password123
 
+**Usuario 2:**
 **_Usuario:_** Admin02
 
 **_Contraseña:_** Password123
