@@ -2,6 +2,8 @@
 using Entidades;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 {
@@ -23,8 +25,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         private void Limpiar()
         {
             Usuario = new Usuarios();
-            ClaveTextBox.Password = string.Empty;
-            ClaveVerificacionTextBox.Password = string.Empty;
+            ClavePasswordBox.Password = ClaveTextBox.Text = string.Empty;
+            ClaveVerificacionPasswordBox.Password = ClaveVerificacionTextBox.Text = string.Empty;
             this.DataContext = Usuario;
         }
 
@@ -56,18 +58,28 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("El nombre de usuario ingresado en la casilla\n'Nombre de usuario' ya pertenece a otro usuario,\n ingrese uno diferente.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 NombreUsuarioTextBox.Focus();
             }
-            else if(string.IsNullOrWhiteSpace(ClaveTextBox.Password) || ClaveTextBox.Password.Length < 6)
+            else if(string.IsNullOrWhiteSpace(ClavePasswordBox.Password) || ClavePasswordBox.Password.Length < 6)
             {
                 valido = false;
                 MessageBox.Show("Es necesario ingresar una clave con un minimo de 6 caracteres.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ClaveTextBox.Clear();
+                ClaveVerificacionPasswordBox.Clear();
                 ClaveTextBox.Focus();
             }
-            else if (string.IsNullOrWhiteSpace(ClaveVerificacionTextBox.Password))
+            else if (string.IsNullOrWhiteSpace(ClaveVerificacionPasswordBox.Password))
             {
                 valido = false;
                 MessageBox.Show("Es necesario es necesario verificar la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ClaveTextBox.Clear();
+                ClaveVerificacionPasswordBox.Clear();
+                ClaveTextBox.Focus();
+            }
+            else if (ClaveVerificacionPasswordBox.Password != ClavePasswordBox.Password)
+            {
+                valido = false;
+                MessageBox.Show("La verificación no coincide con la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClaveTextBox.Clear();
+                ClaveVerificacionPasswordBox.Clear();
                 ClaveTextBox.Focus();
             }
             else if (FechaDatePicker.SelectedDate > DateTime.Now)
@@ -110,7 +122,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             {
                 if (Validar())
                 {
-                    Usuario.Clave = ClaveTextBox.Password;
+                    Usuario.Clave = ClavePasswordBox.Password;
                     Usuario.UsuarioModificador = Modificador.UsuarioId;
                     Usuario.Fecha = Convert.ToDateTime(FechaDatePicker.SelectedDate.Value.Date.ToShortDateString());
 
@@ -143,6 +155,54 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                     MessageBox.Show("El usuario no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void VisualizarVerificarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClaveVerificacionTextBox.Text = ClaveVerificacionPasswordBox.Password;
+            ClaveVerificacionPasswordBox.Visibility = Visibility.Hidden;
+            ClaveVerificacionTextBox.Visibility = Visibility.Visible;
+            VisualizarVerificarButton.Visibility = Visibility.Hidden;
+            OcultarVerificarButton.Visibility = Visibility.Visible;
+        }
+
+        private void VisualizarClaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClaveTextBox.Text = ClavePasswordBox.Password;
+            ClavePasswordBox.Visibility = Visibility.Hidden;
+            ClaveTextBox.Visibility = Visibility.Visible;
+            VisualizarClaveButton.Visibility = Visibility.Hidden;
+            OcultarClaveButton.Visibility = Visibility.Visible;
+        }
+
+        private void OcultarClaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClavePasswordBox.Password = ClaveTextBox.Text;
+            ClavePasswordBox.Visibility = Visibility.Visible;
+            ClaveTextBox.Visibility = Visibility.Hidden;
+            VisualizarClaveButton.Visibility = Visibility.Visible;
+            OcultarClaveButton.Visibility = Visibility.Hidden;
+        }
+
+        private void OcultarVerificarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClaveVerificacionPasswordBox.Password = ClaveVerificacionTextBox.Text;
+            ClaveVerificacionPasswordBox.Visibility = Visibility.Visible;
+            ClaveVerificacionTextBox.Visibility = Visibility.Hidden;
+            VisualizarVerificarButton.Visibility = Visibility.Visible;
+            OcultarVerificarButton.Visibility = Visibility.Hidden;
+        }
+
+
+        private void ClaveTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ClavePasswordBox.Password = ClaveTextBox.Text;
+        }
+
+
+        private void ClaveVerificacionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ClaveVerificacionPasswordBox.Password = ClaveVerificacionTextBox.Text;
         }
     }
 }

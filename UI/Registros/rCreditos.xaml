@@ -18,7 +18,7 @@
             </Button>
 
             <Label Content="Cliente:" FontSize="15" HorizontalAlignment="Left" Margin="20,15,0,0"/>
-            <ComboBox x:Name="ClienteIdCombobox" IsEditable="False" Text="{Binding ClienteId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="27,5,0,0" />
+            <ComboBox x:Name="ClienteIdCombobox" IsTextSearchEnabled="True" IsEditable="False" Text="{Binding ClienteId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="27,5,0,0" />
 
             <Label Content="Monto:" FontSize="15" HorizontalAlignment="Left" Margin="20,15,0,0"/>
             <TextBox x:Name="MontoTextbox" Text="{Binding Monto}" FontSize="15" Width="170" Height="30" HorizontalAlignment="Left" Margin="27,5,0,0"/>

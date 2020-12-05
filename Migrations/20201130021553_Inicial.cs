@@ -187,8 +187,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                 {
                     table.PrimaryKey("PK_VentasDetalle", x => x.DetalleVentaId);
                     table.ForeignKey(
-                        name: "FK_VentasDetalle_Ventas_VentaCreditoId",
-                        column: x => x.VentaCreditoId,
+                        name: "FK_VentasDetalle_Ventas_VentaId",
+                        column: x => x.VentaId,
                         principalTable: "Ventas",
                         principalColumn: "VentaId",
                         onDelete: ReferentialAction.Restrict);
@@ -200,9 +200,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                 column: "CobroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VentasDetalle_VentaCreditoId",
+                name: "IX_VentasDetalle_VentaoId",
                 table: "VentasDetalle",
-                column: "VentaCreditoId");
+                column: "VentaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

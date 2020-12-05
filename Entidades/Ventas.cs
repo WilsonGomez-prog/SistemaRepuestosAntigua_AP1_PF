@@ -44,7 +44,7 @@ namespace Entidades
         [Column(TypeName = "Money")]
         public float PendientePagar { get; set; }
 
-        [ForeignKey("VentaCreditoId")]
+        [ForeignKey("VentaId")]
         public List<VentasDetalle> DetalleVenta { get; set; }
 
         public Ventas()

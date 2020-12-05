@@ -314,7 +314,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     b.Property<float>("Total")
                         .HasColumnType("Money");
 
-                    b.Property<int?>("VentaCreditoId")
+                    b.Property<int?>("VentaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("VentaId")
@@ -322,7 +322,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
 
                     b.HasKey("DetalleVentaId");
 
-                    b.HasIndex("VentaCreditoId");
+                    b.HasIndex("VentaId");
 
                     b.ToTable("VentasDetalle");
                 });
@@ -340,7 +340,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                 {
                     b.HasOne("Entidades.Ventas", null)
                         .WithMany("DetalleVenta")
-                        .HasForeignKey("VentaCreditoId");
+                        .HasForeignKey("VentaId");
                 });
 
             modelBuilder.Entity("Entidades.Cobros", b =>

@@ -34,7 +34,14 @@ namespace SistemaRepuestosAntigua_AP1_PF
 
         private void rUsuariosMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            new rUsuarios(Usuario).Show();
+            if (Usuario.EsAdmin == 1)
+            {
+                new rUsuarios(Usuario).Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe de ser un administrador para acceder a la ventana de registro de usuarios.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void cUsuariosMenuItem_Click(object sender, RoutedEventArgs e)
@@ -90,7 +97,14 @@ namespace SistemaRepuestosAntigua_AP1_PF
 
         private void rEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            new rEmpleados(Usuario).Show();
+            if (Usuario.EsAdmin == 1)
+            {
+                new rEmpleados(Usuario).Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe de ser un administrador para acceder a la ventana de registro de empleados.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void rCobrosMenuItem_Click(object sender, RoutedEventArgs e)

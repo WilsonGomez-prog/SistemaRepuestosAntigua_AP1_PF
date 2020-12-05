@@ -29,18 +29,18 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             switch (op)
             {
                 case 0:
-                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
+                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
-                        lista = lista.FindAll(c => c.PrecioUnit >= Convert.ToSingle(ValorMinTextbox.Text));
+                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ValorMinTextbox.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
                         lista = lista.FindAll(c => c.PrecioUnit <= Convert.ToSingle(ValorMaxTextbox.Text));
                     }
-                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
                     {
-                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                        ValorMinTextbox.Focus();
+                        lista = lista.FindAll(c => c.PrecioUnit >= Convert.ToSingle(ValorMinTextbox.Text));
                     }
                     else
                     {
@@ -48,18 +48,18 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     }
                     break;
                 case 1:
-                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
+                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
-                        lista = lista.FindAll(c => c.Existencia >= Convert.ToInt32(ValorMinTextbox.Text));
+                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ValorMinTextbox.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
                         lista = lista.FindAll(c => c.Existencia <= Convert.ToInt32(ValorMaxTextbox.Text));
                     }
-                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
                     {
-                        MessageBox.Show("Debe de debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                        ValorMinTextbox.Focus();
+                        lista = lista.FindAll(c => c.Existencia >= Convert.ToInt32(ValorMinTextbox.Text));
                     }
                     else
                     {

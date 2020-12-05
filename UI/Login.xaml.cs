@@ -48,5 +48,28 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
         {
             Application.Current.Shutdown();
         }
+
+        private void ClaveTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ClavePasswordBox.Password = ClaveTextBox.Text;
+        }
+
+        private void VisualizarClaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClaveTextBox.Text = ClavePasswordBox.Password;
+            ClavePasswordBox.Visibility = Visibility.Hidden;
+            ClaveTextBox.Visibility = Visibility.Visible;
+            VisualizarClaveButton.Visibility = Visibility.Hidden;
+            OcultarClaveButton.Visibility = Visibility.Visible;
+        }
+
+        private void OcultarClaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClavePasswordBox.Password = ClaveTextBox.Text;
+            ClavePasswordBox.Visibility = Visibility.Visible;
+            ClaveTextBox.Visibility = Visibility.Hidden;
+            VisualizarClaveButton.Visibility = Visibility.Visible;
+            OcultarClaveButton.Visibility = Visibility.Hidden;
+        }
     }
 }

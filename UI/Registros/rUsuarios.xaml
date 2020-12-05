@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Usuarios" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"  Icon="/Imagenes/Logo_Icon.png">
+        Title="Registro de Usuarios" Height="491" Width="395" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"  Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <Label Content="Usuario ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
             <TextBox x:Name="UsuarioIdTextBox" Text="{Binding UsuarioId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
-            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-50,-30,0,0" Click="BuscarButton_Click">
+            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-100,-30,0,0" Click="BuscarButton_Click">
                 <DockPanel>
                     <TextBlock>Buscar</TextBlock>
                     <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
@@ -18,22 +18,46 @@
             </Button>
 
             <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}"  SelectedDateFormat="Short" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}"  SelectedDateFormat="Short" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Nombre:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreTextBox" Text="{Binding Nombres}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="NombreTextBox" Text="{Binding Nombres}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
-            <Label Content="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellidos}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <Label Content="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
+            <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellidos}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
 
             <Label Content="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreUsuarioTextBox" Text="{Binding NombreUsuario}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="NombreUsuarioTextBox" Text="{Binding NombreUsuario}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+
+            <Label Content="Permisos:" FontSize="15" HorizontalAlignment="Left" Margin="200,-60,0,0"/>
+            <ComboBox x:Name="EsAdminCombobox" IsEditable="False" IsTextSearchEnabled="True" Text="{Binding EsAdmin}" HorizontalAlignment="Left" Width="150" Height="30" Margin="207,-30,0,0">
+                <ComboBoxItem Content="Corriente"/>
+                <ComboBoxItem Content="Administrador"/>
+            </ComboBox>
 
             <Label Content="Contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <PasswordBox x:Name="ClaveTextBox" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <PasswordBox x:Name="ClavePasswordBox" FontSize="15" Height="25" Width="275" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="ClaveTextBox" FontSize="15" Height="25" Width="275" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" TextChanged="ClaveTextBox_TextChanged"/>
+            
+            <Button x:Name="VisualizarClaveButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="VisualizarClaveButton_Click">
+                <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
+            
+            <Button x:Name="OcultarClaveButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="OcultarClaveButton_Click" Visibility="Hidden">
+                <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
 
             <Label Content="Verifique su contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <PasswordBox x:Name="ClaveVerificacionTextBox" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <PasswordBox x:Name="ClaveVerificacionPasswordBox" FontSize="15" Height="25" Width="275" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="ClaveVerificacionTextBox" FontSize="15" Height="25" Width="275" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" TextChanged="ClaveVerificacionTextBox_TextChanged"/>
+            
+            <Button x:Name="VisualizarVerificarButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="VisualizarVerificarButton_Click">
+                <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
+            
+            <Button x:Name="OcultarVerificarButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="OcultarVerificarButton_Click" Visibility="Hidden">
+                <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
 
             <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click">
                 <DockPanel>

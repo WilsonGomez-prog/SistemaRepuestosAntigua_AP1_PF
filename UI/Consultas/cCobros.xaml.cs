@@ -40,20 +40,20 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             {
                
                 case 0:
-                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
+                    if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
-                        lista = lista.FindAll(c => c.Total >= Convert.ToSingle(ValorMinTextbox.Text));
-                        FiltrarFecha(ref lista, FechaComboBox);
+                        MessageBox.Show("Debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ValorMinTextbox.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
                     {
                         lista = lista.FindAll(c => c.Total <= Convert.ToSingle(ValorMaxTextbox.Text));
                         FiltrarFecha(ref lista, FechaComboBox);
                     }
-                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text) && string.IsNullOrWhiteSpace(ValorMinTextbox.Text))
+                    else if (string.IsNullOrWhiteSpace(ValorMaxTextbox.Text))
                     {
-                        MessageBox.Show("Debe de introducir un valor minimo o un maximo para poder filtrar por algun tipo de valor.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                        ValorMinTextbox.Focus();
+                        lista = lista.FindAll(c => c.Total >= Convert.ToSingle(ValorMinTextbox.Text));
+                        FiltrarFecha(ref lista, FechaComboBox);
                     }
                     else
                     {

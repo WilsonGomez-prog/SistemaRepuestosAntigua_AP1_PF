@@ -32,6 +32,9 @@ namespace Entidades
         [Required(ErrorMessage = "Debe de indicar el id del usuario que lo modifico por ultima vez.")]
         public int UsuarioModificador { get; set; }
 
+        [Required(ErrorMessage = "Debe de indicar el tipo de permisos del usuario.")]
+        public int EsAdmin { get; set; }
+
         public Usuarios()
         {
             UsuarioId = 0;

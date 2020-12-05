@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Margin="0,0,0,0">
             <Label Content="Venta ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
-            <TextBox x:Name="VentaIdTextBox" Text="{Binding ClienteId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
+            <TextBox x:Name="VentaIdTextBox" Text="{Binding VentaId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
             <Button x:Name="BuscarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="125,-30,0,0" Click="BuscarButton_Click">
                 <DockPanel>
                     <TextBlock>Buscar</TextBlock>
@@ -18,10 +18,10 @@
             </Button>
 
             <Label Content="Tipo:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
-            <ComboBox x:Name="TipoVentaCombobox" Text="{Binding TipoVentaId}" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <ComboBox x:Name="TipoVentaCombobox" Text="{Binding TipoVentaId}" IsTextSearchEnabled="True" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Cliente:" FontSize="15" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-            <ComboBox x:Name="ClienteIdCombobox" IsEditable="False" Text="{Binding ClienteId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="27,0,0,0" />
+            <ComboBox x:Name="ClienteIdCombobox" IsEditable="False" IsTextSearchEnabled="True" Text="{Binding ClienteId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="27,0,0,0" />
 
             <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-120,0,0" Height="30"/>
             <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" SelectedDateFormat="Short" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-90,0,0"/>
@@ -39,7 +39,7 @@
                 <GroupBox Header="Detalle de la venta" BorderBrush="Black" Width="570">
                     <StackPanel>
                         <Label Content="Producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
-                        <ComboBox x:Name="ProductoCombobox" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                        <ComboBox x:Name="ProductoCombobox" IsTextSearchEnabled="True" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
                         <Label Content="Cantidad:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-60,0,0" Height="30"/>
                         <TextBox x:Name="CantidadTextBox" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-30,0,0"/>

@@ -5,24 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI"
         mc:Ignorable="d"
-        Title="Iniciar sesión" Height="225" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+        Title="Iniciar sesión" Height="231" Width="310" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <Label Content="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreUsuarioTextBox" FontSize="15" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"></TextBox>
+            <TextBox x:Name="NombreUsuarioTextBox" FontSize="15" Height="25" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="Contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <PasswordBox x:Name="ClavePasswordBox" FontSize="15" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"></PasswordBox>
+            <PasswordBox x:Name="ClavePasswordBox" FontSize="15" Height="25" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <TextBox x:Name="ClaveTextBox" Height="25" FontSize="15" Width="200" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" TextChanged="ClaveTextBox_TextChanged"/>
+            
+            <Button x:Name="VisualizarClaveButton" Width="30" Height="25" Margin="250,-25,0,0" HorizontalAlignment="Left" Click="VisualizarClaveButton_Click">
+                <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
 
-            <Button x:Name="IngresarButton" Height='30' Width="70" Margin="-100,20,0,0" Click="IngresarButton_Click">
+            <Button x:Name="OcultarClaveButton" Width="30" Height="25" Margin="250,-25,0,0" HorizontalAlignment="Left" Click="OcultarClaveButton_Click" Visibility="Hidden">
+                <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+            </Button>
+
+            <Button x:Name="IngresarButton" Height='30' Width="70" Margin="-150,20,0,0" Click="IngresarButton_Click">
                 <DockPanel>
                     <TextBlock>Ingresar</TextBlock>
+                    <Image Source="/Imagenes/login_icon.png" Height="20" Margin="5,0,0,0"/>
                 </DockPanel>
             </Button>
 
-            <Button x:Name="CancelarButton" Height='30' Width="70" Margin="100,-30,0,0" Click="CancelarButton_Click">
+            <Button x:Name="CancelarButton" Height='30' Width="70" Margin="50,-30,0,0" Click="CancelarButton_Click">
                 <DockPanel>
                     <TextBlock>Cancelar</TextBlock>
+                    <Image Source="/Imagenes/logout_icon.png" Height="20" Margin="5,0,0,0"/>
                 </DockPanel>
             </Button>
 

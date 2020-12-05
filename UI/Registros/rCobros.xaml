@@ -23,7 +23,7 @@
                 <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="170"/>
 
                 <Label Content="Credito: " FontSize="15" HorizontalAlignment="Left" Margin="14,10,0,0"/>
-                <ComboBox x:Name="CreditoIdCombobox" Text="{Binding CreditoId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="20,0,0,0"/>
+                <ComboBox x:Name="CreditoIdCombobox" Text="{Binding CreditoId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="20,0,0,0" IsTextSearchEnabled="False"/>
             </StackPanel>
 
             <StackPanel Width="675" HorizontalAlignment="Center">
@@ -32,7 +32,7 @@
                     <StackPanel>
 
                         <Label Content="Venta:" FontSize="15" Height="30" Width="87" HorizontalAlignment="Left" Margin="0, -5, 0, 0"/>
-                        <ComboBox x:Name="VentaIdCombobox" Height="25" Width="160" HorizontalAlignment="Left" Margin="10, 0, 0, 0"/>
+                        <ComboBox x:Name="VentaIdCombobox" IsTextSearchEnabled="True" Height="25" Width="160" HorizontalAlignment="Left" Margin="10, 0, 0, 0"/>
 
                         <Label Content="Monto:" FontSize="15" HorizontalAlignment="Left" Margin="200,-55,0,0"/>
                         <TextBox x:Name="MontoTextbox" HorizontalAlignment="Left" Width="150" Height="30" Margin="205,-30,0,0"/>

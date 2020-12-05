@@ -36,7 +36,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                                 select new
                                 {
                                     cred.CreditoId,
-                                    Cliente = cli.Nombres + " " + cli.Apellidos
+                                    Cliente = cli.Nombres + " " + cli.Apellidos + " - " + cli.NoCedula
                                 }).ToList();
 
             var ventasCred = (from ven in context.Ventas
@@ -65,6 +65,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             this.DataContext = cobros;
             detalle = new List<dynamic>();
             DetalleDataGrid.ItemsSource = detalle;
+            CreditoIdCombobox.SelectedIndex = -1;
+            VentaIdCombobox.SelectedIndex = -1;
+            MontoTextbox.Text = string.Empty;
+            FechaCobroDatePicker.SelectedDate = DateTime.Now;
         }
 
         public bool Existe()
@@ -97,6 +101,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             CreditoIdCombobox.SelectedIndex = cobros.CreditoId - 1;
             TotalTextbox.Text = cobros.Total.ToString();
             DetalleDataGrid.ItemsSource = detalle;
+            VentaIdCombobox.SelectedIndex = -1;
+            MontoTextbox.Text = string.Empty;
+            FechaCobroDatePicker.SelectedDate = DateTime.Now;
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)

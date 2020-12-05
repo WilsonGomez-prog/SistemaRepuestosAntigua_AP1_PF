@@ -38,6 +38,14 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             EstadoProductoCombobox.ItemsSource = new List<dynamic>() { nu, us };
             EstadoProductoCombobox.SelectedValuePath = "EstadoId";
             EstadoProductoCombobox.DisplayMemberPath = "Descripcion";
+
+            var ex = new { ImpId = 0, Descripcion = "Execnto(0%)" };
+            var imp1 = new { ImpId = 12, Descripcion = "12%" };
+            var imp2 = new { ImpId = 18, Descripcion = "18%" };
+
+            ImpuestoComboBox.ItemsSource = new List<dynamic>() { ex, imp1, imp2 };
+            ImpuestoComboBox.SelectedValuePath = "ImpId";
+            ImpuestoComboBox.DisplayMemberPath = "Descripcion";
         }
 
         private void Limpiar()
@@ -98,17 +106,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("La casilla codigo no puede tener caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescripcionTextBox.Focus();
             }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(ImpuestoTextBox.Text))
+            else if (ImpuestoComboBox.SelectedItem == null)
             {
                 valido = false;
-                MessageBox.Show("La casilla impuesto no puede tener letras o caracteres especiales, ingrese solo el número.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ImpuestoTextBox.Focus();
-            }
-            else if (Convert.ToSingle(ImpuestoTextBox.Text) != 18 && Convert.ToSingle(ImpuestoTextBox.Text) != 12 && Convert.ToSingle(ImpuestoTextBox.Text) != 0)
-            {
-                valido = false;
-                MessageBox.Show("El numero ingresado difiere de los impuestos permitidos, \nfavor de ingresar '12' o '18' como impuesto, si está excento '0'.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ImpuestoTextBox.Focus();
+                MessageBox.Show("Debe de seleccionar el porcentaje de impuesto que se le aplica al producto.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ImpuestoComboBox.Focus();
             }
 
             return valido;
@@ -156,6 +158,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 {
                     Producto.UsuarioModificador = Modificador.UsuarioId;
                     Producto.TipoProductoId = Convert.ToInt32(TipoProductoIdCombobox.SelectedValue);
+                    Producto.Impuesto = Convert.ToSingle(ImpuestoComboBox.SelectedValue);
                     bool guardo = ProductosBLL.Guardar(Producto);
 
                     if (guardo)

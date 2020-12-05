@@ -27,16 +27,16 @@
             <TextBox x:Name="PrecioUnitTextBox" Text="{Binding PrecioUnit}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
 
             <Label Content="% de Impuesto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
-            <TextBox x:Name="ImpuestoTextBox" Text="{Binding Impuesto}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
+            <ComboBox x:Name="ImpuestoComboBox" Text="{Binding Impuesto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
 
             <Label Content="% de descuento:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
             <TextBox x:Name="DescuentoTextBox" Text="{Binding Descuento}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
 
             <Label Content="Tipo de producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
-            <ComboBox x:Name="TipoProductoIdCombobox" Text="{Binding TipoProductoId}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
+            <ComboBox x:Name="TipoProductoIdCombobox" Text="{Binding TipoProductoId}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
 
             <Label Content="Estado del producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
-            <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
+            <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
 
             <Label Content="Cantidad de existencias:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
             <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>

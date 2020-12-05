@@ -36,7 +36,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             var cre = new { TipoId = 1, Descripcion = "Crédito" };
             var con = new { TipoId = 0, Descripcion = "Contado" };
 
-            var clientes = (from cli in context.Clientes select new { cli.ClienteId, NombreCompleto = cli.Nombres + " " + cli.Apellidos }).ToList();
+            var clientes = (from cli in context.Clientes select new { cli.ClienteId, Display = cli.Nombres + " " + cli.Apellidos + " - " + cli.NoCedula}).ToList();
 
             TipoVentaCombobox.ItemsSource = new List<dynamic>(){con, cre};
             TipoVentaCombobox.SelectedValuePath = "TipoId";
@@ -44,7 +44,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
             ClienteIdCombobox.ItemsSource = clientes;
             ClienteIdCombobox.SelectedValuePath = "ClienteId";
-            ClienteIdCombobox.DisplayMemberPath = "NombreCompleto";
+            ClienteIdCombobox.DisplayMemberPath = "Display";
 
             ProductoCombobox.ItemsSource = ProductosBLL.GetList(p => true);
             ProductoCombobox.SelectedValuePath = "ProductoId";
@@ -56,6 +56,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             Venta = new Ventas();
             this.DataContext = Venta;
             detalle = new List<dynamic>();
+            ProductoCombobox.SelectedIndex = -1;
+            CantidadTextBox.Text = string.Empty;
+            SubTotalTextbox.Text = string.Empty;
             DetalleDataGrid.ItemsSource = detalle;
         }
 
@@ -90,6 +93,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             ClienteIdCombobox.SelectedIndex = Venta.ClienteId - 1;
             FechaDatePicker.SelectedDate = Venta.Fecha;
             VencimientoDatePicker.SelectedDate = Venta.FechaVencimiento;
+            ProductoCombobox.SelectedIndex = -1;
+            CantidadTextBox.Text = string.Empty;
             DetalleDataGrid.ItemsSource = this.detalle;
             SubTotalTextbox.Text = Convert.ToString(Venta.Total - Venta.Itbis);
 
