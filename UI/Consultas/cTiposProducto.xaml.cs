@@ -24,9 +24,29 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
         }
 
+        private List<dynamic> GetDisplay(List<TiposProducto> lista)
+        {
+            var listado = new List<dynamic>();
+
+            foreach (var tiposProducto in lista)
+            {
+                var user = new
+                {
+                    tiposProducto.TipoProductoId,
+                    tiposProducto.Descripcion,
+                    UsuarioModificador = tiposProducto.UsuarioModificador != 0 ? UsuariosBLL.Buscar(tiposProducto.UsuarioModificador).NombreUsuario : "Default"
+                };
+
+                listado.Add(user);
+            }
+
+            return listado;
+        }
+
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             List<TiposProducto> listado = new List<TiposProducto>();
+            List<dynamic> list = new List<dynamic>();
             try
             {
 
@@ -39,10 +59,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
 
                             case 0:
                                 listado = TiposProductoBLL.GetList(p => p.TipoProductoId == int.Parse(CriterioTextBox.Text));
+                                list = GetDisplay(listado);
                                 break;
 
                             case 1:
                                 listado = TiposProductoBLL.GetList(p => p.Descripcion.Contains(CriterioTextBox.Text));
+                                list = GetDisplay(listado);
                                 break;                        
                         }
                     }
@@ -55,6 +77,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                 else
                 {
                     listado = TiposProductoBLL.GetList(c => true);
+                    list = GetDisplay(listado);
                 }
             }
             catch (Exception)
@@ -63,7 +86,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             }
 
             DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = listado;
+            DatosDataGrid.ItemsSource = list;
 
 
         }

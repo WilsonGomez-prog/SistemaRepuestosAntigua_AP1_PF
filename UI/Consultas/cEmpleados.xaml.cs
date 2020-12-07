@@ -22,9 +22,30 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
         }
 
+        private List<dynamic> GetDisplay(List<Empleados> lista)
+        {
+            var listado = new List<dynamic>();
+
+            foreach (var empleado in lista)
+            {
+                var emp = new
+                {
+                    empleado.EmpleadoId,
+                    empleado.Codigo,
+                    UsuariosBLL.Buscar(empleado.UsuarioId).NombreUsuario,
+                    UsuarioModificador = UsuariosBLL.Buscar(empleado.UsuarioModificador).NombreUsuario 
+                };
+
+                listado.Add(emp);
+            }
+
+            return listado;
+        }
+
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             List<Empleados> listado = new List<Empleados>();
+            List<dynamic> list = new List<dynamic>();
             try
             {
 
@@ -37,10 +58,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
 
                             case 1:
                                 listado = EmpleadosBLL.GetList(p => p.EmpleadoId == int.Parse(CriterioTextBox.Text));
+                                list = GetDisplay(listado);
                                 break;
 
                             case 2:
                                 listado = EmpleadosBLL.GetList(p => p.Codigo == CriterioTextBox.Text);
+                                list = GetDisplay(listado);
                                 break;
                         }
                     }
@@ -53,6 +76,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                 else
                 {
                     listado = EmpleadosBLL.GetList(c => true);
+                    list = GetDisplay(listado);
                 }
             }
             catch (Exception)
@@ -61,7 +85,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             }
 
             DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = listado;
+            DatosDataGrid.ItemsSource = list;
 
 
         }

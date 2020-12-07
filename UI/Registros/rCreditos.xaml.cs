@@ -155,7 +155,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("El monto no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 MontoTextbox.Focus();
             }
-            else if (CreditosBLL.GetList(c => c.ClienteId == Convert.ToInt32(ClienteIdCombobox.SelectedValue)).FirstOrDefault() != null)
+            else if (CreditosBLL.Existe(Convert.ToInt32(CreditoIdTextbox.Text),Convert.ToInt32(ClienteIdCombobox.SelectedValue)))
             {
                 valido = false;
                 MessageBox.Show("Debe de seleccionar un cliente que no tenga un crédito registrado \npara poder asignar el crédito o busque al credito \nperteneciente al cliente para modificarle.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);

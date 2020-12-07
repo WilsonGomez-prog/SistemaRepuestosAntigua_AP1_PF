@@ -24,6 +24,30 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
         }
 
+        private List<dynamic> GetDisplay(List<Productos> lista)
+        {
+            var listado = new List<dynamic>();
+
+            foreach (var producto in lista)
+            {
+                var prod = new
+                {
+                    producto.ProductoId,
+                    producto.Codigo,
+                    producto.Descripcion,
+                    producto.PrecioUnit,
+                    Tipo = TiposProductoBLL.Buscar(producto.TipoProductoId).Descripcion,
+                    producto.Descuento,
+                    producto.Existencia,
+                    UsuarioModificador = producto.UsuarioModificador != 0 ? UsuariosBLL.Buscar(producto.UsuarioModificador).NombreUsuario : "Default"
+                };
+
+                listado.Add(prod);
+            }
+
+            return listado;
+        }
+
         private List<Productos> FiltrarValor(List<Productos> lista, int op)
         {
             switch (op)
@@ -73,11 +97,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Productos>();
+            List<dynamic> list = new List<dynamic>();
             if (string.IsNullOrWhiteSpace(CriterioTextBox.Text))
             {
                 if (ValorComboBox.SelectedItem == null)
                 {
                     listado = ProductosBLL.GetList(e => true);
+                    list = GetDisplay(listado);
                 }
                 else
                 {
@@ -85,9 +111,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     {
                         case 0:
                             listado = FiltrarValor(ProductosBLL.GetList(e => true), 0);
+                            list = GetDisplay(listado);
                             break;
                         case 1:
                             listado = FiltrarValor(ProductosBLL.GetList(e => true), 1);
+                            list = GetDisplay(listado);
                             break;
                     }
                 }
@@ -102,9 +130,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                         {
                             case 0:
                                 listado = ProductosBLL.GetList(e => e.ProductoId == Convert.ToInt32(CriterioTextBox.Text));
+                                list = GetDisplay(listado);
                                 break;
                             case 1:
                                 listado = ProductosBLL.GetList(e => e.Descripcion.Contains(CriterioTextBox.Text));
+                                list = GetDisplay(listado);
                                 break;
                         }
                     }
@@ -117,10 +147,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = ProductosBLL.GetList(e => e.ProductoId == Convert.ToInt32(CriterioTextBox.Text));
+                                        list = GetDisplay(listado);
                                         listado = FiltrarValor(listado, 0);
                                         break;
                                     case 1:
                                         listado = ProductosBLL.GetList(e => e.Descripcion.Contains(CriterioTextBox.Text));
+                                        list = GetDisplay(listado);
                                         listado = FiltrarValor(listado, 0);
                                         break;
                                 }
@@ -130,10 +162,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = ProductosBLL.GetList(e => e.ProductoId == Convert.ToInt32(CriterioTextBox.Text));
+                                        list = GetDisplay(listado);
                                         listado = FiltrarValor(listado, 1);
                                         break;
                                     case 1:
                                         listado = ProductosBLL.GetList(e => e.Descripcion.Contains(CriterioTextBox.Text));
+                                        list = GetDisplay(listado);
                                         listado = FiltrarValor(listado, 1);
                                         break;
                                 }
@@ -149,7 +183,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             }
 
             DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = listado;
+            DatosDataGrid.ItemsSource = list;
         }
     }
 }

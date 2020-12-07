@@ -295,5 +295,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             }
             Actualizar(0, del);
         }
+
+        private void VentaIdCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (VentaIdCombobox.SelectedIndex != -1)
+            {
+                PendienteTextbox.Text = VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).PendientePagar.ToString();
+            }
+            else
+            {
+                PendienteTextbox.Text = "N/A";
+            }
+        }
     }
 }

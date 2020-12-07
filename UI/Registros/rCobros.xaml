@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Cobros" Height="650" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+        Title="Registro de Cobros" Height="650" Width="890" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel>
             <StackPanel>
@@ -26,35 +26,37 @@
                 <ComboBox x:Name="CreditoIdCombobox" Text="{Binding CreditoId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="20,0,0,0" IsTextSearchEnabled="False"/>
             </StackPanel>
 
-            <StackPanel Width="675" HorizontalAlignment="Center">
+            <StackPanel Width="850" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <!--Marco del detalle-->
                 <GroupBox Header=" Detalle Cobros" FontSize="15" BorderBrush="Black" Height="320">
                     <StackPanel>
 
                         <Label Content="Venta:" FontSize="15" Height="30" Width="87" HorizontalAlignment="Left" Margin="0, -5, 0, 0"/>
-                        <ComboBox x:Name="VentaIdCombobox" IsTextSearchEnabled="True" Height="25" Width="160" HorizontalAlignment="Left" Margin="10, 0, 0, 0"/>
+                        <ComboBox x:Name="VentaIdCombobox" IsTextSearchEnabled="True" Height="25" Width="160" HorizontalAlignment="Left" Margin="10, 0, 0, 0" SelectionChanged="VentaIdCombobox_SelectionChanged"/>
 
                         <Label Content="Monto:" FontSize="15" HorizontalAlignment="Left" Margin="200,-55,0,0"/>
                         <TextBox x:Name="MontoTextbox" HorizontalAlignment="Left" Width="150" Height="30" Margin="205,-30,0,0"/>
 
-                        <Label Content="Fecha del Cobro: " FontSize="15" HorizontalAlignment="Left" Margin="380,-80,0,0" Height="37"/>
-                        <DatePicker x:Name="FechaCobroDatePicker"  SelectedDateFormat="Short" HorizontalAlignment="Left" Margin="385,-30,0,0" Height="30" Width="170"/>
+                        <Label Content="Pendiente a pagar:" FontSize="15" HorizontalAlignment="Left" Margin="380,-55,0,0"/>
+                        <TextBox x:Name="PendienteTextbox" IsReadOnly="True" HorizontalAlignment="Left" Width="150" Height="30" Margin="385,-30,0,0"/>
+
+                        <Label Content="Fecha del Cobro: " FontSize="15" HorizontalAlignment="Left" Margin="560,-80,0,0" Height="37"/>
+                        <DatePicker x:Name="FechaCobroDatePicker"  SelectedDateFormat="Short" HorizontalAlignment="Left" Margin="565,-30,0,0" Height="30" Width="170"/>
 
                         <!--Agregar tarea al detalle-->
-                        <Button x:Name="AgregarButton" FontSize="12" Width="70" Height="30" Click="AgregarButton_Click" HorizontalAlignment="Left" Margin="589,-35,0,0">
+                        <Button x:Name="AgregarButton" FontSize="12" Width="70" Height="30" Click="AgregarButton_Click" HorizontalAlignment="Left" Margin="750,-35,0,0">
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Agregar</TextBlock>
                                 <Image Source="/Imagenes/add_icon.png" Height="20" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                             </DockPanel>
                         </Button>
 
-                        <DataGrid x:Name="DetalleDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="200" Width="655" Margin="0,5,0,0">
+                        <DataGrid x:Name="DetalleDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="200" Width="815" Margin="-15,5,0,0">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Detalle Cobro ID" Binding="{Binding CobrosDetalleID}" Width="*"/>
+                                <DataGridTextColumn Header="Detalle Cobro ID" Binding="{Binding CobroDetalleID}" Width="*"/>
                                 <DataGridTextColumn Header="Venta ID" Binding="{Binding VentaId}" Width="*"/>
                                 <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
                                 <DataGridTextColumn Header="Total" Binding="{Binding Monto}" Width="*"/>
-                                <DataGridTextColumn Header="Pendiente" Binding="{Binding PendientePagar}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -70,8 +72,8 @@
                 <!--Marco del detalle-->
             </StackPanel>
 
-            <Label Content="Total: " FontSize="15" HorizontalAlignment="Left" Margin="490,5,0,0"/>
-            <TextBox x:Name="TotalTextbox" Text="{Binding Total}" HorizontalAlignment="Left" Width="140" Height="30" Margin="535,-30,0,0" IsReadOnly="True"/>
+            <Label Content="Total: " FontSize="15" HorizontalAlignment="Left" Margin="675,5,0,0"/>
+            <TextBox x:Name="TotalTextbox" Text="{Binding Total}" HorizontalAlignment="Left" Width="140" Height="30" Margin="720,-30,0,0" IsReadOnly="True"/>
 
             <!--Botones -->
             <Button x:Name="NuevoButton" Height="30" Width="70" Margin="20,5,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click">

@@ -30,7 +30,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Empleado ID" Binding="{Binding EmpleadoId}" Width="*"/>
                     <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="*"/>
-                    <DataGridTextColumn Header="Usuario ID asignado " Binding="{Binding UsuarioId}" Width="*"/>
+                    <DataGridTextColumn Header="Usuario asignado " Binding="{Binding NombreUsuario}" Width="*"/>
                     <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-        Title="Consulta de Ventas" Height="550" Width="1050" Icon="/Imagenes/Logo_Icon.png">
+        Title="Consulta de Ventas" Height="550" Width="1078" Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
@@ -53,17 +53,19 @@
                 </DockPanel>
             </Button>
 
-            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="980" HorizontalAlignment="Left" Margin="20,10,0,0">
+            <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="1010" HorizontalAlignment="Left" Margin="20,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Venta" Binding="{Binding VentaId}" Width="70"/>
-                    <DataGridTextColumn Header="ID Cliente" Binding="{Binding ClienteId}" Width="70"/>
-                    <DataGridTextColumn Header="No. Autorización" Binding="{Binding NoAutorizacion}" Width="120"/>
-                    <DataGridTextColumn Header="NCF" Binding="{Binding Ncf}" Width="120"/>
-                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="90"/>
-                    <DataGridTextColumn Header="Fecha de vencimiento" Binding="{Binding FechaVencimiento}" Width="130"/>
-                    <DataGridTextColumn Header="ITBIS" Binding="{Binding Itbis}" Width="90"/>
-                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="90"/>
-                    <DataGridTextColumn Header="Registrado por usuario" Binding="{Binding UsuarioModificador}" Width="*"/>
+                    <DataGridTextColumn Header="ID Venta" Binding="{Binding VentaId}" Width="Auto"/>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="1*"/>
+                    <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="Auto"/>
+                    <DataGridTextColumn Header="No. Autorización" Binding="{Binding NoAutorizacion}" Width="Auto"/>
+                    <DataGridTextColumn Header="NCF" Binding="{Binding Ncf}" Width="Auto"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="2*"/>
+                    <DataGridTextColumn Header="Fecha de vencimiento" Binding="{Binding FechaVencimiento}" Width="2*"/>
+                    <DataGridTextColumn Header="ITBIS" Binding="{Binding Itbis}" Width="Auto"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="Auto"/>
+                    <DataGridTextColumn Header="Balance Pendiente" Binding="{Binding PendientePagar}" Width="Auto"/>
+                    <DataGridTextColumn Header="Registrado por usuario" Binding="{Binding UsuarioModificador}" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

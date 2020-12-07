@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DAL;
 
 namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
 {
@@ -24,6 +26,34 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
             DesdeDatePicker.SelectedDate = Convert.ToDateTime("01/01/0001");
             HastaDatePicker.SelectedDate = DateTime.Now;
+        }
+
+        private List<dynamic> GetDisplay (List<Ventas> lista)
+        {
+            var listado = new List<dynamic>();
+
+            foreach (var venta in lista)
+            {
+                var cliente = ClientesBLL.Buscar(venta.ClienteId);
+                var ven = new
+                {
+                    venta.VentaId,
+                    Cliente = cliente.Nombres + " " + cliente.Apellidos,
+                    Tipo = venta.TipoVenta == 1 ? "Crédito" : "Contado",
+                    venta.NoAutorizacion,
+                    venta.Ncf,
+                    venta.Fecha,
+                    venta.FechaVencimiento,
+                    venta.Itbis,
+                    venta.Total,
+                    venta.PendientePagar,
+                    UsuarioModificador = venta.UsuarioModificador != 0 ? UsuariosBLL.Buscar(venta.UsuarioModificador).NombreUsuario : "Default"
+                };
+
+                listado.Add(ven);
+            }
+
+            return listado;
         }
 
         private List<Ventas> FiltrarFecha(List<Ventas> lista, ComboBox fecha)
@@ -99,11 +129,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Ventas>();
+            var list = new List<dynamic>();
             if (string.IsNullOrWhiteSpace(CriterioTextBox.Text))
             {
                 if (ValorComboBox.SelectedItem == null)
                 {
                     listado = FiltrarFecha(VentasBLL.GetList(e => true), FechaComboBox);
+                    list = GetDisplay(listado);
                 }
                 else
                 {
@@ -112,9 +144,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     {
                         case 0:
                             listado = FiltrarValor(listado, 0);
+                            list = GetDisplay(listado);
                             break;
                         case 1:
                             listado = FiltrarValor(listado, 1);
+                            list = GetDisplay(listado);
                             break;
                     }
                 }
@@ -129,15 +163,19 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                         {
                             case 0:
                                 listado = FiltrarFecha(VentasBLL.GetList(e => e.VentaId == Convert.ToInt32(CriterioTextBox.Text)),FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             case 1:
                                 listado = FiltrarFecha(VentasBLL.GetList(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text)), FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             case 2:
                                 listado = FiltrarFecha(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             case 3:
                                 listado = FiltrarFecha(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                         }
                     }
@@ -150,15 +188,19 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.VentaId == Convert.ToInt32(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 1:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 2:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 3:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                 }
                                 break;
@@ -167,15 +209,19 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.VentaId == Convert.ToInt32(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 1:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.ClienteId == Convert.ToInt32(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 2:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 3:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                 }
                                 break;
@@ -190,7 +236,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             }
 
             DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = listado;
+            DatosDataGrid.ItemsSource = list;
         }
     }
 }

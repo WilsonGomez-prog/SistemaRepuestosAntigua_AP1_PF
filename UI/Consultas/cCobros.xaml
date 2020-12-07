@@ -54,11 +54,11 @@
 
             <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="890" Margin="0,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Cobro ID" Binding="{Binding CobroId}" Width="*"/>
-                    <DataGridTextColumn Header="Venta ID" Binding="{Binding EmpleadoId}" Width="*"/>
-                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
-                    <DataGridTextColumn Header="Credito ID" Binding="{Binding CreditoId}" Width="*"/>
-                    <DataGridTextColumn Header="Total " Binding="{Binding Total}" Width="*"/>
+                    <DataGridTextColumn Header="Cobro ID" Binding="{Binding CobroId}" Width="Auto"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="1*"/>
+                    <DataGridTextColumn Header="Credito ID" Binding="{Binding CreditoId}" Width="Auto"/>
+                    <DataGridTextColumn Header="Total " Binding="{Binding Total}" Width="Auto"/>
+                    <DataGridTextColumn Header="Cajero" Binding="{Binding Empleado}" Width="1*"/>
                     <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

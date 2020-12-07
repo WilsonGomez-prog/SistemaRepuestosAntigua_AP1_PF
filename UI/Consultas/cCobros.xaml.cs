@@ -21,6 +21,29 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             InitializeComponent();
         }
 
+        private List<dynamic> GetDisplay(List<Cobros> lista)
+        {
+            var listado = new List<dynamic>();
+
+            foreach (var cobro in lista)
+            {
+                var emp = UsuariosBLL.Buscar(EmpleadosBLL.Buscar(cobro.EmpleadoId).UsuarioId);
+                var cob = new
+                {
+                    cobro.CobroId,
+                    cobro.CreditoId,
+                    Empleado = emp.Nombres + " " + emp.Apellidos,
+                    cobro.Fecha,
+                    cobro.Total,
+                    UsuarioModificador = cobro.UsuarioModificador != 0 ? UsuariosBLL.Buscar(cobro.UsuarioModificador).NombreUsuario : "Default"
+                };
+
+                listado.Add(cob);
+            }
+
+            return listado;
+        }
+
         private void FiltrarFecha(ref List<Cobros> lista, ComboBox fecha)
         {
             if (fecha.SelectedItem != null)
@@ -69,12 +92,14 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Cobros>();
+            var list = new List<dynamic>();
             if (string.IsNullOrWhiteSpace(CriterioTextBox.Text))
             {
                 if (ValorComboBox.SelectedItem == null)
                 {
                     listado = CobrosBLL.GetList(e => true);
                     FiltrarFecha(ref listado, FechaComboBox);
+                    list = GetDisplay(listado);
                 }
                 else
                 {
@@ -82,6 +107,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     {
                         case 0:
                             listado = FiltrarValor(listado, 0);
+                            list = GetDisplay(listado);
                             break;
                        
                     }
@@ -98,14 +124,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                             case 0:
                                 listado = CobrosBLL.GetList(e => e.CobroId == Convert.ToInt32(CriterioTextBox.Text));
                                 FiltrarFecha(ref listado, FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             case 1:
                                 listado = CobrosBLL.GetList(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text));
                                 FiltrarFecha(ref listado, FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             case 2:
                                 listado = CobrosBLL.GetList(e => e.EmpleadoId == Convert.ToInt32(CriterioTextBox.Text));
                                 FiltrarFecha(ref listado, FechaComboBox);
+                                list = GetDisplay(listado);
                                 break;
                             
                         }
@@ -119,12 +148,15 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.CobroId == Convert.ToInt32(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 1:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 2:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.EmpleadoId == Convert.ToInt32(CriterioTextBox.Text)), 0);
+                                        list = GetDisplay(listado);
                                         break;
                                 }
                                 break;
@@ -133,12 +165,15 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 {
                                     case 0:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.CobroId == Convert.ToInt32(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 1:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.CreditoId == Convert.ToInt32(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                     case 2:
                                         listado = FiltrarValor(CobrosBLL.GetList(e => e.EmpleadoId == Convert.ToInt32(CriterioTextBox.Text)), 1);
+                                        list = GetDisplay(listado);
                                         break;
                                 }
                                 break;
@@ -153,7 +188,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
             }
 
             DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = listado;
+            DatosDataGrid.ItemsSource = list;
         }
     }
 }

@@ -41,14 +41,14 @@
 
             <DataGrid x:Name="DatosDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="350" Width="890" Margin="0,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Producto" Binding="{Binding ProductoId}" Width="80"/>
-                    <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="90"/>
-                    <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>
+                    <DataGridTextColumn Header="ID Producto" Binding="{Binding ProductoId}" Width="Auto"/>
+                    <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="Auto"/>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="Auto"/>
                     <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnit}" Width="90"/>
-                    <DataGridTextColumn Header="ID Tipo Producto" Binding="{Binding TipoProductoId}" Width="100"/>
+                    <DataGridTextColumn Header="Tipo de Producto" Binding="{Binding Tipo}" Width="Auto"/>
                     <DataGridTextColumn Header="% de Descuento" Binding="{Binding Descuento}" Width="100"/>
                     <DataGridTextColumn Header="Existencias" Binding="{Binding Existencia}" Width="100"/>
-                    <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
+                    <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
