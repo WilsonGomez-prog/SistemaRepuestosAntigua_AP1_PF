@@ -125,6 +125,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                     Usuario.Clave = ClavePasswordBox.Password;
                     Usuario.UsuarioModificador = Modificador.UsuarioId;
                     Usuario.Fecha = Convert.ToDateTime(FechaDatePicker.SelectedDate.Value.Date.ToShortDateString());
+                    Usuario.EsAdmin = EsAdminCombobox.SelectedIndex != -1 && EsAdminCombobox.SelectedIndex == 1 ? 1 : 0;
 
                     bool guardo = UsuariosBLL.Guardar(Usuario);
 

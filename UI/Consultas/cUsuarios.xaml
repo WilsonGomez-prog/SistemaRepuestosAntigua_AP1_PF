@@ -25,9 +25,9 @@
             <TextBox x:Name="CriterioTextBox" Width="120" Height="25" HorizontalAlignment="Left" Margin="560,-25,0,0"/>
 
 
-            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="685,-30,0,0" Click="ConsultarButton_Click">
+            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="685,-30,0,0" Click="ConsultarButton_Click" Background="#FF958F8F">
                 <DockPanel>
-                    <TextBlock Margin="0, 5, 0, 0"> Buscar</TextBlock>
+                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
                     <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                 </DockPanel>
             </Button>

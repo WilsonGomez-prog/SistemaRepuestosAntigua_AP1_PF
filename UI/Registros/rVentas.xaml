@@ -10,9 +10,9 @@
         <StackPanel Margin="0,0,0,0">
             <Label Content="Venta ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="30"/>
             <TextBox x:Name="VentaIdTextBox" Text="{Binding VentaId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
-            <Button x:Name="BuscarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="125,-30,0,0" Click="BuscarButton_Click">
+            <Button x:Name="BuscarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="125,-30,0,0" Click="BuscarButton_Click" Background="#FF958F8F">
                 <DockPanel>
-                    <TextBlock>Buscar</TextBlock>
+                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
                     <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                 </DockPanel>
             </Button>
@@ -44,9 +44,9 @@
                         <Label Content="Cantidad:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,-60,0,0" Height="30"/>
                         <TextBox x:Name="CantidadTextBox" Height="30" Width="170" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,-30,0,0"/>
 
-                        <Button x:Name="AgregarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="407,-30,0,0" Click="AgregarButton_Click">
+                        <Button x:Name="AgregarButton" Width="70" Height="30" HorizontalAlignment="Left" Margin="407,-30,0,0" Click="AgregarButton_Click" Background="#FF1109BF">
                             <DockPanel>
-                                <TextBlock>Agregar</TextBlock>
+                                <TextBlock FontWeight="Bold">Agregar</TextBlock>
                                 <Image Source="/Imagenes/add_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                             </DockPanel>
                         </Button>
@@ -62,9 +62,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Button x:Name="RemoverButton" FontSize="12" Width="200" Height="30" HorizontalAlignment="Center" Margin="0,5,0,0" Click="RemoverButton_Click">
+                        <Button x:Name="RemoverButton" FontSize="12" Width="200" Height="30" HorizontalAlignment="Center" Margin="0,5,0,0" Click="RemoverButton_Click" Background="#FF800707">
                             <DockPanel>
-                                <TextBlock HorizontalAlignment="Left" Margin="0,2,0,0">Remover producto seleccionado</TextBlock>
+                                <TextBlock FontWeight="Bold" HorizontalAlignment="Left" Margin="0,2,0,0">Remover producto seleccionado</TextBlock>
                                 <Image Source="/Imagenes/remove_icon.png" Height="20" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                             </DockPanel>
                         </Button>
@@ -81,23 +81,23 @@
             <Label Content="Total:" FontSize="15" HorizontalAlignment="Left" Margin="365,0,0,0"/>
             <TextBox x:Name="TotalTextbox" Text="{Binding Total}" Margin="400,-25,0,0" Width="100" Height="30" IsReadOnly="True"/>
 
-            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,-30,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click">
+            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,-30,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#FF1109BF">
                 <DockPanel>
-                    <TextBlock>Nuevo</TextBlock>
+                    <TextBlock FontWeight="Bold">Nuevo</TextBlock>
                     <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
                 </DockPanel>
             </Button>
 
-            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click">
+            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click" Background="#FF7E7D7D" >
                 <DockPanel>
-                    <TextBlock>Guardar</TextBlock>
+                    <TextBlock FontWeight="Bold">Guardar</TextBlock>
                     <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
                 </DockPanel>
             </Button>
 
-            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click">
+            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click" Background="#FF800707">
                 <DockPanel>
-                    <TextBlock>Eliminar</TextBlock>
+                    <TextBlock FontWeight="Bold">Eliminar</TextBlock>
                     <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
                 </DockPanel>
             </Button>

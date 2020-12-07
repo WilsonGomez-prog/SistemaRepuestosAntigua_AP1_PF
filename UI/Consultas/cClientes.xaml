@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
             <Label Content="Filtro:" Width="68" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-            <ComboBox x:Name="FiltroComboBox" Width="136" Margin="-500,-22,0,0">
+            <ComboBox x:Name="FiltroComboBox" Width="136" Margin="-720,-22,0,0">
                 <ComboBoxItem Content="ID de la persona."/>
                 <ComboBoxItem Content="Cedula."/>
                 <ComboBoxItem Content="Nombre."/>
@@ -18,12 +18,12 @@
                 <ComboBoxItem Content="Telefono."/>
             </ComboBox>
 
-            <Label Content="Criterio:" Width="68" Margin="10,-25,0,0"/>
-            <TextBox x:Name="CriterioTextBox" TextWrapping="Wrap" Width="120" Margin="200,-22,0,0"/>
+            <Label Content="Criterio:" Width="68" Margin="-400,-25,0,0"/>
+            <TextBox x:Name="CriterioTextBox" TextWrapping="Wrap" Width="120" Margin="-225,-22,0,0"/>
 
-            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="475,-25,0,0" Click="ConsultarButton_Click">
+            <Button x:Name="ConsultarButton" Height="30" Width="75" Margin="0,-25,0,0" Click="ConsultarButton_Click" Background="#FF958F8F">
                 <DockPanel>
-                    <TextBlock Margin="0, 5, 0, 0"> Buscar</TextBlock>
+                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
                     <Image Source="/Imagenes/search_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                 </DockPanel>
             </Button>
