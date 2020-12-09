@@ -93,6 +93,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("El % de descuento no debe de contener letras o caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescuentoTextBox.Focus();
+            }else if (DescuentoTextBox.Text.Length < 60)
+            {
+                valido = false;
+                MessageBox.Show("El % de descuento introducido no debe ser mayor del 60%.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                DescuentoTextBox.Focus();
             }
             else if (!Utilidades.Utilidades.ValidarCasillaNumerica(ExistenciaTextBox.Text) || string.IsNullOrWhiteSpace(ExistenciaTextBox.Text))
             {

@@ -29,6 +29,7 @@
 
                 <MenuItem Header="Ayuda">
                     <MenuItem x:Name="SalirMenuItem" Header="Cerrar sesión" Click="SalirMenuItem_Click" />
+                    <MenuItem x:Name="Info" Header="Informacion" Click="Info_Click" />
                 </MenuItem>
             </Menu>
             <Image Source="/Imagenes/Fondo.png" Margin="0,-0" Opacity="50" Height="400"/>

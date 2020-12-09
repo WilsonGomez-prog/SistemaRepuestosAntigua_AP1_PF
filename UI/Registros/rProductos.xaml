@@ -39,7 +39,7 @@
             <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
 
             <Label Content="Cantidad de existencias:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
-            <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
+            <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" IsReadOnly="True"/>
 
             <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#FF1109BF">
                 <DockPanel>

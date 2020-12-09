@@ -109,5 +109,10 @@ namespace SistemaRepuestosAntigua_AP1_PF
         {
             new cTiposProducto().Show();
         }
+
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            new Info().Show();
+        }
     }
 }

@@ -1,0 +1,33 @@
+﻿<Window x:Class="SistemaRepuestosAntigua_AP1_PF.UI.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI"
+        mc:Ignorable="d"
+        Title="Sistema de Ventas de Repuestos Antigua" Height="450" Width="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+    <Grid>
+        <StackPanel Margin="0,0,0,0">
+
+            <DockPanel>
+                <Image Source="/Imagenes/Wilson.JPEG" Margin="-445,40,0,0" Height="150" Width="186"/>
+                
+            </DockPanel>
+            <Label Content="Wilson Gómez" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0" Height="30"/>
+            <Label Content="2018-0881" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,0,0,0" Height="30"/>
+            <TextBlock Margin="20,0,0,0"  TextTrimming="CharacterEllipsis"> wilson_gomez@ucne.edu.do</TextBlock>
+            <Label Content="829-788-6188" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,0,0,0" Height="30"/>
+
+            <Image Source="/Imagenes/jhordy.JPEG" Margin="210,-350,0,0" Height="150" Width="173"/>
+            
+            <Label Content="Jhordy Guzmán" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,-100,0,0" Height="30"/>
+            <Label Content="2017-0939" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="385,-75,0,0" Height="30"/>
+            <TextBlock Margin="350,-70,0,0"  TextTrimming="CharacterEllipsis" Height="19"> jhordy_guzman@ucne.edu.do</TextBlock>
+            <Label Content="829-423-0540" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,-25,0,0" Height="30"/>
+
+            <Label Content="Link del Repositorio:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,50,0,0" Height="30"/> 
+            <Label Content="https://github.com/WilsonGomez-prog/SistemaRepuestosAntigua_AP1_PF" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" Height="30"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
