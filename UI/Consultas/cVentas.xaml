@@ -5,7 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-        Title="Consulta de Ventas" Height="550" Width="1078" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"  Icon="/Imagenes/Logo_Icon.png">
+        Title="Consulta de Ventas" 
+        Height="550" Width="1078" 
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"  
+        Icon="/Imagenes/Logo_Icon.png">
+    <Window.Resources>
+        <Style x:Key="CeldaMonetaria" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="CeldaNormal" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
@@ -39,7 +50,6 @@
                 <ComboBoxItem Content="ID de la venta"/>
                 <ComboBoxItem Content="ID del cliente"/>
                 <ComboBoxItem Content="NCF"/>
-                <ComboBoxItem Content="No. Autorización"/>
             </ComboBox>
 
             <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="660,-55,0,0" />
@@ -58,13 +68,12 @@
                     <DataGridTextColumn Header="ID Venta" Binding="{Binding VentaId}" Width="Auto"/>
                     <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="1*"/>
                     <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="Auto"/>
-                    <DataGridTextColumn Header="No. Autorización" Binding="{Binding NoAutorizacion}" Width="Auto"/>
                     <DataGridTextColumn Header="NCF" Binding="{Binding Ncf}" Width="Auto"/>
                     <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="2*"/>
                     <DataGridTextColumn Header="Fecha de vencimiento" Binding="{Binding FechaVencimiento}" Width="2*"/>
-                    <DataGridTextColumn Header="ITBIS" Binding="{Binding Itbis}" Width="Auto"/>
-                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="Auto"/>
-                    <DataGridTextColumn Header="Balance Pendiente" Binding="{Binding PendientePagar}" Width="Auto"/>
+                    <DataGridTextColumn Header="ITBIS" Binding="{Binding Itbis}" Width="Auto" ElementStyle="{StaticResource CeldaMonetaria}"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="Auto" ElementStyle="{StaticResource CeldaMonetaria}"/>
+                    <DataGridTextColumn Header="Balance Pendiente" Binding="{Binding PendientePagar}" Width="Auto" ElementStyle="{StaticResource CeldaMonetaria}"/>
                     <DataGridTextColumn Header="Registrado por usuario" Binding="{Binding UsuarioModificador}" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>

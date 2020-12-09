@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Windows;
 
 namespace BLL
 {
@@ -43,8 +41,6 @@ namespace BLL
                 if (contexto.Ventas.Add(venta) != null)
                 {
                     guardado = contexto.SaveChanges() > 0;
-                    AlterarCredito(venta);
-                    AlterarInventario(venta);
                 }
             }
             catch (System.Exception)
@@ -72,8 +68,6 @@ namespace BLL
                     contexto.Entry(anterior).State = EntityState.Added;
                 }
                 contexto.Entry(venta).State = EntityState.Modified;
-                AlterarCredito(venta);
-                AlterarInventario(venta);
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (System.Exception)
@@ -88,31 +82,6 @@ namespace BLL
             return modificado;
         }
 
-        public static void CobrarVentaCredito(Cobros Cobro)
-        {
-            Contexto contexto = new Contexto();
-            try
-            {
-                foreach (CobrosDetalle detalle in Cobro.DetalleCobro)
-                {
-                    if (detalle.EstaPago == false)
-                    {
-                        contexto.Database.ExecuteSqlRaw($"Update Ventas set PendientePagar = PendientePagar - {detalle.Monto} where VentaId = {detalle.VentaId}");
-                        detalle.EstaPago = true;
-                    }
-
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-        }
-
         public static bool Eliminar(int ventaId)
         {
             bool eliminado = false;
@@ -120,9 +89,9 @@ namespace BLL
 
             try
             {
+                RestaurarValores(Buscar(ventaId));
                 var eliminar = contexto.Ventas.Find(ventaId);
                 contexto.Entry(eliminar).State = EntityState.Deleted;
-
                 eliminado = contexto.SaveChanges() > 0;
             }
             catch (System.Exception)
@@ -158,41 +127,42 @@ namespace BLL
             return lista;
         }
 
-        public static void AlterarCredito(Ventas venta)
+        public static void RestaurarValores(Ventas venta)
         {
-            try
-            {
-                if (venta != null && venta.TipoVenta == 1)
-                {
-                    var credito = CreditosBLL.BuscarPorCliente(venta.ClienteId);
+            Contexto contexto = new Contexto();
 
-                    if (credito != null)
-                    {
-                        credito.Balance -= venta.Total;
-                        CreditosBLL.Guardar(credito);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static void AlterarInventario(Ventas venta)
-        {
             try
             {
                 if (venta != null)
                 {
+                    contexto.Database.ExecuteSqlRaw($"Delete from CobrosDetalle where VentaId = {venta.VentaId}");
+
+                    var cobros = CobrosBLL.GetList(c => true);
+                    foreach (var cobro in cobros)
+                    {
+                        if (cobro.DetalleCobro.Count == 0)
+                        {
+                            CobrosBLL.Eliminar(cobro.CobroId);
+                        }
+                        else
+                        {
+                            cobro.Total = 0;
+                            foreach (var detalle in cobro.DetalleCobro)
+                            {
+                                cobro.Total += detalle.Monto;    
+                            }
+                            CobrosBLL.Modificar(cobro);
+                        }
+                        
+                    }
+
                     foreach (var detalle in venta.DetalleVenta)
                     {
                         var producto = ProductosBLL.Buscar(detalle.ProductoId);
 
                         if (producto != null)
                         {
-                            producto.Existencia -= detalle.Cantidad;
-                            ProductosBLL.Guardar(producto);
+                            contexto.Database.ExecuteSqlRaw($"Update Productos set Existencia = Existencia + {detalle.Cantidad} where ProductoId = {detalle.ProductoId}");
                         }
                     }
                 }
@@ -200,6 +170,10 @@ namespace BLL
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                contexto.Dispose();
             }
         }
     }

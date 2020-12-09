@@ -34,22 +34,22 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if(!Utilidades.Utilidades.ValidarCasillaTexto(NombreTextBox.Text))
+            if(!Utilidades.Utilidades.ValidarCasillaTexto(NombreTextBox.Text) || string.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla nombre no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla nombre no puede tener \nnumeros ni caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 NombreTextBox.Focus();
             }
-            else if(!Utilidades.Utilidades.ValidarCasillaTexto(ApellidoTextBox.Text))
+            else if(!Utilidades.Utilidades.ValidarCasillaTexto(ApellidoTextBox.Text) || string.IsNullOrWhiteSpace(ApellidoTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla apellido no puede tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla apellido no puede tener \nnumeros ni caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ApellidoTextBox.Focus();
             }
-            else if (!Utilidades.Utilidades.ValidarUserName(NombreUsuarioTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarUserName(NombreUsuarioTextBox.Text) || string.IsNullOrWhiteSpace(NombreUsuarioTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 NombreUsuarioTextBox.Focus();
             }
             else if (UsuariosBLL.Existe(Convert.ToInt32(UsuarioIdTextBox.Text), NombreUsuarioTextBox.Text))
@@ -110,7 +110,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un usuario nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un usuario nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Limpiar();
             }
@@ -118,7 +118,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea guardar el usuario?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea guardar el usuario?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (Validar())
                 {
@@ -144,7 +144,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea eliminar el usuario? Tambien va a eliminar al \nempleado de la base de datos que este asignado al usuario.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea eliminar el usuario? Tambien va a eliminar al \nempleado de la base de datos que este asignado al usuario.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (UsuariosBLL.Eliminar(Convert.ToInt32(UsuarioIdTextBox.Text)))
                 {

@@ -40,13 +40,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     venta.VentaId,
                     Cliente = cliente.Nombres + " " + cliente.Apellidos,
                     Tipo = venta.TipoVenta == 1 ? "Crédito" : "Contado",
-                    venta.NoAutorizacion,
                     venta.Ncf,
-                    venta.Fecha,
-                    venta.FechaVencimiento,
-                    venta.Itbis,
-                    venta.Total,
-                    venta.PendientePagar,
+                    Fecha = venta.Fecha.ToString("dd/MM/yyy"),
+                    FechaVencimiento = venta.FechaVencimiento.ToString("dd/MM/yyy"),
+                    Itbis = venta.Itbis.ToString("N2"),
+                    Total = venta.Total.ToString("N2"),
+                    PendientePagar = venta.PendientePagar.ToString("N2"),
                     UsuarioModificador = venta.UsuarioModificador != 0 ? UsuariosBLL.Buscar(venta.UsuarioModificador).NombreUsuario : "Default"
                 };
 
@@ -173,10 +172,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                 listado = FiltrarFecha(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), FechaComboBox);
                                 list = GetDisplay(listado);
                                 break;
-                            case 3:
-                                listado = FiltrarFecha(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), FechaComboBox);
-                                list = GetDisplay(listado);
-                                break;
                         }
                     }
                     else
@@ -198,10 +193,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), 0);
                                         list = GetDisplay(listado);
                                         break;
-                                    case 3:
-                                        listado = FiltrarValor(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), 0);
-                                        list = GetDisplay(listado);
-                                        break;
                                 }
                                 break;
                             case 1:
@@ -217,10 +208,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                                         break;
                                     case 2:
                                         listado = FiltrarValor(VentasBLL.GetList(e => e.Ncf.Contains(CriterioTextBox.Text)), 1);
-                                        list = GetDisplay(listado);
-                                        break;
-                                    case 3:
-                                        listado = FiltrarValor(VentasBLL.GetList(e => e.NoAutorizacion.Contains(CriterioTextBox.Text)), 1);
                                         list = GetDisplay(listado);
                                         break;
                                 }

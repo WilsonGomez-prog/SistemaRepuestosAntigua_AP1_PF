@@ -169,7 +169,6 @@ namespace BLL
                 if (usuarios != null)
                 {
                     contexto.Usuarios.Remove(usuarios);
-                    EmpleadosBLL.Eliminar(EmpleadosBLL.GetList(e => e.UsuarioId == usuarioId).FirstOrDefault().EmpleadoId);
                     eliminado = contexto.SaveChanges() > 0;
                 }
             }

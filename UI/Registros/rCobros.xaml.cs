@@ -31,32 +31,22 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             Contexto context = new Contexto();
 
             var clientesCred = (from cli in context.Clientes
-                                join cred in context.Creditos
-                                on cli.ClienteId equals cred.ClienteId
-                                select new
+                                join ven in context.Ventas
+                                on cli.ClienteId equals ven.ClienteId
+                                where ven.TipoVenta == 1
+                                select new 
                                 {
-                                    cred.CreditoId,
+                                    cli.ClienteId,
                                     Cliente = cli.Nombres + " " + cli.Apellidos + " - " + cli.NoCedula
-                                }).ToList();
+                                }).Distinct().ToList();
 
-            var ventasCred = (from ven in context.Ventas
-                              join cred in context.Creditos
-                              on ven.ClienteId equals cred.ClienteId
-                              where ven.TipoVenta == 1
-                              select new
-                              {
-                                  ven.VentaId,
-                                  Display = ClientesBLL.Buscar(ven.ClienteId).Nombres + " " + ClientesBLL.Buscar(ven.ClienteId).Apellidos + " - " + ven.Fecha.ToString("dd-MM-yyyy")
-                              }).ToList();
+            ClienteCombobox.ItemsSource = clientesCred;
+            ClienteCombobox.SelectedValuePath = "ClienteId";
+            ClienteCombobox.DisplayMemberPath = "Cliente";
 
-            CreditoIdCombobox.ItemsSource = clientesCred;
-            CreditoIdCombobox.SelectedValuePath = "CreditoId";
-            CreditoIdCombobox.DisplayMemberPath = "Cliente";
+            VentaIdCombobox.ItemsSource = new List<dynamic>() {"Seleccione un cliente para seleccionar una venta."};
 
-            VentaIdCombobox.ItemsSource = ventasCred;
-            VentaIdCombobox.SelectedValuePath = "VentaId";
-            VentaIdCombobox.DisplayMemberPath = "Display";
-
+            PendienteTextbox.Text = "N/A";
         }
 
         private void Limpiar()
@@ -64,11 +54,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             this.cobros = new Cobros();
             this.DataContext = cobros;
             detalle = new List<dynamic>();
+            DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = detalle;
-            CreditoIdCombobox.SelectedIndex = -1;
+            ClienteCombobox.SelectedIndex = -1;
             VentaIdCombobox.SelectedIndex = -1;
             MontoTextbox.Text = string.Empty;
-            FechaCobroDatePicker.SelectedDate = DateTime.Now;
+            PendienteTextbox.Text = "N/A";
         }
 
         public bool Existe()
@@ -88,7 +79,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 foreach (CobrosDetalle cobro in cobros.DetalleCobro)
                 {
                     var ven = VentasBLL.Buscar(cobro.VentaId);
-                    var det = new { cobro.CobroDetalleId, ven.VentaId, cobro.Fecha, cobro.Monto, ven.PendientePagar };
+                    var det = new {cobro.CobroDetalleId, ven.VentaId, Fecha = cobro.Fecha.ToString("dd/MM/yyyy"), Monto = cobro.Monto.ToString("N2")};
                     this.detalle.Add(det);
                 }
             }
@@ -98,12 +89,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             }
 
             this.DataContext = cobros;
-            CreditoIdCombobox.SelectedIndex = cobros.CreditoId - 1;
+            ClienteCombobox.SelectedIndex = -1;
             TotalTextbox.Text = cobros.Total.ToString();
+            DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = detalle;
             VentaIdCombobox.SelectedIndex = -1;
             MontoTextbox.Text = string.Empty;
-            FechaCobroDatePicker.SelectedDate = DateTime.Now;
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
@@ -116,9 +107,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 {
                     this.cobros = cobro;
                     this.DataContext = cobros;
-                    CreditoIdCombobox.SelectedIndex = cobros.CreditoId - 1;
                     Actualizar(1, 0);
-                    MessageBox.Show("El cobro que ha buscado ha sido encontrado!!!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -139,43 +128,25 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-
-            if (CobrosBLL.Buscar(cobros.CobroId) == null)
-            {
-                valido = false;
-                MessageBox.Show("Debe de guardar el cobro para agregar el detalle.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                GuardarButton.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaMonetaria(MontoTextbox.Text))
+            if (!Utilidades.Utilidades.ValidarCasillaDecimal(MontoTextbox.Text))
             {
                 valido = false;
                 MessageBox.Show("La casilla monto no puede tener letras ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 MontoTextbox.Focus();
             }
-            else if (VentaIdCombobox.SelectedItem == null)
+            else if (VentaIdCombobox.SelectedItem == null || VentaIdCombobox.SelectedIndex == -1)
             {
                 valido = false;
                 MessageBox.Show("Debe de seleccionar una venta para hacerle el cobro.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 VentaIdCombobox.Focus();
             }
-            else if (FechaCobroDatePicker.SelectedDate > DateTime.Now)
+            else if (VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).PendientePagar < Convert.ToSingle(MontoTextbox.Text))
             {
                 valido = false;
-                MessageBox.Show("Debe de seleccionar una fecha menor o igual a la actual para cobrar la venta.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                FechaCobroDatePicker.Focus();
+                MessageBox.Show("Ingresar un monto menor o igual al monto pendiente a pagar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MontoTextbox.Focus();
             }
-            else if (Convert.ToSingle(MontoTextbox.Text) > VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).PendientePagar)
-            {
-                valido = false;
-                MessageBox.Show("Debe de ingresar un monto menor o igual al monto pendiente de la venta a cobrar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                FechaCobroDatePicker.Focus();
-            }
-            else if (CreditosBLL.Buscar(Convert.ToInt32(CreditoIdCombobox.SelectedValue)).ClienteId != VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).ClienteId)
-            {
-                valido = false;
-                MessageBox.Show("La venta que seleccionó no pertenece al cliente del crédito que seleccionó.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                VentaIdCombobox.Focus();
-            }
+
 
             return valido;
         }
@@ -184,17 +155,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if (CreditoIdCombobox.SelectedItem == null)
-            {
-                valido = false;
-                MessageBox.Show("Debe de seleccionar un crédito para asignar al cobro.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                CreditoIdCombobox.Focus();
-            }
-            else if (FechaDatePicker.SelectedDate > DateTime.Now)
+            if (FechaDatePicker.SelectedDate > DateTime.Now)
             {
                 valido = false;
                 MessageBox.Show("Debe de seleccionar una fecha menor o igual a la actual para registrar el cobro.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 FechaDatePicker.Focus();
+            }
+            else if (ClienteCombobox.SelectedItem == null)
+            {
+                valido = false;
+                MessageBox.Show("Debe de seleccionar un cliente al cual le está registrando el cobro.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClienteCombobox.Focus();
             }
 
             return valido;
@@ -202,7 +173,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un cobro nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un cobro nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Limpiar();
             }
@@ -210,14 +181,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea guardar el cobro?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea guardar el cobro?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (ValidarCobro())
                 {
                     bool guardado;
                     cobros.UsuarioModificador = Modificador.UsuarioId;
-                    cobros.EmpleadoId = EmpleadosBLL.GetList(e => e.UsuarioId == Modificador.UsuarioId).FirstOrDefault().EmpleadoId;
-                    cobros.CreditoId = Convert.ToInt32(CreditoIdCombobox.SelectedValue);
                     cobros.Fecha = Convert.ToDateTime(FechaDatePicker.SelectedDate.Value.Date.ToShortDateString());
 
                     if (string.IsNullOrWhiteSpace(CobroIdTextBox.Text) || CobroIdTextBox.Text == "0")
@@ -247,7 +216,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea eliminar el cobro?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea eliminar el cobro?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (!string.IsNullOrWhiteSpace(CobroIdTextBox.Text) || !Char.IsDigit(CobroIdTextBox.Text[0]))
                 {
@@ -273,8 +242,15 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (ValidarCobroVenta())
             {
-                CobrosDetalle ven = new CobrosDetalle(Convert.ToInt32(CobroIdTextBox.Text), Convert.ToInt32(VentaIdCombobox.SelectedValue), (DateTime)FechaCobroDatePicker.SelectedDate, Convert.ToSingle(MontoTextbox.Text));
-                this.cobros.DetalleCobro.Add(ven);
+                CobrosDetalle cob = new CobrosDetalle(Convert.ToInt32(CobroIdTextBox.Text), Convert.ToInt32(VentaIdCombobox.SelectedValue), FechaDatePicker.SelectedDate.Value , Convert.ToSingle(MontoTextbox.Text));
+                this.cobros.DetalleCobro.Add(cob);
+
+                var venta = VentasBLL.Buscar(cob.VentaId);
+
+                venta.PendientePagar = venta.PendientePagar - cob.Monto;
+
+                VentasBLL.Modificar(venta);
+
                 cobros.Total = 0;
                 foreach (CobrosDetalle detalle in cobros.DetalleCobro)
                 {
@@ -287,8 +263,17 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         private void RemoverButton_Click(object sender, RoutedEventArgs e)
         {
             int del = DetalleDataGrid.FrozenColumnCount;
+            var cob = cobros.DetalleCobro.ElementAt(del);
+
+            var venta = VentasBLL.Buscar(cob.VentaId);
+
+            venta.PendientePagar = venta.PendientePagar + cob.Monto;
+
+            VentasBLL.Modificar(venta);
+
             cobros.DetalleCobro.RemoveAt(del);
             cobros.Total = 0;
+
             foreach (CobrosDetalle detalle in cobros.DetalleCobro)
             {
                 cobros.Total += detalle.Monto;
@@ -305,6 +290,32 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             else
             {
                 PendienteTextbox.Text = "N/A";
+            }
+        }
+
+        private void ClienteCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ClienteCombobox.SelectedIndex != -1)
+            {
+                Contexto contexto = new Contexto();
+
+                var ventasCred = (from cli in contexto.Clientes
+                                  join ven in contexto.Ventas
+                                  on cli.ClienteId equals ven.ClienteId
+                                  where ven.ClienteId == Convert.ToInt32(ClienteCombobox.SelectedValue)
+                                  select new
+                                  {
+                                      ven.VentaId,
+                                      Display = ven.VentaId
+                                  }).ToList();
+
+                VentaIdCombobox.ItemsSource = ventasCred;
+                VentaIdCombobox.SelectedValuePath = "VentaId";
+                VentaIdCombobox.DisplayMemberPath = "Display";
+            }
+            else
+            {
+                VentaIdCombobox.ItemsSource = new List<dynamic>() { "Seleccione un cliente para seleccionar una venta." };
             }
         }
     }

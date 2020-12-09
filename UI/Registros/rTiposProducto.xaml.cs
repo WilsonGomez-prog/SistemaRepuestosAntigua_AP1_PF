@@ -36,10 +36,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if (!Utilidades.Utilidades.ValidarCasillaTexto(DescripcionTextBox.Text))
+            if (!Utilidades.Utilidades.ValidarCasillaTexto(DescripcionTextBox.Text) || string.IsNullOrWhiteSpace(DescripcionTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La descripcion no puede contener numeros o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La descripcion no puede contener numeros o caracteres especiales o estar vacío.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescripcionTextBox.Focus();
             }
 
@@ -72,7 +72,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un tipo de producto nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un tipo de producto nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Limpiar();
             }
@@ -80,7 +80,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea guardar el tipo de producto?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea guardar el tipo de producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (Validar())
                 {
@@ -103,7 +103,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea eliminar el tipo de producto?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea eliminar el tipo de producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (!string.IsNullOrWhiteSpace(TipoProductoIdTextBox.Text) || !Char.IsDigit(TipoProductoIdTextBox.Text[0]))
                 {

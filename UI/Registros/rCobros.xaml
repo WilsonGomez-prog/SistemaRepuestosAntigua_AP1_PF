@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Cobros" Height="650" Width="890" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+        Title="Registro de Cobros" 
+        Height="631" Width="687" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        Icon="/Imagenes/Logo_Icon.png">
+    <Window.Resources>
+        <Style x:Key="CeldaMonetaria" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="CeldaNormal" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <StackPanel>
             <StackPanel>
@@ -22,48 +34,45 @@
                 <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" Margin="14,10,0,0"/>
                 <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="170"/>
 
-                <Label Content="Crédito: " FontSize="15" HorizontalAlignment="Left" Margin="14,10,0,0"/>
-                <ComboBox x:Name="CreditoIdCombobox" Text="{Binding CreditoId}" HorizontalAlignment="Left" Width="170" Height="30" Margin="20,0,0,0" IsTextSearchEnabled="False"/>
+                <Label Content="Cliente: " FontSize="15" HorizontalAlignment="Left" Margin="14,0,0,0"/>
+                <ComboBox x:Name="ClienteCombobox" HorizontalAlignment="Left" Width="170" Height="30" Margin="20,0,0,0" IsTextSearchEnabled="False" SelectionChanged="ClienteCombobox_SelectionChanged"/>
+
             </StackPanel>
 
-            <StackPanel Width="850" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <StackPanel Width="660" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <!--Marco del detalle-->
-                <GroupBox Header=" Detalle Cobros" FontSize="15" BorderBrush="Black" Height="320">
+                <GroupBox Header=" Detalle Cobros" FontSize="15" BorderBrush="Black" Height="330">
                     <StackPanel>
+                        
+                        <Label Content="Venta:" FontSize="15" Height="30" Width="87" HorizontalAlignment="Left" Margin="0, 0, 0, 0"/>
+                        <ComboBox x:Name="VentaIdCombobox" IsTextSearchEnabled="True" Height="30" Width="170" HorizontalAlignment="Left" Margin="7, 0, 0, 0" SelectionChanged="VentaIdCombobox_SelectionChanged"/>
 
-                        <Label Content="Venta:" FontSize="15" Height="30" Width="87" HorizontalAlignment="Left" Margin="0, -5, 0, 0"/>
-                        <ComboBox x:Name="VentaIdCombobox" IsTextSearchEnabled="True" Height="25" Width="160" HorizontalAlignment="Left" Margin="10, 0, 0, 0" SelectionChanged="VentaIdCombobox_SelectionChanged"/>
+                        <Label Content="Pendiente a pagar:" FontSize="15" HorizontalAlignment="Left" Margin="200,-55,0,0"/>
+                        <TextBox x:Name="PendienteTextbox" IsReadOnly="True" HorizontalAlignment="Left" Width="150" Height="30" Margin="207,-30,0,0"/>
 
-                        <Label Content="Monto:" FontSize="15" HorizontalAlignment="Left" Margin="200,-55,0,0"/>
-                        <TextBox x:Name="MontoTextbox" HorizontalAlignment="Left" Width="150" Height="30" Margin="205,-30,0,0"/>
-
-                        <Label Content="Pendiente a pagar:" FontSize="15" HorizontalAlignment="Left" Margin="380,-55,0,0"/>
-                        <TextBox x:Name="PendienteTextbox" IsReadOnly="True" HorizontalAlignment="Left" Width="150" Height="30" Margin="385,-30,0,0"/>
-
-                        <Label Content="Fecha del Cobro: " FontSize="15" HorizontalAlignment="Left" Margin="560,-80,0,0" Height="37"/>
-                        <DatePicker x:Name="FechaCobroDatePicker"  SelectedDateFormat="Short" HorizontalAlignment="Left" Margin="565,-30,0,0" Height="30" Width="170"/>
+                        <Label Content="Monto:" FontSize="15" HorizontalAlignment="Left" Margin="390,-55,0,0"/>
+                        <TextBox x:Name="MontoTextbox" HorizontalAlignment="Left" Width="150" Height="30" Margin="397,-30,0,0"/>
 
                         <!--Agregar tarea al detalle-->
-                        <Button x:Name="AgregarButton" FontSize="12" Width="70" Height="30" HorizontalAlignment="Left" Margin="750,-35,0,0" Click="AgregarButton_Click" Background="#FF1109BF">
+                        <Button x:Name="AgregarButton" FontSize="12" Width="70" Height="30" HorizontalAlignment="Left" Margin="570,-35,0,0" Click="AgregarButton_Click" Background="#FF1109BF">
                             <DockPanel>
                                 <TextBlock FontWeight="Bold">Agregar</TextBlock>
                                 <Image Source="/Imagenes/add_icon.png" Height="15" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                             </DockPanel>
                         </Button>
 
-                        <DataGrid x:Name="DetalleDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="200" Width="815" Margin="-15,5,0,0">
+                        <DataGrid x:Name="DetalleDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="200" Width="630" Margin="-0,5,0,0" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Detalle Cobro ID" Binding="{Binding CobroDetalleID}" Width="*"/>
                                 <DataGridTextColumn Header="Venta ID" Binding="{Binding VentaId}" Width="*"/>
                                 <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
-                                <DataGridTextColumn Header="Total" Binding="{Binding Monto}" Width="*"/>
+                                <DataGridTextColumn Header="Total" Binding="{Binding Monto}" Width="*" ElementStyle="{StaticResource CeldaMonetaria}"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
                         <!--Remover tarea en el detalle-->
                         <Button x:Name="RemoverButton" FontSize="12" Width="200" Height="30" HorizontalAlignment="Center" Margin="-0,5,0,0" Click="RemoverButton_Click" Background="#FF800707">
                             <DockPanel>
-                                <TextBlock FontWeight="Bold" HorizontalAlignment="Left" Margin="0,2,0,0">Remover producto seleccionado</TextBlock>
+                                <TextBlock FontWeight="Bold" HorizontalAlignment="Left" Margin="0,2,0,0">Remover cobro seleccionado</TextBlock>
                                 <Image Source="/Imagenes/remove_icon.png" Height="20" HorizontalAlignment="Right" Margin="3,0,0,0"/>
                             </DockPanel>
                         </Button>
@@ -72,11 +81,11 @@
                 <!--Marco del detalle-->
             </StackPanel>
 
-            <Label Content="Total: " FontSize="15" HorizontalAlignment="Left" Margin="675,5,0,0"/>
-            <TextBox x:Name="TotalTextbox" Text="{Binding Total}" HorizontalAlignment="Left" Width="140" Height="30" Margin="720,-30,0,0" IsReadOnly="True"/>
+            <Label Content="Total: " FontSize="15" HorizontalAlignment="Left" Margin="480,15,0,0"/>
+            <TextBox x:Name="TotalTextbox" Text="{Binding Total}" HorizontalAlignment="Left" Width="140" Height="30" Margin="525,-30,0,0" IsReadOnly="True"/>
 
             <!--Botones -->
-            <Button x:Name="NuevoButton" Height="30" Width="70" Margin="20,5,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#FF1109BF">
+            <Button x:Name="NuevoButton" Height="30" Width="70" Margin="20,-30,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#FF1109BF">
                 <DockPanel>
                     <TextBlock FontWeight="Bold">Nuevo</TextBlock>
                     <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>

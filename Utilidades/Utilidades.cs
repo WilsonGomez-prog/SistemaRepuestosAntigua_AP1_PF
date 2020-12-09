@@ -33,7 +33,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Utilidades
             return true;
         }
 
-        public static bool ValidarCasillaMonetaria(string texto)
+        public static bool ValidarCasillaDecimal(string texto)
         {
             foreach (char invalido in texto.ToCharArray())
             {
@@ -71,48 +71,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Utilidades
             }
 
             return true;
-        }
-
-        //Aqui se valida que el telefono ingresado tenga el sigte formato +1(###)-###-####
-        public static bool ValidarTelefono(string texto)
-        {
-            int iterador = 0;
-
-            foreach (char carac in texto.ToCharArray())
-            {
-                iterador++;
-                if (iterador == 1 && carac != '+')
-                {
-                    return false;
-                }
-                else if (iterador == 2 && carac != '1')
-                {
-                    return false;
-                }
-                else if (iterador == 3 && carac != '(')
-                {
-                    return false;
-                }
-                else if (iterador == 7 && carac != ')')
-                {
-                    return false;
-                }
-                else if (iterador == 8 && carac != '-')
-                {
-                    return false;
-                }
-                else if (iterador == 12 && carac != '-')
-                {
-                    return false;
-                }
-                else if (!Char.IsDigit(carac))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        }        
 
         public static bool ValidarDireccion(string texto)
         {

@@ -5,7 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-       Title="Consulta de Cobros" Height="550" Width="950" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+       Title="Consulta de Cobros" 
+        Height="550" Width="950" 
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" 
+        Icon="/Imagenes/Logo_Icon.png">
+    
+    <Window.Resources>
+        <Style x:Key="CeldaMonetaria" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="CeldaNormal" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
@@ -36,9 +49,7 @@
             <Label Content="Filtro:" FontSize="15" HorizontalAlignment="Left" Margin="660,-110,0,0" />
             <ComboBox x:Name="FiltroComboBox" HorizontalAlignment="Left" Width="120" Height="25" Margin="665,-135,0,0">
                 <ComboBoxItem Content="Cobro ID"/>
-                <ComboBoxItem Content="Empleado ID"/>
-                <ComboBoxItem Content="Credito ID"/>
-                <ComboBoxItem Content="Monto"/>
+                <ComboBoxItem Content="Empleado"/>
             </ComboBox>
 
             <Label Content="Criterio:" FontSize="15" HorizontalAlignment="Left" Margin="660,-55,0,0" />
@@ -56,8 +67,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Cobro ID" Binding="{Binding CobroId}" Width="Auto"/>
                     <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="1*"/>
-                    <DataGridTextColumn Header="Credito ID" Binding="{Binding CreditoId}" Width="Auto"/>
-                    <DataGridTextColumn Header="Total " Binding="{Binding Total}" Width="Auto"/>
+                    <DataGridTextColumn Header="Total " Binding="{Binding Total}" Width="Auto" ElementStyle="{StaticResource CeldaMonetaria}"/>
                     <DataGridTextColumn Header="Cajero" Binding="{Binding Empleado}" Width="1*"/>
                     <DataGridTextColumn Header="Registrado por usuario " Binding="{Binding UsuarioModificador}" Width="*"/>
                 </DataGrid.Columns>

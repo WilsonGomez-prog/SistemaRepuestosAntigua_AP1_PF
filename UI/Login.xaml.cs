@@ -27,6 +27,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
             NombreUsuarioTextBox.Focus();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
             bool valido = UsuariosBLL.Validar(NombreUsuarioTextBox.Text, ClavePasswordBox.Password);

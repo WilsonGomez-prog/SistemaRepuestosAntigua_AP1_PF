@@ -39,7 +39,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     usuario.UsuarioId,
                     usuario.Nombres,
                     usuario.Apellidos,
-                    usuario.Fecha,
+                    Fecha = usuario.Fecha.ToString("dd/MM/yyy"),
                     usuario.NombreUsuario,
                     Permisos = usuario.EsAdmin == 1 ? "Administrador" : "Empleado",
                     UsuarioModificador = usuario.UsuarioModificador != 0 ? UsuariosBLL.Buscar(usuario.UsuarioModificador).NombreUsuario : "Default"

@@ -9,8 +9,6 @@ namespace DAL
     {
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Cobros> Cobros { get; set; }
-        public DbSet<Creditos> Creditos { get; set; }
-        public DbSet<Empleados> Empleados { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<TiposProducto> TiposProductos { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }

@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Consultas"
         mc:Ignorable="d"
-        Title="Consulta de Productos" Height="475" Width="970" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+        Title="Consulta de Productos" 
+        Height="475" Width="970" 
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" 
+        Icon="/Imagenes/Logo_Icon.png">
+    <Window.Resources>
+        <Style x:Key="CeldaMonetaria" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="CeldaNormal" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
 
@@ -44,7 +56,7 @@
                     <DataGridTextColumn Header="ID Producto" Binding="{Binding ProductoId}" Width="Auto"/>
                     <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="Auto"/>
                     <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="Auto"/>
-                    <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnit}" Width="90"/>
+                    <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnit}" Width="90" ElementStyle="{StaticResource CeldaMonetaria}"/>
                     <DataGridTextColumn Header="Tipo de Producto" Binding="{Binding Tipo}" Width="Auto"/>
                     <DataGridTextColumn Header="% de Descuento" Binding="{Binding Descuento}" Width="100"/>
                     <DataGridTextColumn Header="Existencias" Binding="{Binding Existencia}" Width="100"/>

@@ -11,14 +11,11 @@ namespace Entidades
         [Key]
         public int CobroId { get; set; }
 
-        [Required(ErrorMessage = "Debe de elegir un crédito a cobrar.")]
-        public int CreditoId { get; set; }
-
-        [Required(ErrorMessage = "Debe de elegir un empleado.")]
-        public int EmpleadoId { get; set; }
-
         [Required(ErrorMessage = "Debe de elegir una fecha válida.")]
         public DateTime Fecha { get; set; }
+
+        [Required(ErrorMessage = "Debe de indicar el id del cliente al que esta cobrando.")]
+        public int ClienteId { get; set; }
 
         [Column(TypeName = "Money")]
         public float Total { get; set; }
@@ -32,18 +29,14 @@ namespace Entidades
         public Cobros()
         {
             CobroId = 0;
-            CreditoId = 0;
-            EmpleadoId = 0;
             Fecha = DateTime.Now;
             Total = 0;
             UsuarioModificador = 0;
             DetalleCobro = new List<CobrosDetalle>();
         }
 
-        public Cobros(int creditoId, int empleadoId, DateTime fecha, float total)
+        public Cobros(DateTime fecha, float total)
         {
-            CreditoId = creditoId;
-            EmpleadoId = empleadoId;
             Fecha = fecha;
             Total = total;
             DetalleCobro = new List<CobrosDetalle>();

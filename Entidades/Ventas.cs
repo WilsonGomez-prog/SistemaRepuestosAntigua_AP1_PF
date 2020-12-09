@@ -24,10 +24,6 @@ namespace Entidades
         [Required(ErrorMessage = "Debe de introducir una fecha de vencimiento de la factura.")]
         public DateTime FechaVencimiento { get; set; }
 
-        [Required(ErrorMessage = "Debe de introducir un número de autorización.")]
-        [MaxLength(8, ErrorMessage = "El número de autorización debe tener 8 caracteres.")]
-        public string NoAutorizacion { get; set; }
-
         [Required(ErrorMessage = "Debe de introducir un NCF.")]
         [MaxLength(11, ErrorMessage = "El NCF debe tener 11 caracteres.")]
         public string Ncf { get; set; }
@@ -53,7 +49,6 @@ namespace Entidades
             ClienteId = 0;
             Fecha = DateTime.Now;
             FechaVencimiento = DateTime.Now;
-            NoAutorizacion = "";
             Ncf = "";
             Itbis = 0;
             Total = 0;
@@ -62,11 +57,10 @@ namespace Entidades
             DetalleVenta = new List<VentasDetalle>();
         }
 
-        public Ventas(DateTime fecha, DateTime fechaVencimiento, string noAutorizacion, string ncf, float itbis, float total)
+        public Ventas(DateTime fecha, DateTime fechaVencimiento, string ncf, float itbis, float total)
         {
             Fecha = fecha;
             FechaVencimiento = fechaVencimiento;
-            NoAutorizacion = noAutorizacion;
             Ncf = ncf;
             Itbis = itbis;
             Total = total;

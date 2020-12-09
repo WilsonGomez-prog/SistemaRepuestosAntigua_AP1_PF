@@ -32,6 +32,11 @@ namespace SistemaRepuestosAntigua_AP1_PF
             Usuario = usuario;
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void rUsuariosMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (Usuario.EsAdmin == 1)
@@ -65,16 +70,6 @@ namespace SistemaRepuestosAntigua_AP1_PF
             this.Close();
         }
 
-        private void rCreditosMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            new rCreditos(Usuario).Show();
-        }
-
-        private void cCreditosMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            new cCreditos().Show();
-        }
-
         private void rVentasMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new rVentas(Usuario).Show();
@@ -95,18 +90,6 @@ namespace SistemaRepuestosAntigua_AP1_PF
             new cProductos().Show();
         }
 
-        private void rEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (Usuario.EsAdmin == 1)
-            {
-                new rEmpleados(Usuario).Show();
-            }
-            else
-            {
-                MessageBox.Show("Debe de ser un administrador para acceder a la ventana de registro de empleados.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
-
         private void rCobrosMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new rCobros(Usuario).Show();
@@ -115,11 +98,6 @@ namespace SistemaRepuestosAntigua_AP1_PF
         private void rTiposProductosMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new rTiposProducto(Usuario).Show();
-        }
-
-        private void cEmpleadosMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            new cEmpleados().Show();
         }
 
         private void cCobrosMenuItem_Click(object sender, RoutedEventArgs e)

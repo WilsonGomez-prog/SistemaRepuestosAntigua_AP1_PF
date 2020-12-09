@@ -58,10 +58,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if (!Utilidades.Utilidades.ValidarCasillaAlfaNumerica(DescripcionTextBox.Text))
+            if (!Utilidades.Utilidades.ValidarCasillaAlfaNumerica(DescripcionTextBox.Text) || string.IsNullOrWhiteSpace(DescripcionTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla descripción no puede tener caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla descripción no puede tener caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescripcionTextBox.Focus();
             }
             else if (TipoProductoIdCombobox.SelectedItem == null)
@@ -70,28 +70,34 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("Debe de seleccionar un tipo de producto.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 TipoProductoIdCombobox.Focus();
             }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(PrecioUnitTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(PrecioUnitTextBox.Text) || string.IsNullOrWhiteSpace(PrecioUnitTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("El precio unitario no puede llevar letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El precio unitario no puede llevar letras o caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 PrecioUnitTextBox.Focus();
             }
-            else if (UsuariosBLL.Existe(Convert.ToInt32(ProductoIdTextBox.Text), DescripcionTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarCasillaAlfaNumerica(CodigoTextBox.Text) || string.IsNullOrWhiteSpace(CodigoTextBox.Text))
+            {
+                valido = false;
+                MessageBox.Show("La casilla codigo no puede tener caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                CodigoTextBox.Focus();
+            }
+            else if (ProductosBLL.Existe(Convert.ToInt32(ProductoIdTextBox.Text), CodigoTextBox.Text))
             {
                 valido = false;
                 MessageBox.Show("El producto que esta intentando registrar ya esta registrado con otro producto.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescripcionTextBox.Focus();
             }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(DescuentoTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(DescuentoTextBox.Text) || string.IsNullOrWhiteSpace(DescuentoTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("El % de descuento no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El % de descuento no debe de contener letras o caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescuentoTextBox.Focus();
             }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(ExistenciaTextBox.Text))
+            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(ExistenciaTextBox.Text) || string.IsNullOrWhiteSpace(ExistenciaTextBox.Text))
             {
                 valido = false;
-                MessageBox.Show("La cantidad de existencias no debe de contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La cantidad de existencias no debe de contener letras o caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ExistenciaTextBox.Focus();
             }
             else if (EstadoProductoCombobox.SelectedItem == null)
@@ -99,12 +105,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("Debe de indicar el estado del producto.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 EstadoProductoCombobox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaAlfaNumerica(CodigoTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("La casilla codigo no puede tener caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                DescripcionTextBox.Focus();
             }
             else if (ImpuestoComboBox.SelectedItem == null)
             {
@@ -144,7 +144,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un producto nuevo? Perderá todos los datos no guardados."  , "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un producto nuevo? Perderá todos los datos no guardados."  , "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Limpiar();
             }
@@ -152,7 +152,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea guardar el producto?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea guardar el producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (Validar())
                 {
@@ -176,7 +176,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿De verdad desea eliminar el producto?", "Confirmacion", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿De verdad desea eliminar el producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 if (!string.IsNullOrWhiteSpace(ProductoIdTextBox.Text) || !Char.IsDigit((char)ProductoIdTextBox.Text[0]))
                 {

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace BLL
 {
@@ -33,11 +32,6 @@ namespace BLL
             return cobro;
         }
 
-        internal static object GetTiposTareas()
-        {
-            throw new NotImplementedException();
-        }
-
         public static bool Guardar(Cobros cobro)
         {
             bool guardado = false;
@@ -47,7 +41,6 @@ namespace BLL
             {
                 if (contexto.Cobros.Add(cobro) != null)
                 {
-                    AjustarCuentas(cobro);
                     guardado = contexto.SaveChanges() > 0;
                 }
             }
@@ -76,7 +69,6 @@ namespace BLL
                     contexto.Entry(anterior).State = EntityState.Added;
                 }
                 contexto.Entry(cobro).State = EntityState.Modified;
-                AjustarCuentas(cobro);
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (System.Exception)
@@ -98,6 +90,7 @@ namespace BLL
 
             try
             {
+                RestaurarCuentas(Buscar(cobroId));
                 var eliminar = contexto.Cobros.Find(cobroId);
                 contexto.Entry(eliminar).State = EntityState.Deleted;
 
@@ -115,20 +108,21 @@ namespace BLL
             return eliminado;
         }
 
-        public static void AjustarCuentas(Cobros cobro)
+        public static void RestaurarCuentas(Cobros cobro)
         {
+            Contexto contexto = new Contexto();
+
             try
             {
                 if (cobro != null)
                 {
-                    var credito = CreditosBLL.Buscar(cobro.CreditoId);
-                    foreach (CobrosDetalle detalle in cobro.DetalleCobro)
+                    foreach (var detalle in cobro.DetalleCobro)
                     {
-                        if (credito != null)
+                        var venta = VentasBLL.Buscar(detalle.VentaId);
+
+                        if (venta != null)
                         {
-                            credito.Balance += detalle.Monto;
-                            CreditosBLL.Guardar(credito);
-                            VentasBLL.CobrarVentaCredito(cobro);
+                            contexto.Database.ExecuteSqlRaw($"Update Ventas set PendientePagar = PendientePagar + {detalle.Monto} where VentaId = {detalle.VentaId}");
                         }
                     }
                 }
@@ -136,6 +130,10 @@ namespace BLL
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                contexto.Dispose();
             }
         }
 

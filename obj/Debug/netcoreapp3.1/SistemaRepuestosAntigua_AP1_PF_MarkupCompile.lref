@@ -3,8 +3,6 @@
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\MainWindow.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cClientes.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cCobros.xaml;;
-FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cCreditos.xaml;;
-FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cEmpleados.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cProductos.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cTiposProducto.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cUsuarios.xaml;;
@@ -12,8 +10,6 @@ FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Consultas\cVentas
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Login.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rClientes.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rCobros.xaml;;
-FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rCreditos.xaml;;
-FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rEmpleados.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rProductos.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rTiposProducto.xaml;;
 FC:\Users\wilso\source\repos\SistemaRepuestosAntigua_AP1_PF\UI\Registros\rUsuarios.xaml;;

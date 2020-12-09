@@ -32,46 +32,14 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                 {
                     CobroId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CreditoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
                     Total = table.Column<float>(type: "Money", nullable: false),
                     UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cobros", x => x.CobroId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Creditos",
-                columns: table => new
-                {
-                    CreditoId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Monto = table.Column<float>(type: "Money", nullable: false),
-                    Balance = table.Column<float>(type: "Money", nullable: false),
-                    UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Creditos", x => x.CreditoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Empleados",
-                columns: table => new
-                {
-                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Codigo = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +55,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     TipoProductoId = table.Column<int>(type: "INTEGER", nullable: false),
                     EstadoProducto = table.Column<int>(type: "Bit", nullable: false),
                     Existencia = table.Column<float>(type: "REAL", nullable: false),
+                    Impuesto = table.Column<float>(type: "REAL", nullable: false),
                     UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -119,7 +88,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NombreUsuario = table.Column<string>(type: "TEXT", maxLength: 16, nullable: false),
                     Clave = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false),
-                    UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false)
+                    UsuarioModificador = table.Column<int>(type: "INTEGER", nullable: false),
+                    EsAdmin = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -136,7 +106,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     TipoVenta = table.Column<int>(type: "Bit", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaVencimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    NoAutorizacion = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
                     Ncf = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
                     Itbis = table.Column<float>(type: "Money", nullable: false),
                     Total = table.Column<float>(type: "Money", nullable: false),
@@ -157,8 +126,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     CobroId = table.Column<int>(type: "INTEGER", nullable: false),
                     VentaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Monto = table.Column<float>(type: "Money", nullable: false),
-                    EstaPago = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Monto = table.Column<float>(type: "Money", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,8 +148,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                     VentaId = table.Column<int>(type: "INTEGER", nullable: false),
                     ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
                     Cantidad = table.Column<float>(type: "REAL", nullable: false),
-                    Total = table.Column<float>(type: "Money", nullable: false),
-                    VentaCreditoId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Total = table.Column<float>(type: "Money", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,7 +158,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                         column: x => x.VentaId,
                         principalTable: "Ventas",
                         principalColumn: "VentaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -200,7 +167,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
                 column: "CobroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VentasDetalle_VentaoId",
+                name: "IX_VentasDetalle_VentaId",
                 table: "VentasDetalle",
                 column: "VentaId");
         }
@@ -212,12 +179,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.Migrations
 
             migrationBuilder.DropTable(
                 name: "CobrosDetalle");
-
-            migrationBuilder.DropTable(
-                name: "Creditos");
-
-            migrationBuilder.DropTable(
-                name: "Empleados");
 
             migrationBuilder.DropTable(
                 name: "Productos");

@@ -21,7 +21,6 @@ namespace Entidades
         [Required(ErrorMessage = "Debe de introducir monto válido.")]
         [Column(TypeName ="Money")]
         public float Monto { get; set; }
-        public bool EstaPago { get; set; }
 
         public CobrosDetalle()
         {
@@ -30,7 +29,6 @@ namespace Entidades
             VentaId = 0;
             Fecha = DateTime.Now;
             Monto = 0;
-            EstaPago = false;
         }
 
         public CobrosDetalle(int cobroId, int ventaId, DateTime fecha, float monto)
@@ -39,7 +37,6 @@ namespace Entidades
             VentaId = ventaId;
             Fecha = fecha;
             Monto = monto;
-            EstaPago = false;
         }
     }
 }
