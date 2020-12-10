@@ -209,9 +209,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                     foreach (var detalle in cobros.DetalleCobro)
                     {
                         var venta = VentasBLL.Buscar(detalle.VentaId);
-                        MessageBox.Show(venta.PendientePagar.ToString());
                         venta.PendientePagar = venta.PendientePagar + detalle.Monto;
-                        MessageBox.Show(venta.PendientePagar.ToString());
                         VentasBLL.Modificar(venta);
                     }
                 }

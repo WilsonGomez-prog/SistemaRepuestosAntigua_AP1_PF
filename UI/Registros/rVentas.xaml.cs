@@ -98,22 +98,25 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             CantidadTextBox.Text = string.Empty;
             DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = this.detalle;
-            NCFTextBox.Text = Venta.Ncf;
-            if (NCFTextBox.Text.StartsWith("B01"))
+            if (Venta.Ncf.StartsWith("B01"))
             {
                 TipoVentaCombobox.SelectedIndex = 1;
                 FiscalRadioButton.IsChecked = true;
             }
-            else if(NCFTextBox.Text.StartsWith("B15"))
+            else if(Venta.Ncf.StartsWith("B15"))
             {
                 TipoVentaCombobox.SelectedIndex = 1;
                 GubernamentalRadioButton.IsChecked = true;
             }
-            else
+            else if (Venta.TipoVenta == 0)
             {
                 TipoVentaCombobox.SelectedIndex = 0;
             }
-
+            else
+            {
+                TipoVentaCombobox.SelectedIndex = -1;
+            }
+            NCFTextBox.Text = Venta.Ncf;
             SubTotalTextbox.Text = Convert.ToString(Venta.Total - Venta.Itbis);
 
         }
@@ -163,7 +166,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             {
                 valido = false;
                 MessageBox.Show("Debe de especificar si la venta es al contado o a crédito.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                TipoVentaCombobox.Focus();
             }
             else if (Convert.ToInt32(TipoVentaCombobox.SelectedValue) == 1 && FiscalRadioButton.IsChecked == false && GubernamentalRadioButton.IsChecked == false)
             {
@@ -442,7 +444,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 FiscalRadioButton.Visibility = Visibility.Visible;
                 GubernamentalRadioButton.Visibility = Visibility.Visible;
             }
-            else
+            else if (Convert.ToInt32(TipoVentaCombobox.SelectedValue) == 0)
             {
                 NCFTextBox.Text = "000000000";
                 NcfLabel.Visibility = Visibility.Collapsed;

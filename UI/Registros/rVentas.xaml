@@ -55,7 +55,7 @@
                         <ComboBox x:Name="ProductoCombobox" IsTextSearchEnabled="True" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0" SelectionChanged="ProductoCombobox_SelectionChanged"/>
 
                         <Label Content="Precio:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="195,-60,0,0" Height="30"/>
-                        <TextBox x:Name="PrecioTextBox" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="202,-30,0,0"/>
+                        <TextBox x:Name="PrecioTextBox" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="202,-30,0,0" IsReadOnly="True"/>
 
                         <Label Content="Cantidad:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,-60,0,0" Height="30"/>
                         <TextBox x:Name="CantidadTextBox" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="377,-30,0,0"/>

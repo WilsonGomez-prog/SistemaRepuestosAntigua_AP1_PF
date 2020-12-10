@@ -1240,19 +1240,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jhord\\.nuget\\packages\\": {}
+    "C:\\Users\\wilso\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
+      "projectUniqueName": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
       "projectName": "SistemaRepuestosAntigua_AP1_PF",
-      "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
-      "packagesPath": "C:\\Users\\jhord\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\obj\\",
+      "projectPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
+      "packagesPath": "C:\\Users\\wilso\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jhord\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wilso\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1264,15 +1264,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj"
+            "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
+            "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj"
             },
-            "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
-              "projectPath": "C:\\Users\\jhord\\Source\\Repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
+            "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj": {
+              "projectPath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\Entidades\\Entidades.csproj"
             }
           }
         }
@@ -1285,6 +1286,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameWorkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -1307,6 +1309,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.10, 3.1.10]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -1315,8 +1327,16 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
