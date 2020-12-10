@@ -5,28 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI"
         mc:Ignorable="d"
-        Title="Sistema de Ventas de Repuestos Antigua" Height="450" Width="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+        Title="Sistema de Ventas de Repuestos Antigua" 
+        Height="390" Width="640" 
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" 
+        Icon="/Imagenes/Logo_Icon.png">
     <Grid>
         <StackPanel Margin="0,0,0,0">
 
             <DockPanel>
-                <Image Source="/Imagenes/Wilson.JPEG" Margin="-445,40,0,0" Height="150" Width="186"/>
-                
+                <StackPanel Margin="0,30,0,0" Width="320" HorizontalAlignment="Left">
+                    <Image Source="/Imagenes/Wilson.JPEG" Margin="0,0,0,0" Height="150" Width="135" HorizontalAlignment="Center"/>
+                    <Label Content="Wilson Gómez" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                    <Label Content="2018-0581" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                    <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis"> wilson_gomez@ucne.edu.do</TextBlock>
+                    <Label Content="829-788-6188" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                </StackPanel>
+                <StackPanel Margin="0,30,0,0" Width="320" HorizontalAlignment="Right">
+                    <Image Source="/Imagenes/jhordy.JPEG" Margin="0,0,0,0" Height="150" Width="120" HorizontalAlignment="Center"/>
+                    <Label Content="Jhordy Guzmán" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                    <Label Content="2017-0939" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                    <TextBlock Margin="0,0,0,0" FontSize="15" HorizontalAlignment="Center"  TextTrimming="CharacterEllipsis" Height="19"> jhordy_guzman@ucne.edu.do</TextBlock>
+                    <Label Content="829-423-0540" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30"/>
+                </StackPanel>
             </DockPanel>
-            <Label Content="Wilson Gómez" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0" Height="30"/>
-            <Label Content="2018-0881" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,0,0,0" Height="30"/>
-            <TextBlock Margin="20,0,0,0"  TextTrimming="CharacterEllipsis"> wilson_gomez@ucne.edu.do</TextBlock>
-            <Label Content="829-788-6188" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,0,0,0" Height="30"/>
 
-            <Image Source="/Imagenes/jhordy.JPEG" Margin="210,-350,0,0" Height="150" Width="173"/>
-            
-            <Label Content="Jhordy Guzmán" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,-100,0,0" Height="30"/>
-            <Label Content="2017-0939" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="385,-75,0,0" Height="30"/>
-            <TextBlock Margin="350,-70,0,0"  TextTrimming="CharacterEllipsis" Height="19"> jhordy_guzman@ucne.edu.do</TextBlock>
-            <Label Content="829-423-0540" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,-25,0,0" Height="30"/>
-
-            <Label Content="Link del Repositorio:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,50,0,0" Height="30"/> 
-            <Label Content="https://github.com/WilsonGomez-prog/SistemaRepuestosAntigua_AP1_PF" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" Height="30"/>
+            <TextBlock Margin="0,25,0,0" FontSize="20" HorizontalAlignment="Center">           
+                <Hyperlink NavigateUri="https://github.com/WilsonGomez-prog/SistemaRepuestosAntigua_AP1_PF" RequestNavigate="Hyperlink_RequestNavigate">
+                    Haga click aquí para acceder al repositorio del proyecto.
+                </Hyperlink>    
+            </TextBlock>
 
         </StackPanel>
     </Grid>
