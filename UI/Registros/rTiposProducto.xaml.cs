@@ -105,7 +105,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar el tipo de producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (!string.IsNullOrWhiteSpace(TipoProductoIdTextBox.Text) || !Char.IsDigit(TipoProductoIdTextBox.Text[0]))
+                if (!string.IsNullOrWhiteSpace(TipoProductoIdTextBox.Text) || !Char.IsDigit(TipoProductoIdTextBox.Text[0]) || Convert.ToInt32(TipoProductoIdTextBox.Text) == 0)
                 {
                     if (TiposProductoBLL.Eliminar(Convert.ToInt32(TipoProductoIdTextBox.Text)))
                     {

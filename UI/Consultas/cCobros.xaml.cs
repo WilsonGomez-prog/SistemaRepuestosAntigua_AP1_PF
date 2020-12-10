@@ -32,6 +32,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     cobro.CobroId,
                     Fecha = cobro.Fecha.ToString("dd/MM/yyy"),
                     Total = cobro.Total.ToString("N2"),
+                    Cliente = ClientesBLL.Buscar(cobro.ClienteId).Nombres + " " + ClientesBLL.Buscar(cobro.ClienteId).Apellidos,
                     UsuarioModificador = cobro.UsuarioModificador != 0 ? UsuariosBLL.Buscar(cobro.UsuarioModificador).NombreUsuario : "Default"
                 };
 

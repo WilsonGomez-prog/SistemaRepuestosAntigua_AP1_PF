@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Registro de Cobros" 
         Height="631" Width="687" 
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" 
         Icon="/Imagenes/Logo_Icon.png">
     <Window.Resources>
         <Style x:Key="CeldaMonetaria" TargetType="TextBlock">

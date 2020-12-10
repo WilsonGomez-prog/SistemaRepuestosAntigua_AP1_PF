@@ -35,7 +35,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
                     producto.ProductoId,
                     producto.Codigo,
                     producto.Descripcion,
-                    producto.PrecioUnit,
+                    PrecioUnit = producto.PrecioUnit.ToString("N2"),
                     Tipo = TiposProductoBLL.Buscar(producto.TipoProductoId).Descripcion,
                     producto.Descuento,
                     producto.Existencia,

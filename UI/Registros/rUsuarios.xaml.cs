@@ -151,14 +151,22 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar el usuario? Tambien va a eliminar al \nempleado de la base de datos que este asignado al usuario.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (UsuariosBLL.Eliminar(Convert.ToInt32(UsuarioIdTextBox.Text)))
+                if (!string.IsNullOrWhiteSpace(UsuarioIdTextBox.Text) || !Char.IsDigit((char)UsuarioIdTextBox.Text[0]) || Convert.ToInt32(UsuarioIdTextBox.Text) == 0)
                 {
-                    MessageBox.Show("El usuario ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
+                    if (UsuariosBLL.Eliminar(Convert.ToInt32(UsuarioIdTextBox.Text)))
+                    {
+                        MessageBox.Show("El usuario ha sido eliminado correctamente.", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El usuario no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El usuario no pudo ser eliminado.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("El ID que ha ingresado no es válido, no puede contener letras o caracteres especiales o el formulario esta vacío.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UsuarioIdTextBox.Focus();
                 }
             }
         }

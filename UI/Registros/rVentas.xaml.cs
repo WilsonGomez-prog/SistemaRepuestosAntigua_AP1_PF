@@ -139,6 +139,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("La cantidad de producto que desea agregar es mayor a la que hay en inventario.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 CantidadTextBox.Focus();
             }
+            
 
             return valido;
         }
@@ -163,6 +164,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("Debe de especificar si la venta es al contado o a crédito.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 TipoVentaCombobox.Focus();
+            }
+            else if (Convert.ToInt32(TipoVentaCombobox.SelectedValue) == 1 && FiscalRadioButton.IsChecked == false && GubernamentalRadioButton.IsChecked == false)
+            {
+                valido = false;
+                MessageBox.Show("Debe de especificar que tipo de NCF es que emitirá la venta.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                FiscalRadioButton.Focus();
+                GubernamentalRadioButton.Focus();
             }
             else if (FechaDatePicker.SelectedDate > DateTime.Now)
             {
@@ -193,9 +201,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
                 var producto = ProductosBLL.Buscar(ven.ProductoId);
 
-                producto.Existencia = producto.Existencia - ven.Cantidad;
+                if (producto != null)
+                {
+                    producto.Existencia = producto.Existencia - ven.Cantidad;
 
-                ProductosBLL.Guardar(producto);
+                    ProductosBLL.Guardar(producto);
+                }
 
                 Venta.Itbis = 0;
                 Venta.Total = 0;
@@ -246,9 +257,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
             var producto = ProductosBLL.Buscar(ven.ProductoId);
 
-            producto.Existencia = producto.Existencia + ven.Cantidad;
+            if (producto != null)
+            {
+                producto.Existencia = producto.Existencia + ven.Cantidad;
 
-            ProductosBLL.Guardar(producto);
+                ProductosBLL.Guardar(producto);
+            }
 
             foreach (VentasDetalle detalle in Venta.DetalleVenta)
             {
@@ -264,6 +278,50 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar una venta nueva? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                if (VentasBLL.Buscar(Convert.ToInt32(VentaIdTextBox.Text)) != null)
+                {
+                    if (!VentasBLL.Buscar(Convert.ToInt32(VentaIdTextBox.Text)).DetalleVenta.Equals(Venta.DetalleVenta))
+                    {
+                        foreach (var detalle in Venta.DetalleVenta)
+                        {
+                            var producto = ProductosBLL.Buscar(detalle.ProductoId);
+
+                            if (producto != null)
+                            {
+                                producto.Existencia = producto.Existencia + detalle.Cantidad;
+
+                                ProductosBLL.Guardar(producto);
+                            }
+                        }
+
+                        foreach (var detalleG in VentasBLL.Buscar(Convert.ToInt32(VentaIdTextBox.Text)).DetalleVenta)
+                        {
+                            var producto = ProductosBLL.Buscar(detalleG.ProductoId);
+
+                            if (producto != null)
+                            {
+                                producto.Existencia = producto.Existencia - detalleG.Cantidad;
+
+                                ProductosBLL.Guardar(producto);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var detalle in Venta.DetalleVenta)
+                    {
+                        var producto = ProductosBLL.Buscar(detalle.ProductoId);
+
+                        if (producto != null)
+                        {
+                            producto.Existencia = producto.Existencia + detalle.Cantidad;
+
+                            ProductosBLL.Guardar(producto);
+                        }
+                    }
+                }
+
                 Limpiar();
             }
         }
@@ -317,7 +375,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar la venta?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (!string.IsNullOrWhiteSpace(VentaIdTextBox.Text) || !Char.IsDigit((char)VentaIdTextBox.Text[0]))
+                if (!string.IsNullOrWhiteSpace(VentaIdTextBox.Text) || !Char.IsDigit((char)VentaIdTextBox.Text[0]) || Convert.ToInt32(VentaIdTextBox.Text) == 0)
                 {
                     if (VentasBLL.Eliminar(Convert.ToInt32(VentaIdTextBox.Text)))
                     {
@@ -331,7 +389,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 }
                 else
                 {
-                    MessageBox.Show("El ID que ha ingresado no es válido, no puede contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("El ID que ha ingresado no es válido, no puede contener letras o caracteres especiales o el formulario esta vacío.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                     VentaIdTextBox.Focus();
                 }
             }

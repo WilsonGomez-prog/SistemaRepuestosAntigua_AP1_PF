@@ -49,6 +49,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             PendienteTextbox.Text = "N/A";
         }
 
+        
+
         private void Limpiar()
         {
             this.cobros = new Cobros();
@@ -178,6 +180,42 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea limpiar el formulario para ingresar un cobro nuevo? Perderá todos los datos no guardados.", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                if (CobrosBLL.Buscar(Convert.ToInt32(CobroIdTextBox.Text)) != null)
+                {
+                    if (!CobrosBLL.Buscar(Convert.ToInt32(CobroIdTextBox.Text)).DetalleCobro.Equals(cobros.DetalleCobro))
+                    {
+                        MessageBox.Show("1");
+                        foreach (var detalle in cobros.DetalleCobro)
+                        {
+                            var venta = VentasBLL.Buscar(detalle.VentaId);
+
+                            venta.PendientePagar = venta.PendientePagar + detalle.Monto;
+
+                            VentasBLL.Modificar(venta);
+                        }
+                        MessageBox.Show("2");
+                        foreach (var detalleG in CobrosBLL.Buscar(Convert.ToInt32(CobroIdTextBox.Text)).DetalleCobro)
+                        {
+                            var venta = VentasBLL.Buscar(detalleG.VentaId);
+
+                            venta.PendientePagar = venta.PendientePagar - detalleG.Monto;
+
+                            VentasBLL.Modificar(venta);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var detalle in cobros.DetalleCobro)
+                    {
+                        var venta = VentasBLL.Buscar(detalle.VentaId);
+                        MessageBox.Show(venta.PendientePagar.ToString());
+                        venta.PendientePagar = venta.PendientePagar + detalle.Monto;
+                        MessageBox.Show(venta.PendientePagar.ToString());
+                        VentasBLL.Modificar(venta);
+                    }
+                }
+
                 Limpiar();
             }
         }
@@ -221,7 +259,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar el cobro?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (!string.IsNullOrWhiteSpace(CobroIdTextBox.Text) || !Char.IsDigit(CobroIdTextBox.Text[0]))
+                if (!string.IsNullOrWhiteSpace(CobroIdTextBox.Text) || !Char.IsDigit(CobroIdTextBox.Text[0]) || Convert.ToInt32(CobroIdTextBox.Text) == 0)
                 {
                     if (CobrosBLL.Eliminar(Convert.ToInt32(CobroIdTextBox.Text)))
                     {

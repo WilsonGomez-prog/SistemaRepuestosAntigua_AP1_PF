@@ -186,7 +186,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar el producto?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (!string.IsNullOrWhiteSpace(ProductoIdTextBox.Text) || !Char.IsDigit((char)ProductoIdTextBox.Text[0]))
+                if (!string.IsNullOrWhiteSpace(ProductoIdTextBox.Text) || !Char.IsDigit((char)ProductoIdTextBox.Text[0]) || Convert.ToInt32(ProductoIdTextBox.Text) == 0)
                 {
                     if (ProductosBLL.Eliminar(Convert.ToInt32(ProductoIdTextBox.Text)))
                     {

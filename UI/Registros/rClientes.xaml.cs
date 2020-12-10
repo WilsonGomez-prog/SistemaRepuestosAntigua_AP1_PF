@@ -133,7 +133,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             if (MessageBox.Show("¿De verdad desea eliminar el cliente?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (!string.IsNullOrWhiteSpace(ClienteIdTextBox.Text) || !Char.IsDigit((char)ClienteIdTextBox.Text[0]))
+                if (!string.IsNullOrWhiteSpace(ClienteIdTextBox.Text) || !Char.IsDigit((char)ClienteIdTextBox.Text[0]) || Convert.ToInt32(ClienteIdTextBox.Text) == 0)
                 {
                     if (ClientesBLL.Eliminar(Convert.ToInt32(ClienteIdTextBox.Text)))
                     {
