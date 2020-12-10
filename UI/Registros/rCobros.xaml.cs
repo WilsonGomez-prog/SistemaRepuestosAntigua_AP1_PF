@@ -89,7 +89,6 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             }
 
             this.DataContext = cobros;
-            ClienteCombobox.SelectedIndex = -1;
             TotalTextbox.Text = cobros.Total.ToString();
             DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = detalle;
@@ -128,10 +127,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if (!Utilidades.Utilidades.ValidarCasillaDecimal(MontoTextbox.Text))
+            if (!Utilidades.Utilidades.ValidarCasillaDecimal(MontoTextbox.Text) || string.IsNullOrWhiteSpace(MontoTextbox.Text))
             {
                 valido = false;
-                MessageBox.Show("La casilla monto no puede tener letras ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla monto no puede tener letras ni caracteres especiales. o estar vacío", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 MontoTextbox.Focus();
             }
             else if (VentaIdCombobox.SelectedItem == null || VentaIdCombobox.SelectedIndex == -1)
@@ -143,10 +142,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             else if (VentasBLL.Buscar(Convert.ToInt32(VentaIdCombobox.SelectedValue)).PendientePagar < Convert.ToSingle(MontoTextbox.Text))
             {
                 valido = false;
-                MessageBox.Show("Ingresar un monto menor o igual al monto pendiente a pagar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Debe de ingresar un monto menor o igual al monto pendiente a pagar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 MontoTextbox.Focus();
             }
-
 
             return valido;
         }
@@ -166,6 +164,11 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("Debe de seleccionar un cliente al cual le está registrando el cobro.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 ClienteCombobox.Focus();
+            }
+            else if (cobros.DetalleCobro.Count == 0)
+            {
+                valido = false;
+                MessageBox.Show("No puede guardar un cobro que esté vacío.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return valido;
@@ -243,6 +246,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             if (ValidarCobroVenta())
             {
                 CobrosDetalle cob = new CobrosDetalle(Convert.ToInt32(CobroIdTextBox.Text), Convert.ToInt32(VentaIdCombobox.SelectedValue), FechaDatePicker.SelectedDate.Value , Convert.ToSingle(MontoTextbox.Text));
+
                 this.cobros.DetalleCobro.Add(cob);
 
                 var venta = VentasBLL.Buscar(cob.VentaId);
@@ -295,23 +299,44 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void ClienteCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            bool flag = true;
             if (ClienteCombobox.SelectedIndex != -1)
             {
-                Contexto contexto = new Contexto();
+                if (cobros.DetalleCobro.Count != 0)
+                {
+                    foreach (var detalle in cobros.DetalleCobro)
+                    {
+                        if (Convert.ToInt32(ClienteCombobox.SelectedValue) != VentasBLL.Buscar(detalle.VentaId).ClienteId)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
 
-                var ventasCred = (from cli in contexto.Clientes
-                                  join ven in contexto.Ventas
-                                  on cli.ClienteId equals ven.ClienteId
-                                  where ven.ClienteId == Convert.ToInt32(ClienteCombobox.SelectedValue)
-                                  select new
-                                  {
-                                      ven.VentaId,
-                                      Display = ven.VentaId
-                                  }).ToList();
+                if (flag)
+                {
+                    Contexto contexto = new Contexto();
 
-                VentaIdCombobox.ItemsSource = ventasCred;
-                VentaIdCombobox.SelectedValuePath = "VentaId";
-                VentaIdCombobox.DisplayMemberPath = "Display";
+                    var ventasCred = (from cli in contexto.Clientes
+                                      join ven in contexto.Ventas
+                                      on cli.ClienteId equals ven.ClienteId
+                                      where ven.ClienteId == Convert.ToInt32(ClienteCombobox.SelectedValue)
+                                      select new
+                                      {
+                                          ven.VentaId,
+                                          Display = ven.VentaId
+                                      }).ToList();
+
+                    VentaIdCombobox.ItemsSource = ventasCred;
+                    VentaIdCombobox.SelectedValuePath = "VentaId";
+                    VentaIdCombobox.DisplayMemberPath = "Display";
+                }
+                else
+                {
+                    ClienteCombobox.SelectedIndex = -1;
+                    MessageBox.Show("No puede seleccionar un cliente diferente si registro ventas de otro cliente en este cobro.", "Operación no válida", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
             else
             {

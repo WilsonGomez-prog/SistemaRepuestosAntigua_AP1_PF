@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WXPaUCporysuUQTKtw8oXT9qgBFMiYER6U9VA2ICbSE/4p+o+tFmCo/p7a11e37lJzCr1CA3Hcp70gF8IQConQ==",
+  "dgSpecHash": "Gf8L9Q3Nl6OXwGJlASm6vC0ETL5pkxZoguRrfhW24Q56LAMJ9Xn2rG1T7vi8L2/QmrIg6/Qzx1qwd15sf6yHsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\SistemaRepuestosAntigua_AP1_PF.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,9 @@
     "C:\\Users\\wilso\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\wilso\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\wilso\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
-    "C:\\Users\\wilso\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
+    "C:\\Users\\wilso\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
+    "C:\\Users\\wilso\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\wilso\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
   ],
   "logs": []
 }

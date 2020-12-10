@@ -98,6 +98,21 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             CantidadTextBox.Text = string.Empty;
             DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = this.detalle;
+            NCFTextBox.Text = Venta.Ncf;
+            if (NCFTextBox.Text.StartsWith("B01"))
+            {
+                TipoVentaCombobox.SelectedIndex = 1;
+                FiscalRadioButton.IsChecked = true;
+            }
+            else if(NCFTextBox.Text.StartsWith("B15"))
+            {
+                TipoVentaCombobox.SelectedIndex = 1;
+                GubernamentalRadioButton.IsChecked = true;
+            }
+            else
+            {
+                TipoVentaCombobox.SelectedIndex = 0;
+            }
 
             SubTotalTextbox.Text = Convert.ToString(Venta.Total - Venta.Itbis);
 
@@ -107,9 +122,9 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if (!Utilidades.Utilidades.ValidarCasillaDecimal(CantidadTextBox.Text))
+            if (!Utilidades.Utilidades.ValidarCasillaDecimal(CantidadTextBox.Text) || string.IsNullOrWhiteSpace(CantidadTextBox.Text))
             {
-                MessageBox.Show("La casilla cantidad no puede tener letras ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La casilla cantidad no puede tener letras ni caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 CantidadTextBox.Focus();
             }
             else if (ProductoCombobox.SelectedItem == null)
@@ -155,10 +170,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("Debe de seleccionar una fecha de emisión de la venta, menor o igual a la actual.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 FechaDatePicker.Focus();
             }
-            else if (VencimientoDatePicker.SelectedDate < DateTime.Now)
+            else if (VencimientoDatePicker.SelectedDate.Value.Date < FechaDatePicker.SelectedDate.Value.Date)
             {
                 valido = false;
-                MessageBox.Show("Debe de seleccionar una fecha de vencimiento de la venta, mayor o igual a la actual.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Debe de seleccionar una fecha de vencimiento de la venta, mayor o igual a la fecha de emision de la venta.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 VencimientoDatePicker.Focus();
             }
 

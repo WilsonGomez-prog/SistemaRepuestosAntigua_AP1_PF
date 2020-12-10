@@ -52,6 +52,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 NombreUsuarioTextBox.Focus();
             }
+            else if (EsAdminCombobox.SelectedItem  == null)
+            {
+                valido = false;
+                MessageBox.Show("Debe asignarle un tipo de permiso al usuario.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                EsAdminCombobox.Focus();
+            }
             else if (UsuariosBLL.Existe(Convert.ToInt32(UsuarioIdTextBox.Text), NombreUsuarioTextBox.Text))
             {
                 valido = false;
@@ -78,9 +84,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             {
                 valido = false;
                 MessageBox.Show("La verificación no coincide con la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ClaveTextBox.Clear();
                 ClaveVerificacionPasswordBox.Clear();
-                ClaveTextBox.Focus();
+                ClaveVerificacionPasswordBox.Focus();
             }
             else if (FechaDatePicker.SelectedDate > DateTime.Now)
             {

@@ -93,7 +93,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 valido = false;
                 MessageBox.Show("El % de descuento no debe de contener letras o caracteres especiales o estar vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 DescuentoTextBox.Focus();
-            }else if (DescuentoTextBox.Text.Length < 60)
+            }
+            else if (Convert.ToSingle(DescuentoTextBox.Text) > 60)
             {
                 valido = false;
                 MessageBox.Show("El % de descuento introducido no debe ser mayor del 60%.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -139,6 +140,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 this.DataContext = Producto;
                 TipoProductoIdCombobox.SelectedIndex = Producto.TipoProductoId;
                 EstadoProductoCombobox.SelectedIndex = Producto.EstadoProducto;
+                ImpuestoComboBox.SelectedIndex = (int)Producto.Descuento;
+               
             }
             else
             {
