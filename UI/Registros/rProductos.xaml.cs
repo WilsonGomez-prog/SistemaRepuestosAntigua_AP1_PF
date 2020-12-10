@@ -39,7 +39,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             EstadoProductoCombobox.SelectedValuePath = "EstadoId";
             EstadoProductoCombobox.DisplayMemberPath = "Descripcion";
 
-            var ex = new { ImpId = 0, Descripcion = "Execnto(0%)" };
+            var ex = new { ImpId = 0, Descripcion = "Excepto(0%)" };
             var imp1 = new { ImpId = 12, Descripcion = "12%" };
             var imp2 = new { ImpId = 18, Descripcion = "18%" };
 
