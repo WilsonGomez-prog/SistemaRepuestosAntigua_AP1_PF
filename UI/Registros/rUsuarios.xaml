@@ -5,81 +5,160 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Usuarios" Height="491" Width="395" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"  Icon="/Imagenes/Logo_Icon.png">
-    <Grid>
+        Title="Registro de Usuarios" Height="640" Width="395" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"  Icon="/Imagenes/Logo_Icon.png">
+    <Border Padding="20">
         <StackPanel>
-            <Label Content="Usuario ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="UsuarioIdTextBox" Text="{Binding UsuarioId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
-            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-100,-30,0,0" Click="BuscarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
-                    <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
 
-            <Label Content="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}"  SelectedDateFormat="Short" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="Nombre:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreTextBox" Text="{Binding Nombres}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Usuario ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="UsuarioIdTextBox" Text="{Binding UsuarioId}" Height="30" Width="70" HorizontalAlignment="Left"/>
+                </StackPanel>
 
-            <Label Content="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
-            <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellidos}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
+                <Button x:Name="BuscarButton" Width="70" Height="30" Click="BuscarButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#999999" Grid.Column="1">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Buscar</TextBlock>
+                        <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
 
-            <Label Content="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombreUsuarioTextBox" Text="{Binding NombreUsuario}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            </Grid>
 
-            <Label Content="Permisos:" FontSize="15" HorizontalAlignment="Left" Margin="200,-60,0,0"/>
-            <ComboBox x:Name="EsAdminCombobox" IsEditable="False" IsTextSearchEnabled="True" HorizontalAlignment="Left" Width="150" Height="30" Margin="207,-30,0,0">
-                <ComboBoxItem Content="Empleado"/>
-                <ComboBoxItem Content="Administrador"/>
-            </ComboBox>
+            <TextBlock Text="Fecha:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="30"/>
+            <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}"  SelectedDateFormat="Short" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDateChanged="FechaDatePicker_SelectedDateChanged"/>
+            <TextBlock x:Name="FechaVad" Text="Elija una fecha menor o igual a la actual." FontSize="12" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Visibility="Hidden"/>
+                
+            <Grid>
+                    
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="Contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <PasswordBox x:Name="ClavePasswordBox" FontSize="15" Height="25" Width="275" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
-            <TextBox x:Name="ClaveTextBox" FontSize="15" Height="25" Width="275" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" TextChanged="ClaveTextBox_TextChanged"/>
-            
-            <Button x:Name="VisualizarClaveButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="VisualizarClaveButton_Click">
-                <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
-            </Button>
-            
-            <Button x:Name="OcultarClaveButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="OcultarClaveButton_Click" Visibility="Hidden">
-                <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
-            </Button>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Nombre:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="NombreTextBox" Text="{Binding Nombres}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="NombreTextBox_SelectionChanged"/>
+                    <TextBlock x:Name="NombreVad" Text="El nombre no puede tener números o símbolos especiales." TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="150" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="Verifique su contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <PasswordBox x:Name="ClaveVerificacionPasswordBox" FontSize="15" Height="25" Width="275" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
-            <TextBox x:Name="ClaveVerificacionTextBox" FontSize="15" Height="25" Width="275" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" TextChanged="ClaveVerificacionTextBox_TextChanged"/>
-            
-            <Button x:Name="VisualizarVerificarButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="VisualizarVerificarButton_Click">
-                <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
-            </Button>
-            
-            <Button x:Name="OcultarVerificarButton" Width="30" Height="25" Margin="330,-25,0,0" HorizontalAlignment="Left" Click="OcultarVerificarButton_Click" Visibility="Hidden">
-                <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
-            </Button>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30"/>
+                    <TextBox x:Name="ApellidoTextBox" Text="{Binding Apellidos}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"  TextChanged="ApellidoTextBox_SelectionChanged" />
+                    <TextBlock x:Name="ApellidoVad" Text="El apellido no puede tener números o símbolos especiales." TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="150" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#1F62FF">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Nuevo</TextBlock>
-                    <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+            </Grid>
 
-            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Guardar</TextBlock>
-                    <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+            <Grid>
 
-            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click" Background="#F72C25">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Eliminar</TextBlock>
-                    <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
-                </DockPanel>
-            </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Nombre de usuario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="NombreUsuarioTextBox" Text="{Binding NombreUsuario}" Height="27" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="NombreUsuarioTextBox_TextChanged"/>
+                    <TextBlock x:Name="UserNameVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <Label Content="Permisos:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <ComboBox x:Name="EsAdminCombobox" IsEditable="False" IsTextSearchEnabled="True" HorizontalAlignment="Left" Width="150" Height="30" SelectionChanged="EsAdminCombobox_SelectionChanged">
+                        <ComboBoxItem Content="Empleado"/>
+                        <ComboBoxItem Content="Administrador"/>
+                    </ComboBox>
+                    <TextBlock x:Name="PermisosVad" Text="Debes de seleccionar el tipo de usuario." TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Margin="0,-5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <PasswordBox x:Name="ClavePasswordBox" FontSize="15" Height="25" Width="270" HorizontalAlignment="Left" VerticalAlignment="Top" PasswordChanged="ClavePasswordBox_PasswordChanged"/>
+                    <TextBox x:Name="ClaveTextBox" FontSize="15" Height="25" Width="270" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-25,0,0" TextChanged="ClaveTextBox_TextChanged"/>
+                    <TextBlock x:Name="ContraVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="270" Visibility="Hidden"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Height="Auto">
+                    <Button x:Name="VisualizarClaveButton" Width="30" Height="25" Margin="0,30" Click="VisualizarClaveButton_Click">
+                        <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="OcultarClaveButton" Width="30" Height="25" Margin="0,-85,0,0"  Click="OcultarClaveButton_Click" Visibility="Hidden">
+                        <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Margin="0,-10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <Label Content="Verifique su contraseña:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <PasswordBox x:Name="ClaveVerificacionPasswordBox" FontSize="15" Height="25" Width="270" HorizontalAlignment="Left" VerticalAlignment="Top" PasswordChanged="ClaveVerificacionPasswordBox_PasswordChanged"/>
+                    <TextBox x:Name="ClaveVerificacionTextBox" FontSize="15" Height="25" Width="270" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-25,0,0" TextChanged="ClaveVerificacionTextBox_TextChanged"/>
+                    <TextBlock x:Name="VerificacionVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="270" Visibility="Hidden"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Height="Auto">
+                    <Button x:Name="VisualizarVerificarButton" Width="30" Height="25" Margin="0,30,0,0" Click="VisualizarVerificarButton_Click">
+                        <Image Source="/Imagenes/reveal_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="OcultarVerificarButton" Width="30" Height="25" Margin="0,-25,0,0" Click="OcultarVerificarButton_Click" Visibility="Hidden">
+                        <Image Source="/Imagenes/hide_icon.png" Margin="0,0,0,0" Height="20" HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Margin="0,0" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="NuevoButton" Width="70" Height="30" Click="NuevoButton_Click" Background="#1F62FF" Grid.Column="0" Margin="0,0,20,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Nuevo</TextBlock>
+                        <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="GuardarButton" Width="70" Height="30" Click="GuardarButton_Click" Background="#999999" Grid.Column="1" >
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Guardar</TextBlock>
+                        <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="EliminarButton" Width="70" Height="30" Click="EliminarButton_Click" Background="#F72C25" Grid.Column="2" Margin="20,0,0,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Eliminar</TextBlock>
+                        <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
+                    </DockPanel>
+                </Button>
+            </Grid>
 
         </StackPanel>
-    </Grid>
+    </Border>
 </Window>

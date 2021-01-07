@@ -27,12 +27,13 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Consultas
 
             foreach (var cobro in lista)
             {
+                var cli = ClientesBLL.Buscar(cobro.ClienteId);
                 var cob = new
                 {
                     cobro.CobroId,
                     Fecha = cobro.Fecha.ToString("dd/MM/yyy"),
                     Total = cobro.Total.ToString("N2"),
-                    Cliente = ClientesBLL.Buscar(cobro.ClienteId).Nombres + " " + ClientesBLL.Buscar(cobro.ClienteId).Apellidos,
+                    Cliente = cli.Nombres + " " + cli.Apellidos,
                     UsuarioModificador = cobro.UsuarioModificador != 0 ? UsuariosBLL.Buscar(cobro.UsuarioModificador).NombreUsuario : "Default"
                 };
 

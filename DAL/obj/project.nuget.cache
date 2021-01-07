@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EfkkECHevXQd4uL0uESjoxPnVZJ9HhNKoWPUfy6ASeybT1O1fsLsmtdgu97040HbdrBSQ6w0LjdbYw4x+er7zA==",
+  "dgSpecHash": "J8fTro4cbovEPe0DPS3K1o6xnWGv9jhluTmsZ2rPpHWkois+vwVjct7yRvhvcYnpSnQjxsS1ZoQc0kFqX+Kx4g==",
   "success": true,
   "projectFilePath": "C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
@@ -35,15 +35,7 @@
     "C:\\Users\\wilso\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\wilso\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\wilso\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
-    "C:\\Users\\wilso\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
-    "C:\\Users\\wilso\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+    "C:\\Users\\wilso\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\wilso\\source\\repos\\SistemaRepuestosAntigua_AP1_PF\\DAL\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

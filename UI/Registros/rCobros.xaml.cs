@@ -95,6 +95,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = detalle;
             VentaIdCombobox.SelectedIndex = -1;
+            ClienteCombobox.SelectedIndex = cobros.ClienteId;
             MontoTextbox.Text = string.Empty;
         }
 
@@ -227,7 +228,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                     bool guardado;
                     cobros.UsuarioModificador = Modificador.UsuarioId;
                     cobros.Fecha = Convert.ToDateTime(FechaDatePicker.SelectedDate.Value.Date.ToShortDateString());
-
+                    cobros.ClienteId = Convert.ToInt32(ClienteCombobox.SelectedValue);
                     if (string.IsNullOrWhiteSpace(CobroIdTextBox.Text) || CobroIdTextBox.Text == "0")
                         guardado = CobrosBLL.Guardar(cobros);
                     else

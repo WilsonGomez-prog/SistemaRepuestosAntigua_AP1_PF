@@ -61,20 +61,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI
 
         private void VisualizarClaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ClaveTextBox.Text = ClavePasswordBox.Password;
-            ClavePasswordBox.Visibility = Visibility.Hidden;
-            ClaveTextBox.Visibility = Visibility.Visible;
-            VisualizarClaveButton.Visibility = Visibility.Hidden;
-            OcultarClaveButton.Visibility = Visibility.Visible;
+            Utilidades.Utilidades.VisualizarClave(ref VisualizarClaveButton, ref OcultarClaveButton, ref ClavePasswordBox, ref ClaveTextBox);
         }
 
         private void OcultarClaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ClavePasswordBox.Password = ClaveTextBox.Text;
-            ClavePasswordBox.Visibility = Visibility.Visible;
-            ClaveTextBox.Visibility = Visibility.Hidden;
-            VisualizarClaveButton.Visibility = Visibility.Visible;
-            OcultarClaveButton.Visibility = Visibility.Hidden;
+            Utilidades.Utilidades.OcultarClave(ref VisualizarClaveButton, ref OcultarClaveButton, ref ClavePasswordBox, ref ClaveTextBox);
         }
     }
 }

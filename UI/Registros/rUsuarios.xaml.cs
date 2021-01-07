@@ -1,6 +1,7 @@
 ﻿using BLL;
 using Entidades;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -34,64 +35,26 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         {
             bool valido = true;
 
-            if(!Utilidades.Utilidades.ValidarCasillaTexto(NombreTextBox.Text) || string.IsNullOrWhiteSpace(NombreTextBox.Text))
+            List<TextBlock> ErrorMessages = new List<TextBlock> { FechaVad, NombreVad, ApellidoVad, UserNameVad, PermisosVad, ContraVad, VerificacionVad };
+            List<TextBox> Controles = new List<TextBox> {NombreTextBox, ApellidoTextBox, NombreUsuarioTextBox, ClaveTextBox, ClaveVerificacionTextBox };
+
+            foreach (TextBlock error in ErrorMessages)
             {
-                valido = false;
-                MessageBox.Show("La casilla nombre no puede tener \nnumeros ni caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NombreTextBox.Focus();
+                if (error.Visibility == Visibility.Visible)
+                {
+                    valido = false;
+                    break;
+                }
             }
-            else if(!Utilidades.Utilidades.ValidarCasillaTexto(ApellidoTextBox.Text) || string.IsNullOrWhiteSpace(ApellidoTextBox.Text))
+
+            foreach (TextBox control in Controles)
             {
-                valido = false;
-                MessageBox.Show("La casilla apellido no puede tener \nnumeros ni caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ApellidoTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarUserName(NombreUsuarioTextBox.Text) || string.IsNullOrWhiteSpace(NombreUsuarioTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("La casilla nombre de usuario no puede tener \n caracteres especiales o estar vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NombreUsuarioTextBox.Focus();
-            }
-            else if (EsAdminCombobox.SelectedItem  == null)
-            {
-                valido = false;
-                MessageBox.Show("Debe asignarle un tipo de permiso al usuario.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                EsAdminCombobox.Focus();
-            }
-            else if (UsuariosBLL.Existe(Convert.ToInt32(UsuarioIdTextBox.Text), NombreUsuarioTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("El nombre de usuario ingresado en la casilla\n'Nombre de usuario' ya pertenece a otro usuario,\n ingrese uno diferente.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NombreUsuarioTextBox.Focus();
-            }
-            else if(string.IsNullOrWhiteSpace(ClavePasswordBox.Password) || ClavePasswordBox.Password.Length < 6)
-            {
-                valido = false;
-                MessageBox.Show("Es necesario ingresar una clave con un minimo de 6 caracteres.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ClaveTextBox.Clear();
-                ClaveVerificacionPasswordBox.Clear();
-                ClaveTextBox.Focus();
-            }
-            else if (string.IsNullOrWhiteSpace(ClaveVerificacionPasswordBox.Password))
-            {
-                valido = false;
-                MessageBox.Show("Es necesario es necesario verificar la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ClaveTextBox.Clear();
-                ClaveVerificacionPasswordBox.Clear();
-                ClaveTextBox.Focus();
-            }
-            else if (ClaveVerificacionPasswordBox.Password != ClavePasswordBox.Password)
-            {
-                valido = false;
-                MessageBox.Show("La verificación no coincide con la clave ingresada.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ClaveVerificacionPasswordBox.Clear();
-                ClaveVerificacionPasswordBox.Focus();
-            }
-            else if (FechaDatePicker.SelectedDate > DateTime.Now)
-            {
-                valido = false;
-                MessageBox.Show("No se puede elegir una fecha mayor a la actual.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                FechaDatePicker.Focus();
+                if (string.IsNullOrWhiteSpace(control.Text))
+                {
+                    valido = false;
+                    MessageBox.Show("El formulario no ha sido completado, no se puede guardar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+                }
             }
 
             return valido;
@@ -182,20 +145,12 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         private void VisualizarClaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ClaveTextBox.Text = ClavePasswordBox.Password;
-            ClavePasswordBox.Visibility = Visibility.Hidden;
-            ClaveTextBox.Visibility = Visibility.Visible;
-            VisualizarClaveButton.Visibility = Visibility.Hidden;
-            OcultarClaveButton.Visibility = Visibility.Visible;
+            Utilidades.Utilidades.VisualizarClave(ref VisualizarClaveButton, ref OcultarClaveButton, ref ClavePasswordBox, ref ClaveTextBox);
         }
 
         private void OcultarClaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ClavePasswordBox.Password = ClaveTextBox.Text;
-            ClavePasswordBox.Visibility = Visibility.Visible;
-            ClaveTextBox.Visibility = Visibility.Hidden;
-            VisualizarClaveButton.Visibility = Visibility.Visible;
-            OcultarClaveButton.Visibility = Visibility.Hidden;
+            Utilidades.Utilidades.OcultarClave(ref VisualizarClaveButton, ref OcultarClaveButton, ref ClavePasswordBox, ref ClaveTextBox);
         }
 
         private void OcultarVerificarButton_Click(object sender, RoutedEventArgs e)
@@ -211,12 +166,133 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
         private void ClaveTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ClavePasswordBox.Password = ClaveTextBox.Text;
+
+            ValidarClave();
         }
 
 
         private void ClaveVerificacionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ClaveVerificacionPasswordBox.Password = ClaveVerificacionTextBox.Text;
+
+            ValidarVerificacion();
+        }
+
+        private void FechaDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FechaDatePicker.SelectedDate > DateTime.Now)
+            {
+                FechaVad.Visibility = Visibility.Visible;
+                FechaDatePicker.Focus();
+            }
+            else
+            {
+                FechaVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void NombreTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaTexto(NombreTextBox.Text) || string.IsNullOrWhiteSpace(NombreTextBox.Text))
+            {
+                NombreVad.Visibility = Visibility.Visible;
+                NombreTextBox.Focus();
+            }
+            else
+            {
+                NombreVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ApellidoTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaTexto(ApellidoTextBox.Text) || string.IsNullOrWhiteSpace(ApellidoTextBox.Text))
+            {
+                ApellidoVad.Visibility = Visibility.Visible;
+                ApellidoTextBox.Focus();
+            }
+            else
+            {
+                ApellidoVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+
+        private void EsAdminCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EsAdminCombobox.SelectedItem == null)
+            {
+                PermisosVad.Visibility = Visibility.Visible;
+                EsAdminCombobox.Focus();
+            }
+            else
+            {
+                PermisosVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void NombreUsuarioTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarUserName(NombreUsuarioTextBox.Text) || string.IsNullOrWhiteSpace(NombreUsuarioTextBox.Text))
+            {
+                UserNameVad.Text = "El nombre de usuario no puede tener simbolos especiales o estar vacío";
+                UserNameVad.Visibility = Visibility.Visible;
+                NombreUsuarioTextBox.Focus();
+            }
+            else if (UsuariosBLL.Existe(Convert.ToInt32(UsuarioIdTextBox.Text), NombreUsuarioTextBox.Text))
+            {
+                UserNameVad.Text = "El nombre de usuario ingresado en la casilla 'Nombre de usuario' ya pertenece a otro usuario, ingrese uno diferente.";
+                UserNameVad.Visibility = Visibility.Visible;
+                NombreUsuarioTextBox.Focus();
+            }
+            else
+            {
+                UserNameVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ClavePasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ValidarClave();
+        }
+
+        private void ClaveVerificacionPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ValidarVerificacion();
+        }
+
+        private void ValidarClave()
+        {
+            if (string.IsNullOrWhiteSpace(ClavePasswordBox.Password) || ClavePasswordBox.Password.Length < 6)
+            {
+                ContraVad.Text = "Es necesario ingresar una clave con un mínimo de 6 caracteres.";
+                ContraVad.Visibility = Visibility.Visible;
+                ClaveTextBox.Focus();
+            }
+            else
+            {
+                ContraVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ValidarVerificacion()
+        {
+            if (string.IsNullOrWhiteSpace(ClaveVerificacionPasswordBox.Password))
+            {
+                VerificacionVad.Text = "Es necesario es necesario verificar la clave ingresada.";
+                VerificacionVad.Visibility = Visibility.Visible;
+                ClaveVerificacionPasswordBox.Focus();
+            }
+            else if (ClaveVerificacionPasswordBox.Password != ClavePasswordBox.Password)
+            {
+                VerificacionVad.Text = "La verificación no coincide con la clave ingresada.";
+                VerificacionVad.Visibility = Visibility.Visible;
+                ClaveVerificacionPasswordBox.Focus();
+            }
+            else
+            {
+                VerificacionVad.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
