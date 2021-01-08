@@ -43,6 +43,7 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                 if (error.Visibility == Visibility.Visible)
                 {
                     valido = false;
+                    MessageBox.Show("El usuario no se pudo guardar, revise las advertencias.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 }
             }

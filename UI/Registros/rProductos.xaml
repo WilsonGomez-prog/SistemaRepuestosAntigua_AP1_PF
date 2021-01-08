@@ -5,62 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Productos" Height="400" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
-    <Grid>
+        Title="Registro de Productos" Height="615" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+    <Border Padding="20">
         <StackPanel>
-            <Label Content="Producto ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="ProductoIdTextBox" Text="{Binding ProductoId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
-            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-50,-30,0,0" Click="BuscarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
-                    <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="Descripción:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="DescripcionTextBox" Text="{Binding Descripcion}" Height="25" Width="150" HorizontalAlignment="Left" Margin="27,0,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Producto ID:" FontSize="15" Height="30"/>
+                    <TextBox x:Name="ProductoIdTextBox" Text="{Binding ProductoId}" Height="30" Width="85" HorizontalAlignment="Left" />
+                </StackPanel>
 
-            <Label Content="Código:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
-            <TextBox x:Name="CodigoTextBox" Text="{Binding Codigo}" Height="25" Width="150" HorizontalAlignment="Left" Margin="207,-25,0,0"/>
+                <Button x:Name="BuscarButton" Width="70" Height="30" Click="BuscarButton_Click" Background="#999999" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Buscar</TextBlock>
+                        <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+            </Grid>
 
-            <Label Content="Precio unitario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="PrecioUnitTextBox" Text="{Binding PrecioUnit}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <Grid Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="% de Impuesto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,-55,0,0" Height="30"/>
-            <ComboBox x:Name="ImpuestoComboBox" Text="{Binding Impuesto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,-25,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Descripción:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="DescripcionTextBox" Text="{Binding Descripcion}" Height="25" Width="150" HorizontalAlignment="Left" TextChanged="DescripcionTextBox_TextChanged"/>
+                    <TextBlock x:Name="DescripcionVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="% de descuento:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
-            <TextBox x:Name="DescuentoTextBox" Text="{Binding Descuento}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Código:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="CodigoTextBox" Text="{Binding Codigo}" Height="25" Width="150" HorizontalAlignment="Left" TextChanged="CodigoTextBox_TextChanged"/>
+                    <TextBlock x:Name="CodigoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+            </Grid>
 
-            <Label Content="Tipo de producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
-            <ComboBox x:Name="TipoProductoIdCombobox" Text="{Binding TipoProductoId}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="Estado del producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0" Height="30"/>
-            <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,0,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Precio unitario:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="PrecioUnitTextBox" Text="{Binding PrecioUnit}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="PrecioUnitTextBox_TextChanged"/>
+                    <TextBlock x:Name="PrecioUnitVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="Cantidad de existencias:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,-55,0,0" Height="30"/>
-            <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,-25,0,0" IsReadOnly="True"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="% de Impuesto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <ComboBox x:Name="ImpuestoComboBox" Text="{Binding Impuesto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ImpuestoComboBox_SelectionChanged"/>
+                    <TextBlock x:Name="ImpuestoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+            </Grid>
 
-            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#1F62FF">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Nuevo</TextBlock>
-                    <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Guardar</TextBlock>
-                    <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Tipo de producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <ComboBox x:Name="TipoProductoIdCombobox" Text="{Binding TipoProductoId}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="TipoProductoIdCombobox_SelectionChanged"/>
+                    <TextBlock x:Name="TipoProductoIdVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click" Background="#F72C25">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Eliminar</TextBlock>
-                    <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
-                </DockPanel>
-            </Button>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="% de descuento:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="DescuentoTextBox" Text="{Binding Descuento}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="DescuentoTextBox_TextChanged"/>
+                    <TextBlock x:Name="DescuentoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Cantidad de existencias:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="ExistenciaTextBox" Text="{Binding Existencia}" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True" TextChanged="ExistenciaTextBox_TextChanged"/>
+                    <TextBlock x:Name="ExistenciaVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Estado del producto:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <ComboBox x:Name="EstadoProductoCombobox" Text="{Binding EstadoProducto}" IsTextSearchEnabled="True" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="EstadoProductoCombobox_SelectionChanged"/>
+                    <TextBlock x:Name="EstadoProductoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="51" Width="150" Visibility="Hidden"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="NuevoButton" Width="70" Height="30" Click="NuevoButton_Click" Background="#1F62FF" Grid.Column="0" Margin="0,0,30,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Nuevo</TextBlock>
+                        <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="GuardarButton" Width="70" Height="30" Click="GuardarButton_Click" Background="#999999" Grid.Column="1">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Guardar</TextBlock>
+                        <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="EliminarButton" Width="70" Height="30" Click="EliminarButton_Click" Background="#F72C25" Grid.Column="2" Margin="30,0,0,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Eliminar</TextBlock>
+                        <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
+                    </DockPanel>
+                </Button>
+            </Grid>
         </StackPanel>
-    </Grid>
+    </Border>
 </Window>
