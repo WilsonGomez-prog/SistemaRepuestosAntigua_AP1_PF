@@ -1,7 +1,9 @@
 ﻿using BLL;
 using Entidades;
 using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 {
@@ -28,52 +30,20 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
 
         public bool Validar()
         {
-            bool valido = true;
 
-            if (!Utilidades.Utilidades.ValidarCasillaTexto(NombresTextBox.Text) || string.IsNullOrWhiteSpace(NombresTextBox.Text))
+            if (!ValidarAdvertencia())
             {
-                valido = false;
-                MessageBox.Show("La casilla nombres no puede estar vacío o tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NombresTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaTexto(ApellidosTextBox.Text) || string.IsNullOrWhiteSpace(ApellidosTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("La casilla apellidos no puede estar vacío o tener \nnumeros ni caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                ApellidosTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarDireccion(DireccionTextBox.Text) || string.IsNullOrWhiteSpace(DireccionTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("La casilla direccion no puede estar vacío o tener \n caracteres especiales distintos a '#', '.', ',' y '/'", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                DireccionTextBox.Focus();
-            }
-            else if (UsuariosBLL.Existe(Convert.ToInt32(ClienteIdTextBox.Text), NoCedulaTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("El cliente que esta intentando registrar ya esta regisrado\n o esta ingresando una cédula ya registrada en otro cliente.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NoCedulaTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(RNCTextBox.Text) || string.IsNullOrWhiteSpace(RNCTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("El RNC no debe estar vacío o contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                RNCTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(NoCedulaTextBox.Text) || string.IsNullOrWhiteSpace(NoCedulaTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("El número de cédula no debe estar vacío o contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                NoCedulaTextBox.Focus();
-            }
-            else if (!Utilidades.Utilidades.ValidarCasillaNumerica(TelefonoTextBox.Text) || string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
-            {
-                valido = false;
-                MessageBox.Show("El teléfono ingresado no puede estar vacío o contener letras o caracteres especiales.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                TelefonoTextBox.Focus();
+                MessageBox.Show("El cliente no se pudo guardar, revise las advertencias.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
 
-            return valido;
+            if (!ValidarContexto())
+            {
+                MessageBox.Show("El formulario no ha sido completado, no se puede guardar.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
@@ -151,6 +121,126 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
                     ClienteIdTextBox.Focus();
                 }
             }
+        }
+
+        private void NombresTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaTexto(NombresTextBox.Text) || string.IsNullOrWhiteSpace(NombresTextBox.Text))
+            {
+                NombreVad.Text = "La casilla nombres no puede estar vacía o tener números ni caracteres especiales.";
+                NombreVad.Visibility = Visibility.Visible;
+                NombresTextBox.Focus();
+            }
+            else
+            {
+                NombreVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ApellidosTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaTexto(ApellidosTextBox.Text) || string.IsNullOrWhiteSpace(ApellidosTextBox.Text))
+            {
+                ApellidoVad.Text = "La casilla apellidos no puede estar vacío o tener números ni caracteres especiales.";
+                ApellidoVad.Visibility = Visibility.Visible;
+                ApellidosTextBox.Focus();
+            }
+            else
+            {
+                ApellidoVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void NoCedulaTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaNumerica(NoCedulaTextBox.Text) || string.IsNullOrWhiteSpace(NoCedulaTextBox.Text))
+            {
+                CedulaVad.Text = "El número de cédula no debe estar vacío o contener letras o caracteres especiales.";
+                CedulaVad.Visibility = Visibility.Visible;
+                DireccionTextBox.Focus();
+            }
+            else if (UsuariosBLL.Existe(Convert.ToInt32(ClienteIdTextBox.Text), NoCedulaTextBox.Text))
+            {
+                CedulaVad.Text = "El cliente que esta intentando registrar ya esta regisrado\n o esta ingresando una cédula ya registrada en otro cliente.";
+                CedulaVad.Visibility = Visibility.Visible;
+                NoCedulaTextBox.Focus();
+            }
+            else
+            {
+                CedulaVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void RNCTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaNumerica(RNCTextBox.Text) || string.IsNullOrWhiteSpace(RNCTextBox.Text))
+            {
+                RNCVad.Text = "El RNC no debe estar vacío o contener letras o caracteres especiales.";
+                RNCVad.Visibility = Visibility.Visible;
+                RNCTextBox.Focus();
+            }
+            else
+            {
+                RNCVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void TelefonoTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarCasillaNumerica(TelefonoTextBox.Text) || string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
+            {
+                TelefonoVad.Text = "El teléfono ingresado no puede estar vacío o contener letras o caracteres especiales.";
+                TelefonoVad.Visibility = Visibility.Visible;
+                TelefonoTextBox.Focus();
+            }
+            else
+            {
+                TelefonoVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void DireccionTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!Utilidades.Utilidades.ValidarDireccion(DireccionTextBox.Text) || string.IsNullOrWhiteSpace(DireccionTextBox.Text))
+            {
+                DireccionVad.Text = "La casilla direccion no puede estar vacío o tener \n caracteres especiales distintos a '#', '.', ',' y '/'";
+                DireccionVad.Visibility = Visibility.Visible;
+                DireccionTextBox.Focus();
+            }
+            else
+            {
+                DireccionVad.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private bool ValidarContexto()
+        {
+            List<TextBox> Controles = new List<TextBox> { NombresTextBox, ApellidosTextBox, NoCedulaTextBox, RNCTextBox, DireccionTextBox, TelefonoTextBox};
+
+            foreach (TextBox control in Controles)
+            {
+                if (string.IsNullOrWhiteSpace(control.Text))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ValidarAdvertencia()
+        {
+            List<TextBlock> ErrorMessages = new List<TextBlock> { NombreVad, ApellidoVad, CedulaVad, DireccionVad, RNCVad, TelefonoVad };
+
+            foreach (TextBlock error in ErrorMessages)
+            {
+                if (error.Visibility == Visibility.Visible)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

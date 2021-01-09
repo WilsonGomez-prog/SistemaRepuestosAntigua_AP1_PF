@@ -5,56 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaRepuestosAntigua_AP1_PF.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Clientes" Height="550" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
-    <Grid>
+        Title="Registro de Clientes" Height="725" Width="350" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Imagenes/Logo_Icon.png">
+    <Border Padding="20">
         <StackPanel>
-            <Label Content="Cliente ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="ClienteIdTextBox" Text="{Binding ClienteId}" Height="30" Width="70" HorizontalAlignment="Left" Margin="27,0,0,0"/>
-            <Button x:Name="BuscarButton" Width="70" Height="30" Margin="-50,-30,0,0" Click="BuscarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Buscar</TextBlock>
-                    <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Content="Nombre:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NombresTextBox" Text="{Binding Nombres}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Cliente ID:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
+                    <TextBox x:Name="ClienteIdTextBox" Text="{Binding ClienteId}" Height="30" Width="70" HorizontalAlignment="Left"/>
+                </StackPanel>
+                
+                <Button x:Name="BuscarButton" Width="70" Height="30" Click="BuscarButton_Click" Background="#999999" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Buscar</TextBlock>
+                        <Image Source="/Imagenes/search_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+            </Grid>
 
-            <Label Content="Apellido:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="ApellidosTextBox" Text="{Binding Apellidos}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+            <Grid Margin="0,25">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <Label Content="Cédula del Cliente:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="NoCedulaTextBox" Text="{Binding NoCedula}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Nombre:" FontSize="15" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="NombresTextBox" Text="{Binding Nombres}" Height="25" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="NombresTextBox_TextChanged" />
+                    <TextBlock x:Name="NombreVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="RNC del cliente:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="RNCTextBox" Text="{Binding Rnc}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Apellido:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <TextBox x:Name="ApellidosTextBox" Text="{Binding Apellidos}" Height="25" Width="280" HorizontalAlignment="Left" TextChanged="ApellidosTextBox_TextChanged"/>
+                    <TextBlock x:Name="ApellidoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="Télefono:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="TelefonoTextBox" Text="{Binding Telefono}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Cédula del Cliente:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <TextBox x:Name="NoCedulaTextBox" Text="{Binding NoCedula}" Height="25" Width="280" HorizontalAlignment="Left" TextChanged="NoCedulaTextBox_TextChanged" />
+                    <TextBlock x:Name="CedulaVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Label Content="Dirección:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="30"/>
-            <TextBox x:Name="DireccionTextBox" Text="{Binding Direccion}" Height="25" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,0,0,0"/>
+                <StackPanel Grid.Row="3">
+                    <TextBlock Text="RNC del cliente:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <TextBox x:Name="RNCTextBox" Text="{Binding Rnc}" Height="25" Width="280" HorizontalAlignment="Left" TextChanged="RNCTextBox_TextChanged" />
+                    <TextBlock x:Name="RNCVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Button x:Name="NuevoButton" Width="70" Height="30" Margin="27,15,0,0" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#1F62FF">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Nuevo</TextBlock>
-                    <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+                <StackPanel Grid.Row="4">
+                    <TextBlock Text="Télefono:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <TextBox x:Name="TelefonoTextBox" Text="{Binding Telefono}" Height="25" Width="280" HorizontalAlignment="Left" TextChanged="TelefonoTextBox_TextChanged" />
+                    <TextBlock x:Name="TelefonoVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
 
-            <Button x:Name="GuardarButton" Width="70" Height="30" Margin="117,-30,0,0" HorizontalAlignment="Left" Click="GuardarButton_Click" Background="#999999" >
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Guardar</TextBlock>
-                    <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
-                </DockPanel>
-            </Button>
+                <StackPanel Grid.Row="5">
+                    <TextBlock Text="Dirección:" FontSize="15" HorizontalAlignment="Left" Height="30"/>
+                    <TextBox x:Name="DireccionTextBox" Text="{Binding Direccion}" Height="25" Width="280" HorizontalAlignment="Left" TextChanged="DireccionTextBox_TextChanged"/>
+                    <TextBlock x:Name="DireccionVad" TextWrapping="Wrap" FontSize="12" Foreground="Red"  HorizontalAlignment="Left" Height="30" Width="275" Visibility="Hidden"/>
+                </StackPanel>
+            </Grid>
 
-            <Button x:Name="EliminarButton" Width="70" Height="30" Margin="207,-30,0,0" HorizontalAlignment="Left" Click="EliminarButton_Click" Background="#F72C25">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold">Eliminar</TextBlock>
-                    <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
-                </DockPanel>
-            </Button>
+            <Grid HorizontalAlignment="Left" Margin="0,-10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="NuevoButton" Width="70" Height="30" HorizontalAlignment="Left" Click="NuevoButton_Click" Background="#1F62FF" Grid.Column="0" Margin="0,0,20,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Nuevo</TextBlock>
+                        <Image Source="/Imagenes/new_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="GuardarButton" Width="70" Height="30" HorizontalAlignment="Left" Click="GuardarButton_Click" Background="#999999" Grid.Column="1" >
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Guardar</TextBlock>
+                        <Image Source="/Imagenes/save_icon.png" Margin="5,0,0,0" Height="20"/>
+                    </DockPanel>
+                </Button>
+
+                <Button x:Name="EliminarButton" Width="70" Height="30" HorizontalAlignment="Left" Click="EliminarButton_Click" Background="#F72C25" Grid.Column="2" Margin="20,0,0,0">
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold">Eliminar</TextBlock>
+                        <Image Source="/Imagenes/delete_icon.png" Margin="5,0,0,0" Height="20" />
+                    </DockPanel>
+                </Button>
+            </Grid>
         </StackPanel>
-    </Grid>
+    </Border>
 </Window>
