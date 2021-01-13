@@ -72,24 +72,10 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             return proyecto != null;
         }
 
+
         private void Actualizar(int op, int del)
         {
-            Contexto contexto = new Contexto();
-
-            if (op == 1)
-            {
-                foreach (VentasDetalle detalle in Venta.DetalleVenta)
-                {
-                    var prod = ProductosBLL.Buscar(detalle.ProductoId);
-                    var det = new { detalle.DetalleVentaId, prod.Codigo, Producto = prod.Descripcion, detalle.Cantidad, PrecioUnit = prod.PrecioUnit.ToString("N2"), Total = detalle.Total.ToString("N2") };
-                    this.detalle.Add(det);
-                }
-            }
-            else
-            {
-                this.detalle.RemoveAt(del);
-            }
-
+            ActualizarDetalle(op, del);
             this.DataContext = null;
             this.DataContext = Venta;
             FechaDatePicker.SelectedDate = Venta.Fecha;
@@ -98,27 +84,8 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             CantidadTextBox.Text = string.Empty;
             DetalleDataGrid.ItemsSource = null;
             DetalleDataGrid.ItemsSource = this.detalle;
-            if (Venta.Ncf.StartsWith("B01"))
-            {
-                TipoVentaCombobox.SelectedIndex = 1;
-                FiscalRadioButton.IsChecked = true;
-            }
-            else if(Venta.Ncf.StartsWith("B15"))
-            {
-                TipoVentaCombobox.SelectedIndex = 1;
-                GubernamentalRadioButton.IsChecked = true;
-            }
-            else if (Venta.TipoVenta == 0)
-            {
-                TipoVentaCombobox.SelectedIndex = 0;
-            }
-            else
-            {
-                TipoVentaCombobox.SelectedIndex = -1;
-            }
-            NCFTextBox.Text = Venta.Ncf;
+            ActualizarNCF();
             SubTotalTextbox.Text = Convert.ToString(Venta.Total - Venta.Itbis);
-
         }
 
         private bool ValidarProd()
@@ -488,6 +455,46 @@ namespace SistemaRepuestosAntigua_AP1_PF.UI.Registros
             }
 
             return ncf.ToString();
+        }
+
+        private void ActualizarDetalle(int op, int del)
+        {
+            if (op == 1)
+            {
+                foreach (VentasDetalle detalle in Venta.DetalleVenta)
+                {
+                    var prod = ProductosBLL.Buscar(detalle.ProductoId);
+                    var det = new { detalle.DetalleVentaId, prod.Codigo, Producto = prod.Descripcion, detalle.Cantidad, PrecioUnit = prod.PrecioUnit.ToString("N2"), Total = detalle.Total.ToString("N2") };
+                    this.detalle.Add(det);
+                }
+            }
+            else
+            {
+                this.detalle.RemoveAt(del);
+            }
+        }
+
+        private void ActualizarNCF()
+        {
+            if (Venta.Ncf.StartsWith("B01"))
+            {
+                TipoVentaCombobox.SelectedIndex = 1;
+                FiscalRadioButton.IsChecked = true;
+            }
+            else if (Venta.Ncf.StartsWith("B15"))
+            {
+                TipoVentaCombobox.SelectedIndex = 1;
+                GubernamentalRadioButton.IsChecked = true;
+            }
+            else if (Venta.TipoVenta == 0)
+            {
+                TipoVentaCombobox.SelectedIndex = 0;
+            }
+            else
+            {
+                TipoVentaCombobox.SelectedIndex = -1;
+            }
+            NCFTextBox.Text = Venta.Ncf;
         }
     }
 }
